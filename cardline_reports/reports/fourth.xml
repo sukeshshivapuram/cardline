@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="fourth_model_report_new" model="ir.actions.report">
+            <field name="name">fourth report</field>
+            <field name="model">fourth.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">newmodule.fourth_report</field>
+            <field name="report_file">newmodule.fourth_report</field>
+            <field name="binding_model_id" ref="model_fourth_report"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="fourth_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="trd">
+
+                    <t t-call="web.external_layout">
+                        <h1 style="text-align: center; height:50px; font-size: 40px;">Statement of Accounts</h1>
+
+                        <br/>
+                        <br/>
+                        <div class="page">
+                            <div>
+                                <div class="row">
+                                    <div class="column" style="width:50%">
+                                        <table style="width:100%">
+                                            <tr style="border:1px solid black;">
+                                                <th style="border:1px solid black; color: white; background: grey; font-size: 20px;">
+                                                    Bill To:
+                                                </th>
+                                            </tr>
+                                            <tr style="border:1px solid black; height: 130px;">
+                                                <td style="border:1px solid black; font-size: 20px;">A R K TRADING L.L.C<br/>Dubai,U.A.E<br/>Tel:971-52-6105960</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                    <br/>
+                                    <div class="column" style="width:50%">
+                                        <div class="row">
+                                            <table style="width:35%; margin-left:330px;">
+                                                <tr style="border:1px solid:black; height: 30px;">
+                                                    <td style=" border:1px solid black; color: white; background: grey; text-align: center; font-size: 20px;">
+                                                        Date
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td style=" border:1px solid black;  text-align: center; font-size: 20px;">26/05/2022
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style=" border:1px solid white; color: white; text-align: center;">.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:1px solid black; color: white; background: grey; text-align: center; font-size: 20px;">
+                                                        Amount Due
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border:1px solid black; text-align: center; font-size: 20px;">AED 0.00
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="column" style="width:100%">
+                                        <table style="width:100%">
+                                            <tr style="border:1px solid black;">
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center; font-size: 20px;">
+                                                    Date
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center; font-size: 20px;">
+                                                    Transaction
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center; font-size: 20px;">
+                                                    Amount
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center; font-size: 20px;">
+                                                    Balance
+                                                </th>
+                                            </tr>
+                                            <tr style="border:1px solid:black height:100px; height: 500px;">
+                                                <td style=" border:1px solid black; text-align: center; font-size: 20px;">31/01/202</td>
+                                                <td style="border:1px solid black;font-size: 20px;">Balance forward</td>
+                                                <td style="border:1px solid black;"></td>
+                                                <td style="border:1px solid black; text-align: center; font-size: 20px;">0.00</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                    <br/>
+                                <div class="row">
+                                    <div class="column" style="width:100%">
+                                        <table style="width:100%">
+                                            <tr style="border:1px solid black;">
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center;">
+                                                    CURRENT
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center;">
+                                                    1-30 DAYS PAST DUE
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center;">
+                                                    31-60 DAYS PAST DUE
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center;">
+                                                    61-90 DAYS PAST DUE
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center;">
+                                                    OVER 90 DAYS
+                                                </th>
+                                                <th style="border:1px solid black; color: white; background: grey; text-align: center;">
+                                                    Amount Due
+                                                </th>
+                                            </tr>
+                                            <tr style="border:1px solid:black;">
+                                                <td style="border:1px solid black; text-align: center;font-size: 20px;">0.00</td>
+                                                <td style="border:1px solid black; text-align: center;font-size: 20px;">0.00</td>
+                                                <td style="border:1px solid black; text-align: center;font-size: 20px;">0.00</td>
+                                                <td style="border:1px solid black; text-align: center;font-size: 20px;">0.00</td>
+                                                <td style="border:1px solid black; text-align: center;font-size: 20px;">0.00</td>
+                                                <td style="border:1px solid black; text-align: center; font-size: 20px;">AED 0.00</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <h1 style="text-align: center; height:50px; font-size: 30px;">Thank you for your business!</h1>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

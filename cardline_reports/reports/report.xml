@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="new_model_report_new" model="ir.actions.report">
+            <field name="name">newmodel report</field>
+            <field name="model">new.model</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">newmodule.report_newmodel</field>
+            <field name="report_file">newmodule.report_newmodel</field>
+            <field name="binding_model_id" ref="model_new_model"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <template id="report_newmodel">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="property">
+
+                    <t t-call="web.external_layout">
+                        <div>
+                            <h1 style="text-align: center">PROFORMA INVOICE</h1>
+                        </div>
+                        <div class="page">
+                            <h2>
+                                <span t-field="property.name"/>
+                            </h2>
+                            <div>
+                                <strong>Expected Price:</strong>
+                                <span t-field="property.receipt_no"/>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class="column" style="width:50%">
+                                        <table style="width:90%">
+                                            <tr style="border:1px solid black;">
+                                                <th style="border:1px solid black; color: white; background: black; text-align: center;">
+                                                    Bill To
+                                                </th>
+                                            </tr>
+                                            <tr style="border:1px solid black; height: 130px;">
+                                                <td style="border:1px solid black;">.</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+
+                                    <div class="column" style="width:50%">
+                                        <table style="width:100%;">
+                                            <tr style="border:1px solid:black; height: 38px;">
+                                                <td>.</td>
+                                                <td style=" border:1px solid black; width: 30%; text-align: center;">Date</td>
+                                                <td style="border:1px solid black; width: 35%; text-align: center;">00/00/00</td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 38px;">
+                                                <td></td>
+                                                <td style=" border:1px solid black; width: 30%; text-align: center;">PL No.</td>
+                                                <td style="border:1px solid black; width: 35%;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 38px;">
+                                                <td></td>
+                                                <td style=" border:1px solid black; width: 30%; text-align: center;">Terms</td>
+                                                <td style="border:1px solid black; width: 35%;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 38px;">
+                                                <td></td>
+                                                <td style=" border:1px solid black; width: 30%; text-align: center;">Reference</td>
+                                                <td style="border:1px solid black; width: 35%;"></td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                        <br/>
+                                     <div class="row">
+                                    <div class="column" style="width:100%">
+                                    <table style="width:100%">
+                                        <tr style="border:1px solid black;">
+                                            <th style="border:1px solid black; color: white; background: black; text-align: center;">Code
+                                            </th>
+                                            <th style="border:1px solid black; color: white; background: black; text-align: center;">
+                                                Description
+                                            </th>
+                                            <th style="border:1px solid black; color: white; background: black; text-align: center;">Qty
+                                            </th>
+                                            <th style="border:1px solid black; color: white; background: black; text-align: center;">Rate
+                                            </th>
+                                            <th style="border:1px solid black; color: white; background: black; text-align: center;">Total
+                                            </th>
+                                        </tr>
+                                        <tr style="border:1px solid:black height:100px; height: 300px;">
+                                            <td style=" border:1px solid black;">.</td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                        </tr>
+
+                                    </table>
+                                    </div>
+                                     </div>
+                            <br/>
+                                <div class="row">
+                                    <div class="column" style="width:50%">
+                                        <table style="width:70%">
+                                            <tr style="border:1px solid black;">
+                                                <th style="color: white; background: black;">Bank Details</th>
+                                            </tr>
+                                            <tr style="border:1px solid black;">
+                                                <td>Account Name:
+                                                    <br/>
+                                                    Account Number:
+                                                    <br/>
+                                                    Bank
+                                                    <br/>
+                                                    IBAN No:
+                                                    <br/>
+                                                    Swift Code:
+                                                </td>
+
+                                            </tr>
+
+
+                                        </table>
+                                    </div>
+                                    <div class="column" style="width:50%">
+                                        <table style="width:100%;">
+                                            <tr style="border:1px solid:black; height: 10px;">
+                                                <td style="width: 35%;"></td>
+                                                <td>SUB TOTAL</td>
+                                                <td style="border:1px solid black; width: 35%; text-align: center;">AED 0.00</td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 10px;">
+                                               <td style="width: 35%;"></td>
+                                                <td>VAT 5%</td>
+                                                <td style="border:1px solid black; width: 35%; text-align: center;">AED 0.00</td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 10px; ">
+                                               <td style="width: 45%;"></td>
+                                                <td>TOTAL</td>
+                                                <td style="border:1px solid black; width: 35%; text-align: center;">AED 0.00</td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--                        <table class="table">-->
+                            <!--                            <thead>-->
+                            <!--                                <tr>-->
+                            <!--                                    <th>Price</th>-->
+                            <!--                                </tr>-->
+                            <!--                            </thead>-->
+                            <!--                            <tbody>-->
+                            <!--&lt;!&ndash;                                <t t-set="offers" t-value="property.mapped('offer_ids')"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;                                <tr t-foreach="offers" t-as="offer">&ndash;&gt;-->
+                            <!--                                    <td>-->
+                            <!--&lt;!&ndash;                                        <span t-field="offer.price"/>&ndash;&gt;-->
+                            <!--                                        <p>there is one issues i have to resolve it</p>-->
+                            <!--                                    </td>-->
+                            <!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+                            <!--                            </tbody>-->
+                            <!--                        </table>-->
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                         <div class="row">
+                                    <div class="column" style="width:50%">
+                        <table style="width:50%">
+                            <tr>
+                                <td>
+                                <hr size="8" width="80%" color="black"/>
+                                <p style="text-align: center;">Received By</p>
+                                </td>
+                            </tr>
+                        </table>
+                                    </div>
+                        <div class="column" style="width:50%">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width: 35%;"></td>
+                                <td style="width: 100%;">
+                                <hr size="8" width="450%" color="black"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>.</td>
+                                <td style="text-align: center;">For cardline Electronics LLC</td>
+                            </tr>
+
+                        </table>
+                        </div>
+                         </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

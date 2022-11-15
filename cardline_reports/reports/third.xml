@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="third_model_report_new" model="ir.actions.report">
+            <field name="name">third report</field>
+            <field name="model">third.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">newmodule.third_report</field>
+            <field name="report_file">newmodule.third_report</field>
+            <field name="binding_model_id" ref="model_third_report"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <template id="third_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="trd">
+
+                    <t t-call="web.external_layout">
+                                  <h1 style="text-align: center; height:50px; font-size: 40px;">TAX INVOICE</h1>
+                                <h2 style="text-align: center; height:50px; color: black; font-size: 35px;">TRN# : 100367844600003</h2>
+                        <br/>
+
+                        <div class="page">
+
+                            <div>
+                                <div class="row">
+                                    <div class="column" style="width:50%">
+                                        <table style="width:110%">
+                                            <tr style="border:1px solid black; height: 35px;">
+                                                <th style="border:1px solid black; font-size: 20px;">
+                                                    Invoice To:
+                                                </th>
+                                            </tr>
+                                            <tr style="border:1px solid black; height: 120px;">
+                                                <td style="border:1px solid black;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid black; height: 35px;">
+                                                <td style="border:1px solid black; font-size: 20px;">
+                                                    TRN :
+                                                </td>
+                                            </tr>
+                                            <tr style="border:1px solid black; height: 35px;">
+                                                <td style="border:1px solid black; font-size: 20px;">Emirates :</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+
+                                    <div class="column" style="width:50%">
+                                        <table style="width:87%;margin-left:100px;">
+                                            <tr style="border:1px solid:black; height: 56px;">
+
+                                                <td style=" border:1px solid black; width: 39%; text-align: center; font-size: 20px;">Invoice No</td>
+                                                <td style="border:1px solid black; width: 39%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 56px;">
+
+                                                <td style=" border:1px solid black; width: 39%; text-align: center; font-size: 20px;">Invoice Date</td>
+                                                <td style="border:1px solid black; width: 39%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 56px;">
+
+                                                <td style=" border:1px solid black; width: 39%; text-align: center; font-size: 20px;">Reference</td>
+                                                <td style="border:1px solid black; width: 39%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 56px;">
+                                                <td style=" border:1px solid black; width: 39%; text-align: center; font-size: 20px;">Terms</td>
+                                                <td style="border:1px solid black; width: 39%;"></td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+
+                                    <table style="width:100%">
+                                        <tr style="border:1px solid black;">
+                                            <th style="border:1px solid black; text-align: center; width:5%; font-size: 20px;">Sl. No.
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center; width:13%; font-size: 20px;">Code
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center; width:23%; font-size: 20px;">
+                                                Description
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center; width:8%; font-size: 20px;">Qty
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center; width:13%; font-size: 20px;">Rate
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center; width:12%; font-size: 20px;">Amount before Vat
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center;width:13%; font-size: 20px;">Vat (5%) Amount
+                                            </th>
+                                            <th style="border:1px solid black; text-align: center;width:18%;">Amount Inc. of VAT
+                                            </th>
+
+
+                                        </tr>
+                                        <tr style="border:1px solid:black; height: 500px;">
+                                            <td style=" border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style=" border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+                                            <td style=" border:1px solid black;"></td>
+                                            <td style="border:1px solid black;"></td>
+
+                                        </tr>
+
+                                    </table>
+
+                                    <div class="column" style="width:50%">
+                                        <table style="width:114%">
+
+                                            <tr style="border:1px solid black; height: 150px;">
+                                                <td style="border:1px solid black; font-size: 20px;"><br/>VAT Amount In Words: <br/><br/><br/>Total Amount In Words:<br/></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="column" style="width:50%">
+                                        <table style="width:86%;margin-left:108px;">
+                                           <tr style="border:1px solid:black; height: 30px;">
+
+                                                <td style=" border:1px solid black; width: 37%; font-size: 18px;">Total Amount (AED)</td>
+                                                <td style="border:1px solid black; width: 16%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 30px;">
+                                                <td style=" border:1px solid black; width: 37%; font-size: 18px;">Discount</td>
+                                                <td style="border:1px solid black; width: 16%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 30px;">
+                                                <td style=" border:1px solid black; width: 37%; font-size: 18px;">Gross Amount (AED)</td>
+                                                <td style="border:1px solid black; width: 16%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 30px;">
+                                                <td style=" border:1px solid black; width: 37%; font-size: 18px;">Total VAT (AED)</td>
+                                                <td style="border:1px solid black; width: 16%; text-align: center;"></td>
+                                            </tr>
+                                            <tr style="border:1px solid:black; height: 30px;">
+                                                <td style=" border:1px solid black; width: 37%; font-size: 17px;">Amount Inc. of VAT (AED)</td>
+                                                <td style="border:1px solid black; width: 16%; text-align: center;"></td>
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="column" style="width:50%">
+                                        <table style="width:100%;">
+                                           <tr style="height: 30px;">
+                                                <td style="width: 15%; font-size: 20px;">Company Name :</td>
+                                                <td style="width: 41%; font-size: 20px;">CARDLINE ELECTRONICS L.L.C</td>
+                                            </tr>
+                                            <tr style="height: 30px;">
+                                                <td style="width: 15%; font-size: 20px;">Account Number</td>
+                                                <td style="width: 41%; font-size: 20px;">10484461020001</td>
+                                            </tr>
+                                            <tr style="height: 30px;">
+                                                <td style="width: 15%; font-size: 20px;">BANK :</td>
+                                                <td style="width: 41%; font-size: 20px;">ADCB Bank</td>
+                                            </tr>
+                                            <tr style="height: 30px;">
+                                                <td style="width: 15%; font-size: 20px;">IBAN No</td>
+                                                <td style="width: 41%; font-size: 20px;">AE240030010484461020001</td>
+                                            </tr>
+                                            <tr style="height: 30px;">
+                                                <td style="width: 15%; font-size: 20px;">Swift Code</td>
+                                                <td style="width: 41%; font-size: 20px;">ADCBAEAA</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                         <div class="row">
+                                    <div class="column" style="width:50%">
+                        <table style="width:50%">
+                            <tr>
+                                <td>
+                                <hr size="8" width="120%" color="black"/>
+                                <p style="text-align: center;font-size: 20px;">Customer Acceptance &amp; seal</p>
+                                </td>
+                            </tr>
+                        </table>
+                                    </div>
+                        <div class="column" style="width:50%">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width: 35%;"></td>
+                                <td style="width: 100%;">
+                                <hr size="8" width="450%" color="black"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align: center; font-size: 20px;">Authorized Signature for Cardline</td>
+                            </tr>
+
+                        </table>
+                        </div>
+                         </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
