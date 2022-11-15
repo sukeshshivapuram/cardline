@@ -7,9 +7,11 @@
     'sequence': 10,
     'description': """    """,
     'category': 'Inventory',
-    'depends': ['base', 'stock','sale',],
+    'depends': ['base', 'stock','sale','account',],
     'data': [
         'views/quatation_inherit.xml',
+        # 'views/fifth.xml',
+        'views/default_terms_condition_changes.xml',
     ],
     'installable': True,
     'application': False,
