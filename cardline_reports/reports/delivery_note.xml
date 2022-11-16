@@ -229,7 +229,7 @@
                                             </tr>
                                             <tr style="border:1px solid:black; height: 30px;">
                                                 <td></td>
-                                                <td style=" border:1px solid black; width: 25%; text-align: center;">Reference</td>
+                                                <td style=" border:1px solid black; width: 25%; text-align: center; color: black; background: white;">Reference</td>
                                                 <td style="border:1px solid black; width: 41%; text-align: center; color: black; background: white;">
                                                     <t t-esc="sec.origin"/>
                                                 </td>
@@ -303,14 +303,14 @@
                                     </div>
                         <div class="column" style="width:50%">
                         <table style="width:100%">
+<!--                            <tr>-->
+<!--                                <td style="width: 35%;"></td>-->
+<!--                                <td style="width: 100%;">-->
+<!--                                <hr size="8" width="450%"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
                             <tr>
-                                <td style="width: 35%;"></td>
-                                <td style="width: 100%;">
-                                <hr size="8" width="450%"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
+<!--                                <td></td>-->
                                 <td style="text-align: center; color: black; background: white;">Authorized Signature for Cardline</td>
                             </tr>
 
