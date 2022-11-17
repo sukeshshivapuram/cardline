@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="profoma_papper_format" model="report.paperformat">
+        <field name="name">profoma invoice page format</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">100</field>
+        <field name="margin_bottom">39</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">90</field>
+        <field name="dpi">90</field>
+    </record>
+
+
+    <record id="profoma_invoice_report" model="ir.actions.report">
+            <field name="name">PRO-FORMA Invoice1</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">cardline.profoma_report_invoice</field>
+            <field name="report_file">cardline.profoma_report_invoice</field>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="cardline.profoma_papper_format"/>
+    </record>
+    <template id="profoma_report_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+
+                <t t-call="cardline.report_saleorder_document_profoma">
+                    <table class="table table-sm m-0 p-0" style="border:2px solid black;border-top:2px solid black;width:100%;">
+                        <thead>
+                            <tr class="p-1">
+
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:6%">
+                                    Code
+                                </td>
+                                <td  style="border:1px solid black;text-align:center;font-size:13px;width:30%">
+                                    Product
+                                </td>
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:8%">
+                                    HSN / SAC
+                                </td>
+
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:10%" >
+                                    Quantity
+                                </td>
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:5%">
+                                    UOM
+                                </td>
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:10%" >
+                                    Price
+                                </td>
+
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:5%">
+                                    Dis%
+                                </td>
+
+                                <td style="border:1px solid black;text-align:center;font-size:13px;width:16%">
+                                    Taxes
+                                </td>
+                                <td style="border:1px solid black;border-right:2px solid black;text-align:center;font-size:13px;width:10%">
+                                    Subtotal
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="" t-as="line">
+                                <tr class="p-1" style="padding:10px">
+                                    <t t-if="line.product_id.name">
+
+                                        <td style="border:1px solid black;text-align:left;font-size:13px;width:6%">
+                                            <span t-field="line.product_id.default_code"/>
+
+                                        </td>
+                                        <td style="border:1px solid black;text-align:left;font-size:13px;width:30%">
+                                            <span t-field="line.product_id.name"/>
+                                        </td>
+                                        <td style="border:1px solid black;text-align:center;font-size:13px;width:8%">
+
+                                                <span t-field="line.product_id.l10n_in_hsn_code"/>
+
+                                        </td>
+                                        <td style="border:1px solid black;text-align:center;font-size:13px;width:10%">
+
+                                                <span t-field="line.quantity"/>
+
+                                        </td>
+                                        <td style="border:1px solid black;text-align:center;font-size:13px;width:5%">
+                                                <span t-field="line.product_uom_id"/>
+                                        </td>
+                                        <td style="border:1px solid black;text-align:center;font-size:13px;width:10%">
+                                            <span t-field="line.price_unit"/>
+                                        </td>
+                                        <td style="border:1px solid black;text-align:center;font-size:13px;width:5%">
+                                            <span t-field="line.discount"/>
+                                        </td>
+
+                                        <td style="border:1px solid black;text-align:center;font-size:13px;width:16%">
+                                            <span t-field="line.tax_ids"/>
+                                        </td>
+                                        <td style="border-top:1px solid black;border-bottom:1px solid black;border-right:2px solid black;text-align:right;font-size:13px;width:10%" >
+                                            <span t-field="line.price_subtotal"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <tr  class="p-0 m-0" style="width:100%">
+                                <td style="width:6%"></td>
+                                <td style="width:30%"></td>
+                                <td style="width:8%"></td>
+                                <td style="width:10%"></td>
+                                <td style="width:5%"></td>
+                                <td style="width:10%"></td>
+                                <td style="width:5%"></td>
+                                <td style="width:16%;border-right:1px solid black;border-bottom:1px solid black;text-align:left;font-size:13px;">
+                                    <span style="font-size:13px">Taxable Amount</span><br/>
+
+
+                                    <t t-set="sgstot" t-value="0.0"/>
+                                    <t t-set="cgstot" t-value="0.0"/>
+                                    <t t-set="igstot" t-value="0.0"/>
+
+                                    <strong style="font-size:13px">TOTAL</strong>
+
+                                </td>
+                                <td style="width:10%;border-right:2px solid black;border-bottom:1px solid black;text-align:right;font-size:13px;text-align:right">
+
+                                        <span t-field="o.currency_id.symbol"/>
+
+                                    <strong><span style="font-size:13px;" t-field="o.amount_total"/></strong>
+                                </td>
+                            </tr>
+                            <tr class="m-0 p-0" style="width:100%">
+                                <td colspan="12" style="border-top:1px solid black;boder-left:2px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
+
+
+                                    Total Invoice Value in Words:
+                                    <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
+                                </td>
+                            </tr>
+                            <tr class="m-0 p-0" style="width:100%">
+                                <td colspan="6" style="width:60%;border-top:1px black solid;boder-left:2px solid black;border-right:1px solid black;border-bottom:1px solid black;font-size:13px">
+                                    <b>Terms and Condition:</b>
+
+                                </td>
+                                <td colspan="6" style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
+                                    <b>Bank Details</b><br/>
+
+
+                                </td>
+
+                            </tr>
+
+                       
+                        </tbody>
+                    </table>
+     
+
+
+                </t>
+            </t>
+        </t>
+    </template>
+</data>
+</odoo>
+
