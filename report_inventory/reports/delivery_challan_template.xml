@@ -10,8 +10,7 @@
 
     <template id="report_delivery_challan_document">
 
-        <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
-
+        <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
 	        <div class="footer" style="text-align:right;">
 	            Page <span class="page"/> of <span class="topage"/>
 	        </div>  
@@ -112,11 +111,11 @@
                                 </td>
 
                                 <td colspan="1" style="width:17%;text-align: center;border-bottom: hidden;">
-                                    <t t-esc="l.product_uom.name"/>
+                                    <t t-esc="l.product_uom_qty"/>
                                 </td>
 
                                 <td colspan="1" style="width:23%;text-align: center;border-bottom: hidden;">
-                                    <t t-esc="l.price_unit"/>
+                                    <t t-esc="l.product_id.standard_price"/>
                                 </td>
                                 <br/>
                             </tr>
