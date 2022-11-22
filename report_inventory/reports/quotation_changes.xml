@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="quotation_order_inherit_report_template" inherit_id="sale.report_saleorder_document">
-<!--        <t t-call="report_inventory.footer_changes_template">-->
         <xpath expr="//t/div/table/thead/tr/th[@name='th_description']" position="before">
             <th name="th_code" class="text-start">Code</th>
         </xpath>
@@ -42,10 +41,6 @@
                     <strong>Payment Terms:</strong>
                     <p class="m-0" t-field="doc.payment_term_id"/>
                 </div>
-<!--                <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">-->
-<!--                    <strong>Payment Terms:</strong>-->
-<!--                    <p class="m-0" t-field="doc.payment_term_id"/>-->
-<!--                </div>-->
                 <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
                     <strong>Your Reference:</strong>
                     <p class="m-0" t-field="doc.client_order_ref"/>
@@ -79,25 +74,13 @@
         </xpath>
         <xpath expr="//t/div/h2[@class='mt-4']" position="replace">
             <h2 style="text-align:center" class="mt-4">
-                <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice #</span>
-<!--                <span t-elif="doc.state in ['draft','sent']">Quotation #</span>-->
-<!--                <span t-else="">Order #</span>-->
-<!--                <span t-field="doc.name"/>-->
             </h2>
         </xpath>
         <xpath expr="//t/div/div/p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">
                 <p t-if="not is_html_empty(doc.payment_term_id.note)">
-<!--                    <span t-field="doc.payment_term_id.note"/>-->
                 </p>
         </xpath>
-
-
-
-<!--    </t>-->
     </template>
 </odoo>
 
-<!--                <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">-->
-<!--                    <strong>Salesperson:</strong>-->
-<!--                    <p class="m-0" t-field="doc.user_id"/>-->
-<!--                </div>-->
+
