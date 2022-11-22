@@ -9,13 +9,7 @@
     'category': 'Inventory',
     'depends': ['base', 'stock','sale','account',],
     'data': [
-        'reports/delivery_challan.xml',
-        'reports/delivery_challan_template.xml',
-        'views/quatation_inherit.xml',
-        'views/delivery_note_template.xml',
-        'views/fifth.xml',
-        'views/default_terms_condition_changes.xml',
-
+        'reports/quotation_changes.xml',
     ],
     'installable': True,
     'application': False,
