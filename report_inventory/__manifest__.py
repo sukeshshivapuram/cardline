@@ -12,7 +12,7 @@
         'reports/new_quotation_report.xml',
         'reports/new_quotation_report_template.xml',
         'reports/quotation_changes.xml',
-        'reports/inherit_tax_invoice.xml',
+        # 'reports/inherit_tax_invoice.xml',
     ],
     'installable': True,
     'application': False,
