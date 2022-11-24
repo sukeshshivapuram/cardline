@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="quotation_order_inherit_report_template" inherit_id="sale.report_saleorder_document">
+        Inherited view1
         <xpath expr="//t/div/table/thead/tr/th[@name='th_description']" position="before">
             <th name="th_code" class="text-start">Code</th>
         </xpath>
-        <xpath expr ="//t/div/table/tbody/t/tr/t/td" position="before">
-                <td name="td_code" class="text-start">
-                    <span t-esc="line.product_id.default_code"/>
-                </td>
+        <xpath expr="//t/div/table/tbody/t/tr/t/td" position="before">
+            <td name="td_code" class="text-start">
+                <span t-esc="line.product_id.default_code"/>
+            </td>
         </xpath>
         <xpath expr="//t/div/table/tbody/t/tr/t/td[@name='td_name']" position="replace">
             <td class="text-start">
-                    <span t-esc="line.product_id.name"/>
+                <span t-esc="line.product_id.name"/>
             </td>
         </xpath>
-         <xpath expr="//t/div/div/div[@name='expiration_date']" position="after">
-                <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">
-                    <strong>Payment Terms:</strong>
-                    <p class="m-0" t-field="doc.payment_term_id"/>
-                </div>
+        <xpath expr="//t/div/div/div[@name='expiration_date']" position="after">
+            <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">
+                <strong>Payment Terms:</strong>
+                <p class="m-0" t-field="doc.payment_term_id"/>
+            </div>
         </xpath>
         <xpath expr="//t/div/div[@id='informations']" position="replace">
             <div class="row mt-4 mb-4" id="informations">
@@ -45,30 +46,31 @@
                     <strong>Your Reference:</strong>
                     <p class="m-0" t-field="doc.client_order_ref"/>
                 </div>
-
             </div>
-
         </xpath>
 
         <xpath expr="//t[@t-set='address']" position="replace">
             <div>
                 <tr style="font-size:40px">
                     <td colspan="5" style="text-align:left;width:100px;font-size:10px">
-                        <t t-esc="doc.partner_id.name"/><br></br>
-                        <t t-esc="doc.partner_id.street"/><br></br>
-                        <t t-esc="doc.partner_id.street2"/><br></br>
+                        <t t-esc="doc.partner_id.name"/>
+                        <br></br>
+                        <t t-esc="doc.partner_id.street"/>
+                        <br></br>
+                        <t t-esc="doc.partner_id.street2"/>
+                        <br></br>
                         <t t-esc="doc.partner_id.city"/>
-<!--                        <t t-esc="doc.company_id.zip"/>-->
+                        <!--                        <t t-esc="doc.company_id.zip"/>-->
                         <t t-esc="doc.partner_id.country_id.name"/>
                     </td>
                 </tr>
             </div>
-                </xpath>
+        </xpath>
         <xpath expr="//t/t[@t-set='forced_vat']" position="before">
             <h2 style="text-align:center;font-size:30px" class="mt-4">
-                <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice # </span>
-                <span t-elif="doc.state in ['draft','sent']">Quotation # </span>
-                <span t-else="">Order # </span>
+                <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice #</span>
+                <span t-elif="doc.state in ['draft','sent']">Quotation #</span>
+                <span t-else="">Order #</span>
                 <span t-field="doc.name"/>
             </h2>
         </xpath>
@@ -76,11 +78,13 @@
             <h2 style="text-align:center" class="mt-4">
             </h2>
         </xpath>
-        <xpath expr="//t/div/div/p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">
-                <p t-if="not is_html_empty(doc.payment_term_id.note)">
-                </p>
-        </xpath>
+<!--        <xpath expr="//t/div/div/p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">-->
+<!--            <p t-if="not is_html_empty(doc.payment_term_id.note)">-->
+<!--            </p>-->
+<!--        </xpath>-->
+
     </template>
+
 </odoo>
 
 

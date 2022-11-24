@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="new_pro_forma_invoice_report_template">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                     <div class="page">
+                        <div class="oe_structure"/>
+
+                         <h2 style="text-align:center;font-size:30px" class="mt-4">
+                             <span style="color:#27B3CB;" >PRO-FORMA INVOICE #</span>
+                             <span style="color:#27B3CB;" t-field="doc.name"/>
+                         </h2>
+                         <br></br>
+                         <br></br>
+                         <div>
+                             <tr style="font-size:40px">
+                                 <td colspan="5" style="text-align:left;width:100px;font-size:10px">
+                                     <t t-esc="doc.partner_id.name"/>
+                                     <br></br>
+                                     <t t-esc="doc.partner_id.street"/>
+                                     <br></br>
+                                     <t t-esc="doc.partner_id.street2"/>
+                                     <br></br>
+                                     <t t-esc="doc.partner_id.city"/>
+                                     <t t-esc="doc.partner_id.country_id.name"/>
+                                 </td>
+                             </tr>
+                         </div>
+                        <br></br>
+                        <br></br>
+                         <tr>
+                             <td>
+                                 <strong style="color:#27B3CB" class="mt-4">Quotation Date:</strong>
+                             </td>
+                             <td>
+                                 <strong style="color:#27B3CB;padding-left:60px;">Expiration:</strong>
+                             </td>
+                             <td>
+                                 <strong style="color:#27B3CB;padding-left:60px;">Salesperson:</strong>
+                             </td>
+                             <td>
+                                 <strong style="color:#27B3CB;padding-left:60px;">Payment Terms:</strong>
+                             </td>
+                             <td>
+                                 <strong style="color:#27B3CB;padding-left:60px;">Your Reference:</strong>
+                             </td>
+                         </tr>
+                         <br></br>
+                         <tr>
+                             <td t-if="doc.date_order">
+                                 <span style="text-align:center" t-esc="doc.date_order.date()"/>
+                             </td>
+                             <td t-if="doc.validity_date">
+                                 <span style="text-align:left;padding-left:100px" t-field="doc.validity_date"/>
+                             </td>
+                             <td t-if="doc.user_id">
+                                 <span style="padding-left:35px" t-field="doc.user_id.name"/>
+                             </td>
+                             <td t-if="doc.payment_term_id">
+                                 <span style="padding-left:60px" t-field="doc.payment_term_id"/>
+                             </td>
+                             <td t-if="doc.client_order_ref">
+                                 <span style="padding-left:120px;" t-field="doc.client_order_ref"/>
+                             </td>
+                         </tr>
+                         <br></br>
+                         <br></br>
+                         <table class="table table-sm o_main_table mt-4">
+                             <thead style="display: table-row-group">
+                                 <tr>
+                                     <th name="th_code" class="text-start">Code</th>
+                                     <th name="th_description" class="text-start">Description</th>
+                                     <th name="th_quantity" class="text-end">Quantity</th>
+                                     <th name="th_priceunit" class="text-end">Unit Price</th>
+                                     <th name="th_taxes" class="text-end">Taxes</th>
+                                     <th name="th_taxes" class="text-end">Amount</th>
+                                 </tr>
+                             </thead>
+                             <tbody class="sale_tbody">
+                                 <t t-set="current_subtotal" t-value="0"/>
+                                 <tr t-foreach="doc.order_line" t-as="line">
+                                     <td name="td_code" class="text-start">
+                                         <span t-field="line.product_id.default_code"/>
+                                     </td>
+                                     <td name="td_name"><span t-field="line.name"/></td>
+                                    <td name="td_quantity" class="text-end">
+                                        <span t-field="line.product_uom_qty"/>
+                                        <span t-field="line.product_uom"/>
+                                    </td>
+                                    <td name="td_priceunit" class="text-end">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                     <td name="td_taxes" class="text-end">
+                                        <span t-field="line.tax_id"/>
+                                    </td>
+                                     <td name="td_amount" class="text-end">
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                         <table style="width:50%; margin-left:50%;">
+                                     <tr style="width:10%">
+                                         <td style="text-align:left;width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
+                                         </td>
+                                         <td style="text-align:right;width: 20px;height: 30px">
+                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>
+                                         </td>
+                                     </tr>
+                                     <tr style="width:10%">
+                                         <td style="width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">VAT 5%</strong>
+                                         </td>
+                                         <td style="text-align:right;width: 20px;height: 30px">
+                                             <span class="text-right" t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                                         </td>
+                                     </tr>
+                                     <tr style="width:10%;color:white;background:#27B3CB">
+                                         <td style="width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">Total</strong>
+                                         </td>
+                                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
+                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+                                         </td>
+                                     </tr>
+                         </table>
+                         <br></br>
+                         <br></br>
+                         <br></br>
+                         <br></br>
+                         <br></br>
+                         <td colspan="6"
+                             style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
+                             <b>
+                                 <u>Bank Details</u>
+                             </b>
+                             <br/>
+                             <br></br>
+                             <span>Account Name : Cardline Electronics llc</span>
+                             <br/>
+                             <span>Account No : 10484461020001</span>
+                             <br/>
+                             <span>IBAN Number : ADBC(Abudhabi Commercial Bank)</span>
+                             <br/>
+                             <span>Bank Name : AE240030010484461020001</span>
+                             <br/>
+                             <span>Swift Code: ADCBAEAA.</span>
+                             <br/>
+                         </td>
+                     </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
