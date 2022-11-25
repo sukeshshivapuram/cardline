@@ -7,14 +7,9 @@
     'sequence': 10,
     'description': """    """,
     'category': 'Inventory',
-    'depends': ['base', 'stock','sale','account',],
+    'depends': ['base', 'stock','sale','account','purchase',],
     'data': [
-        # 'views/quatation_inherit.xml',
-        # 'views/fifth.xml',
-
-        'views/tax_invoice_menu.xml',
-        'report/tax_invoice.xml',
-        'report/header.xml',
+        'report/inherit_tax_invoice.xml',
     ],
     'installable': True,
     'application': False,
