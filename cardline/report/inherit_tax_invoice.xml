@@ -31,6 +31,11 @@
                     </div>
                 </br>
             </xpath>
+            <xpath expr="//t/div/div/div/div[@name='due_date']" position="replace">
+            </xpath>
+
+
+
             <xpath expr="//t/div/div/div/div[@name='origin']" position="replace">
                 <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
                 </div>
@@ -57,26 +62,26 @@
                         </b>
                         <br/>
                         <span>Account Name
-                            <span style="padding-left:10px;"></span>:
+                            <span style="padding-left:10px;"></span>:Cardline Electronics llc
                         </span>
-                        <!--                        <span t-field="o.partner_bank_id.bank_id.name"/>-->
+<!--                        <span t-field="Cardline Electronics llc"/>-->
                         <br/>
 
                         <span>Account No
-                            <span style="padding-left:30px;"></span>:
+                            <span style="padding-left:30px;"></span>:10484461020001
                         </span>
                         <!--                        <span t-field="o.partner_bank_id.acc_number"/>-->
                         <br/>
                         <span>IBAN Number
-                            <span style="padding-left:14px;"></span>:
+                            <span style="padding-left:14px;"></span>:AE240030010484461020001
                         </span>
                         <br/>
                         <span>Bank Name
-                            <span style="padding-left:33px;"></span>:
+                            <span style="padding-left:33px;"></span>:ADCB (Abudhabi Commercial Bank)
                         </span>
                         <br/>
                         <span>Swift Code
-                            <span style="padding-left:36px;"></span>:
+                            <span style="padding-left:36px;"></span>:ADCBAEAA.
                         </span>
                         <br/>
                         <!--                        <sapn t-field="o.partner_bank_id.bank_id.bic"/>-->
