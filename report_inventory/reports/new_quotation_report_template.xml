@@ -108,7 +108,8 @@
                                              <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
                                          </td>
                                          <td style="text-align:right;width: 20px;height: 30px">
-                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>
+                                             <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+<!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
                                          </td>
                                      </tr>
                                      <tr style="width:10%">
