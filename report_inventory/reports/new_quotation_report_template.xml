@@ -49,20 +49,20 @@
                          </tr>
                          <br></br>
                          <tr>
-                             <td t-if="doc.date_order" style="border:white">
+                             <td t-if="doc.date_order" style="border:white;background:white;color:grey">
                                  <span style="text-align:center" t-esc="doc.date_order.date()"/>
                              </td>
-                             <td t-if="doc.validity_date" style="border:white">
+                             <td t-if="doc.validity_date" style="border:white;background:white;color:grey">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.validity_date"/>
                              </td>
-                             <td t-if="doc.user_id" style="border:white">
+                             <td t-if="doc.user_id" style="border:white;background:white;color:grey">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.user_id.name"/>
                              </td>
-                             <td t-if="doc.payment_term_id" style="border:white">
+                             <td t-if="doc.payment_term_id" style="border:white;background:white;color:grey">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.payment_term_id"/>
                              </td>
-                             <td t-if="doc.client_order_ref" style="border:white;background:white;color:black">
-                                 <span style="text-align:center;padding-left:60px;background:white;color:black;border:white" t-field="doc.client_order_ref"/>
+                             <td t-if="doc.client_order_ref" style="border:white;background:white;color:grey">
+                                 <span style="text-align:center;padding-left:60px;background:white;color:grey;border:white" t-field="doc.client_order_ref"/>
                              </td>
                          </tr>
                          </table>
@@ -125,6 +125,7 @@
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
                                              <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+<!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                                          </td>
                                      </tr>
                          </table>
