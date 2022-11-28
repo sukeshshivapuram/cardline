@@ -10,6 +10,7 @@
     'depends': ['base', 'stock','sale','account',],
     'data': [
         'reports/new_quotation_report.xml',
+        'reports/dellivery_note.xml',
         'reports/new_quotation_report_template.xml',
         'reports/quotation_changes.xml',
         # 'reports/inherit_tax_invoice.xml',
