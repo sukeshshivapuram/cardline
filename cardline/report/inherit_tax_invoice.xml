@@ -34,6 +34,28 @@
             <xpath expr="//t/div/div/div/div[@name='due_date']" position="replace">
             </xpath>
 
+<!--            _______uom and taxable amount_______-->
+            <xpath expr="//t/div/div/table/thead/tr/th[@name='th_description']" position="after">
+                <th ><span>UOM</span></th>
+
+            </xpath>
+                        <xpath expr="//t/div/div/table/tbody/t/tr/t/td[@name='account_invoice_line_name']" position="after">
+                            <td><span t-field="line.uom"/></td>
+                        </xpath>
+
+                        <xpath expr="//t/div/div/table/thead/tr/th[@name='th_priceunit']" position="after">
+                                                <th ><span>TAXABLE AMOUNT</span></th>
+                        </xpath>
+             <xpath expr="//t/div/div/table/tbody/t/tr/t/td[@t-if='display_discount']" position="before">
+                            <td style="text-align:right;" ><span  t-field="line.taxable_amount"/></td>
+                        </xpath>
+
+
+
+
+
+
+
 
 
             <xpath expr="//t/div/div/div/div[@name='origin']" position="replace">
@@ -111,16 +133,16 @@
 
             <xpath expr="//t/div/t/div[@name='address_same_as_shipping']" position="replace">
                 <div t-if="o.partner_id.vat" class="oe_highlight">
-                    <h2 style="text-align:center;font-size:20px;">
-                            <span style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'posted'">INVOICE</span>
-                            <span style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'draft'">DRAFT INVOICE</span>
-                            <span style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">CANCELLED INVOICE</span>
-                            <span style="color:black;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>
-                            <span style="color:black;" t-if="o.move_type == 'in_refund'">VENDOR CREDIT NOTE</span>
-                            <span style="color:black;" t-if="o.move_type == 'in_invoice'">VENDOR BILL</span>
+                    <h2 style="text-align:center;font-size:25px;">
+                            <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'posted'">TAX INVOICE</strong>
+                            <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'draft'">DRAFT INVOICE</strong>
+                            <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">CANCELLED INVOICE</strong>
+                            <strong style="color:black;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</strong>
+                            <strong style="color:black;" t-if="o.move_type == 'in_refund'">VENDOR CREDIT NOTE</strong>
+                            <strong style="color:black;" t-if="o.move_type == 'in_invoice'">VENDOR BILL</strong>
 <!--                            <span t-if="o.name != '/'" t-field="o.name"/>-->
                          <br/>
-                        <h>TRN:</h>
+                        <h style="font-size:15px;">TRN:</h>
                     <span style="color: black;font-size:15px;" t-esc="o.partner_id.vat"/>
                         </h2>
 
