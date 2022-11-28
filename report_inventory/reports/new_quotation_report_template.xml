@@ -29,41 +29,43 @@
                          </div>
                         <br></br>
                         <br></br>
+                         <table style="border:white">
                          <tr>
-                             <td>
+                             <th style="border:white">
                                  <strong style="color:#27B3CB" class="mt-4">Quotation Date:</strong>
-                             </td>
-                             <td>
+                             </th>
+                             <th style="border:white">
                                  <strong style="color:#27B3CB;padding-left:60px;">Expiration:</strong>
-                             </td>
-                             <td>
+                             </th>
+                             <th style="border:white">
                                  <strong style="color:#27B3CB;padding-left:60px;">Salesperson:</strong>
-                             </td>
-                             <td>
+                             </th>
+                             <th style="border:white">
                                  <strong style="color:#27B3CB;padding-left:60px;">Payment Terms:</strong>
-                             </td>
-                             <td>
-                                 <strong style="color:#27B3CB;padding-left:60px;">Your Reference:</strong>
-                             </td>
+                             </th>
+                             <th style="border:white">
+                                 <strong style="color:#27B3CB;padding-left:60px;">Reference:</strong>
+                             </th>
                          </tr>
                          <br></br>
                          <tr>
-                             <td t-if="doc.date_order">
+                             <td t-if="doc.date_order" style="border:white">
                                  <span style="text-align:center" t-esc="doc.date_order.date()"/>
                              </td>
-                             <td t-if="doc.validity_date">
-                                 <span style="text-align:left;padding-left:100px" t-field="doc.validity_date"/>
+                             <td t-if="doc.validity_date" style="border:white">
+                                 <span style="text-align:center;padding-left:60px;" t-field="doc.validity_date"/>
                              </td>
-                             <td t-if="doc.user_id">
-                                 <span style="padding-left:35px" t-field="doc.user_id.name"/>
+                             <td t-if="doc.user_id" style="border:white">
+                                 <span style="text-align:center;padding-left:60px;" t-field="doc.user_id.name"/>
                              </td>
-                             <td t-if="doc.payment_term_id">
-                                 <span style="padding-left:60px" t-field="doc.payment_term_id"/>
+                             <td t-if="doc.payment_term_id" style="border:white">
+                                 <span style="text-align:center;padding-left:60px;" t-field="doc.payment_term_id"/>
                              </td>
-                             <td t-if="doc.client_order_ref">
-                                 <span style="padding-left:120px;" t-field="doc.client_order_ref"/>
+                             <td t-if="doc.client_order_ref" style="border:white;background:white;color:black">
+                                 <span style="text-align:center;padding-left:60px;background:white;color:black;border:white" t-field="doc.client_order_ref"/>
                              </td>
                          </tr>
+                         </table>
                          <br></br>
                          <br></br>
                          <table class="table table-sm o_main_table mt-4">
