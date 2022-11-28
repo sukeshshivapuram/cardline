@@ -10,6 +10,7 @@
     'depends': ['base', 'stock','sale','account','purchase',],
     'data': [
         'report/inherit_tax_invoice.xml',
+        'report/inherit_purchase_order.xml',
     ],
     'installable': True,
     'application': False,
