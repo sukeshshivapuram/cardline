@@ -51,13 +51,6 @@
                         </xpath>
 
 
-
-
-
-
-
-
-
             <xpath expr="//t/div/div/div/div[@name='origin']" position="replace">
                 <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
                 </div>
@@ -67,19 +60,71 @@
                 </div>
             </xpath>
             <xpath expr="//t/div/p[@name='payment_communication']" position="before">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </xpath>
+
+
+
+              <xpath expr="//t/div/div/div/div/div/table[@class='table table-sm']" position="replace">
+                       <table style="width:80%; margin-left:20%;">
+                           <tr style="width:10%">
+                                         <td style="text-align:left;width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
+                                         </td>
+                                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
+<!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
+<!--                                             <span t-esc="o.tax_totals['formatted_amount_untaxed']"/>-->
+                                         </td>
+                                     </tr>
+                           <tr style="width:10%">
+                                         <td style="text-align:left;width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">Discount</strong>
+                                         </td>
+                                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
+<!--                                             <span t-esc="o.discount" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
+                                             <span t-esc="o.invoice_line_ids.discount"/>
+                                         </td>
+                                     </tr>
+
+
+                                     <tr style="width:10%">
+                                         <td style="text-align:left;width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">Taxable Amount</strong>
+                                         </td>
+                                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
+<!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
+                                             <span t-esc="o.tax_totals['formatted_amount_untaxed']"/>
+                                         </td>
+                                     </tr>
+                                     <tr style="width:10%">
+                                         <td style="width: 20px;height: 30px">
+                                             <strong style="padding-left:10px" class="mt-4">VAT 5%</strong>
+                                         </td>
+                                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
+                                             <span class="text-right" t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                                         </td>
+                                     </tr>
+                                     <tr style="width:10%;color:white;background:#27B3CB;">
+                                         <td style="width: 20px;height: 30px;background:#27B3CB;color:white;">
+                                             <strong style="padding-left:10px;color:white;" class="mt-4">Total</strong>
+                                         </td>
+                                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
+                                             <span t-esc="o.tax_totals['formatted_amount_total']"/>
+<!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
+                                         </td>
+                                     </tr>
+                         </table>
+
+            </xpath>
+
+
+
 
             <xpath expr="//t/div/p[@name='payment_communication']" position="after">
                 <div>
 <!--                    <br></br>-->
                     <td colspan="6"
                         style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
-                        <b>
+                        <b style="color:#27B3CB;">
                             <u>Bank Details</u>
                         </b>
                         <br/>
@@ -115,7 +160,7 @@
                     <br/>
                     <u></u>
                     <tr>
-                        <p style="text-decoration:overline;padding-left:10%;">Receiver's Signature<span
+                        <p style="text-decoration:overline;padding-left:10%;font-size:15px;">Receiver's Signature<span
                                 style="padding-left:45%;"></span>For CARDLINE ELETRONICS LLC
                         </p>
 
@@ -130,6 +175,97 @@
                         </h2>
             </xpath>
 
+            <xpath expr="//t/div/div/table[@class='table table-sm o_main_table']" position="replace">
+                        <table class="table table-sm o_main_table" name="invoice_line_table">
+                            <thead>
+                                <tr>
+                                    <th name="th_description" class="text-start"><span>Description</span></th>
+                                    <th ><span>UOM</span></th>
+                                    <th name="th_quantity" class="text-end"><span>Quantity</span></th>
+                                    <th name="th_priceunit" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Unit Price</span></th>
+                                    <th ><span>TAXABLE AMOUNT</span></th>
+                                    <th name="th_price_unit" t-if="display_discount" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                        <span>Disc.%</span>
+                                    </th>
+                                    <th name="th_taxes" t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>
+                                    <th name="th_subtotal" class="text-end">
+                                        <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                        <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <t t-set="current_subtotal" t-value="0"/>
+                                <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+
+                                <t t-foreach="lines" t-as="line">
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                                    <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                        <t t-if="line.display_type == 'product'" name="account_invoice_line_accountable">
+                                            <td name="account_invoice_line_name"><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
+                                            <td><span t-field="line.uom"/></td>
+                                            <td class="text-end">
+                                                <span t-field="line.quantity"/>
+                                                <span t-field="line.product_uom_id"  groups="uom.group_uom"/>
+                                            </td>
+                                            <td t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span class="text-nowrap" t-field="line.price_unit"/>
+                                            </td>
+                                            <td style="text-align:right;" ><span  t-field="line.taxable_amount"/></td>
+                                            <td t-if="display_discount" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span class="text-nowrap" t-field="line.discount"/>
+                                            </td>
+                                            <td t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>
+                                            </td>
+                                            <td sytle="background:white;" class="text-end o_price_total">
+                                                <span  class="text-nowrap" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                <span class="text-nowrap" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                            </td>
+                                        </t>
+                                        <t t-if="line.display_type == 'line_section'">
+                                            <td colspan="99">
+                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            </td>
+                                            <t t-set="current_section" t-value="line"/>
+                                            <t t-set="current_subtotal" t-value="0"/>
+                                        </t>
+                                        <t t-if="line.display_type == 'line_note'">
+                                            <td colspan="99">
+                                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+
+                                    <t t-if="current_section and (line_last or lines[line_index+1].display_type == 'line_section')">
+                                        <tr class="is-subtotal text-end">
+                                            <td colspan="99">
+                                                <strong class="mr16">Subtotal</strong>
+                                                <span
+                                                    t-esc="current_subtotal"
+                                                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                                />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+
+            </xpath>
+
+
+
+            <xpath expr="//t/div/div/table/thead/tr/th[@name='th_price_unit']" position="replace">
+                                    <th name="th_price_unit" t-if="display_discount" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                        <span>DISCOUNT</span>
+                                    </th>
+            </xpath>
+        <xpath expr="//t/div/div/table/thead/tr/th[@name='th_taxes']" position="replace">
+            <th name="th_taxes" t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>VAT %</span></th>
+            </xpath>
 
             <xpath expr="//t/div/t/div[@name='address_same_as_shipping']" position="replace">
                 <div t-if="o.partner_id.vat" class="oe_highlight">
@@ -176,12 +312,12 @@
                                 <strong style="color:#27B3CB;">Invoice Date
                                     <span style="padding-left:38px;"></span>:
                                 </strong>
-                                <t t-esc="o.invoice_date"/>
+                                <t t-esc="datetime.datetime.strptime(str(o.invoice_date), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                                 <br></br>
                                 <strong style="color:#27B3CB;">Due Date
                                     <span style="padding-left:60px;"></span>:
                                 </strong>
-                                <t t-esc="o.invoice_date_due"/>
+                            <t t-esc="datetime.datetime.strptime(str(o.invoice_date_due), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                                 <br></br>
                                 <strong style="color:#27B3CB;">Source
                                     <span style="padding-left:77px;"></span>:
@@ -213,6 +349,28 @@
                 </div>
             </xpath>
         </template>
-    
+    <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']" position="replace">
+           <br/>
+                <div class="footer o_boxed_footer o_company_#{company.id}_layout">
+                <div class="text-center" style="border-top: 1px solid black;"></div>
+                <div class="text-center">
+<!--                <div t-field="company.report_footer"/>-->
+                    <span>Email:<span style="color:#277BDA">accounts@cardlineuae.com</span>
+                                </span>| <span>web:<span style="color:#277BDA">www.cardlineuae.com</span>
+                </span>
+
+                <div t-if="report_type == 'pdf'">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+           </div>
+
+
+<!--                <div class="footer">-->
+<!--                    &lt;!&ndash;  code &ndash;&gt;-->
+<!--                </div>-->
+            </xpath>
+        </template>
     </data>
 </odoo>
