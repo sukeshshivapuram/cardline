@@ -140,8 +140,8 @@
                                 <td name="td_taxes" class="text-end">
                                     <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                                 </td>
-                                <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
-                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                <td style="background:white" t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                                    <span style="background:white" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                                     <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
                                 </td>
                             </t>
@@ -173,6 +173,51 @@
                     </t>
                 </tbody>
             </table>
+        </xpath>
+
+        <xpath expr="//t/div/div[@class='clearfix']" position="replace">
+            <div class="clearfix" name="so_total_summary">
+<!--                <div id="total" class="row" name="total">-->
+<!--                    <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">-->
+<!--                        <table class="table table-sm">-->
+<!--                            &lt;!&ndash; Tax totals &ndash;&gt;-->
+<!--                            <t t-set="tax_totals" t-value="doc.tax_totals"/>-->
+<!--                            <t t-call="account.document_tax_totals"/>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <table style="width:50%; margin-left:50%;">
+                    <tr style="width:10%">
+                        <td style="text-align:left;width: 20px;height: 30px">
+                            <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</strong>
+                        </td>
+                        <td style="text-align:right;width: 20px;height: 30px;background:white">
+                            <span t-esc="doc.amount_untaxed"
+                                  t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                            <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
+                        </td>
+                    </tr>
+                    <tr style="width:10%">
+                        <td style="width: 20px;height: 30px">
+                            <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
+                        </td>
+                        <td style="text-align:right;width:20px;height: 30px;background:white">
+                            <span class="text-right"
+                                  t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                        </td>
+                    </tr>
+                    <tr style="width:10%;color:white;background:#27B3CB">
+                        <td style="width: 20px;height: 30px">
+                            <strong style="padding-left:10px" class="mt-4">Total</strong>
+                        </td>
+                        <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
+                            <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+                            <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
         </xpath>
 
 
