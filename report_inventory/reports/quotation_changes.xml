@@ -42,15 +42,15 @@
                     <p class="m-0" t-field="doc.payment_term_id"/>
                 </div>
                 <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
-                    <strong style="color:#27B3CB;">Reference:</strong>
-                    <p class="m-0" t-field="doc.client_order_ref"/>
+                    <strong style="color:#27B3CB;">Reference1:</strong>
+<!--                    <p class="m-0" t-field="doc.client_order_ref"/>-->
                 </div>
             </div>
         </xpath>
 
         <xpath expr="//t[@t-set='address']" position="replace">
             <div>
-                <tr style="font-size:40px">
+                <tr style="font-size:40px;padding-top:5em">
                     <td colspan="5" style="text-align:left;width:100px;font-size:10px">
                         <t t-esc="doc.partner_id.name"/>
                         <br></br>
@@ -68,9 +68,9 @@
         <xpath expr="//t/t[@t-set='forced_vat']" position="before">
             <h2 style="text-align:center;font-size:30px" class="mt-4">
                 <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice #</span>
-                <span  style="color:#27B3CB;" t-elif="doc.state in ['draft','sent']">Quotation #</span>
-                <span t-else="">Order #</span>
-                <span style="color:#27B3CB;" t-field="doc.name"/>
+                <span style="color:#27B3CB;padding-top:5em" t-elif="doc.state in ['draft','sent']">Quotation #</span>
+                <span style="color:#27B3CB;" t-else="">Order #</span>
+                <span style="color:#27B3CB;padding-top:5em" t-field="doc.name"/>
             </h2>
         </xpath>
         <xpath expr="//t/div/h2[@class='mt-4']" position="replace">
