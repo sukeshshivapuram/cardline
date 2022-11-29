@@ -8,22 +8,22 @@
                         <div class="oe_structure"/>
 
                          <h2 style="text-align:center;font-size:30px" class="mt-4">
-                             <span style="color:#27B3CB;" >PRO-FORMA INVOICE #</span>
+                             <span style="color:#27B3CB;font-size:30px" >PRO-FORMA INVOICE #</span>
                              <span style="color:#27B3CB;" t-field="doc.name"/>
                          </h2>
                          <br></br>
                          <br></br>
                          <div>
                              <tr style="font-size:40px">
-                                 <td colspan="5" style="text-align:left;width:100px;font-size:10px">
-                                     <t t-esc="doc.partner_id.name"/>
+                                 <td colspan="5" style="text-align:left; width:100px; font-size:10px; color:#0C0C0C;">
+                                     <t style="color:#0C0C0C" t-esc="doc.partner_id.name"/>
                                      <br></br>
-                                     <t t-esc="doc.partner_id.street"/>
+                                     <t style="color:#0C0C0C;" t-esc="doc.partner_id.street"/>
                                      <br></br>
-                                     <t t-esc="doc.partner_id.street2"/>
+                                     <t style="color:#0C0C0C" t-esc="doc.partner_id.street2"/>
                                      <br></br>
-                                     <t t-esc="doc.partner_id.city"/>
-                                     <t t-esc="doc.partner_id.country_id.name"/>
+                                     <t style="color:#0C0C0C" t-esc="doc.partner_id.city"/>
+                                     <t style="color:#0C0C0C" t-esc="doc.partner_id.country_id.name"/>
                                  </td>
                              </tr>
                          </div>
@@ -32,37 +32,37 @@
                          <table style="border:white">
                          <tr>
                              <th style="border:white">
-                                 <strong style="color:#27B3CB" class="mt-4">Quotation Date:</strong>
+                                 <span style="color:#27B3CB" class="mt-4">Quotation Date:</span>
                              </th>
                              <th style="border:white">
-                                 <strong style="color:#27B3CB;padding-left:60px;">Expiration:</strong>
+                                 <span style="color:#27B3CB;padding-left:60px;">Expiration:</span>
                              </th>
                              <th style="border:white">
-                                 <strong style="color:#27B3CB;padding-left:60px;">Salesperson:</strong>
+                                 <span style="color:#27B3CB;padding-left:60px;">Salesperson:</span>
                              </th>
                              <th style="border:white">
-                                 <strong style="color:#27B3CB;padding-left:60px;">Payment Terms:</strong>
+                                 <span style="color:#27B3CB;padding-left:60px;">Payment Terms:</span>
                              </th>
                              <th style="border:white">
-                                 <strong style="color:#27B3CB;padding-left:60px;">Reference:</strong>
+                                 <span style="color:#27B3CB;padding-left:60px;">Reference:</span>
                              </th>
                          </tr>
                          <br></br>
                          <tr>
-                             <td t-if="doc.date_order" style="border:white;background:white;color:grey">
+                             <td t-if="doc.date_order" style="border:white;background:white;color:black">
                                  <span style="text-align:center" t-esc="doc.date_order.date()"/>
                              </td>
-                             <td t-if="doc.validity_date" style="border:white;background:white;color:grey">
+                             <td t-if="doc.validity_date" style="border:white;background:white;color:black">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.validity_date"/>
                              </td>
-                             <td t-if="doc.user_id" style="border:white;background:white;color:grey">
+                             <td t-if="doc.user_id" style="border:white;background:white;color:black">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.user_id.name"/>
                              </td>
-                             <td t-if="doc.payment_term_id" style="border:white;background:white;color:grey">
+                             <td t-if="doc.payment_term_id" style="border:white;background:white;color:black">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.payment_term_id"/>
                              </td>
-                             <td t-if="doc.client_order_ref" style="border:white;background:white;color:grey">
-                                 <span style="text-align:center;padding-left:60px;background:white;color:grey;border:white" t-field="doc.client_order_ref"/>
+                             <td t-if="doc.client_order_ref" style="border:white;background:white;color:black">
+                                 <span style="text-align:center;padding-left:60px;background:white;color:black;border:white" t-field="doc.client_order_ref"/>
                              </td>
                          </tr>
                          </table>
@@ -71,33 +71,33 @@
                          <table class="table table-sm o_main_table mt-4">
                              <thead style="display: table-row-group">
                                  <tr>
-                                     <th name="th_code" class="text-start">Code</th>
-                                     <th name="th_description" class="text-start">Description</th>
-                                     <th name="th_quantity" class="text-end">Quantity</th>
-                                     <th name="th_priceunit" class="text-end">Unit Price</th>
-                                     <th name="th_taxes" class="text-end">Taxes</th>
-                                     <th name="th_taxes" class="text-end">Amount</th>
+                                     <th style="color:#27B3CB;" name="th_code" class="text-start">Code</th>
+                                     <th style="color:#27B3CB;" name="th_description" class="text-start">Description</th>
+                                     <th style="color:#27B3CB;" name="th_quantity" class="text-end">Quantity</th>
+                                     <th style="color:#27B3CB;" name="th_priceunit" class="text-end">Unit Price</th>
+                                     <th style="color:#27B3CB;" name="th_taxes" class="text-end">Taxes</th>
+                                     <th style="color:#27B3CB;" name="th_taxes" class="text-end">Amount</th>
                                  </tr>
                              </thead>
                              <tbody class="sale_tbody">
                                  <t t-set="current_subtotal" t-value="0"/>
                                  <tr t-foreach="doc.order_line" t-as="line">
                                      <td name="td_code" class="text-start">
-                                         <span t-field="line.product_id.default_code"/>
+                                         <span style="color:black" t-field="line.product_id.default_code"/>
                                      </td>
-                                     <td name="td_name"><span t-field="line.name"/></td>
+                                     <td name="td_name"><span style="color:black" t-field="line.name"/></td>
                                     <td name="td_quantity" class="text-end">
-                                        <span t-field="line.product_uom_qty"/>
-                                        <span t-field="line.product_uom"/>
+                                        <span style="color:black" t-field="line.product_uom_qty"/>
+                                        <span style="color:black" t-field="line.product_uom"/>
                                     </td>
                                     <td name="td_priceunit" class="text-end">
-                                        <span t-field="line.price_unit"/>
+                                        <span style="color:black" t-field="line.price_unit"/>
                                     </td>
                                      <td name="td_taxes" class="text-end">
-                                        <span t-field="line.tax_id"/>
+                                        <span style="color:black" t-field="line.tax_id"/>
                                     </td>
                                      <td name="td_amount" class="text-end">
-                                        <span t-field="line.price_subtotal"/>
+                                        <span style="color:black" t-field="line.price_subtotal"/>
                                     </td>
                                  </tr>
                              </tbody>
@@ -105,18 +105,18 @@
                          <table style="width:50%; margin-left:50%;">
                                      <tr style="width:10%">
                                          <td style="text-align:left;width: 20px;height: 30px">
-                                             <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
+                                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</strong>
                                          </td>
-                                         <td style="text-align:right;width: 20px;height: 30px">
+                                         <td style="text-align:right;width: 20px;height: 30px;background:white">
                                              <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
                                          </td>
                                      </tr>
                                      <tr style="width:10%">
                                          <td style="width: 20px;height: 30px">
-                                             <strong style="padding-left:10px" class="mt-4">VAT 5%</strong>
+                                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
                                          </td>
-                                         <td style="text-align:right;width: 20px;height: 30px">
+                                         <td style="text-align:right;width:20px;height: 30px;background:white">
                                              <span class="text-right" t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
                                          </td>
                                      </tr>
@@ -138,23 +138,22 @@
                          <td colspan="6"
                              style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
                              <b>
-                                 <u>Bank Details</u>
+                                 <u style="color:#27B3CB">Bank Details</u>
                              </b>
                              <br/>
                              <br></br>
-                             <span>Account Name : Cardline Electronics llc</span>
+                             <span style="color:black">Account Name : Cardline Electronics llc</span>
                              <br/>
-                             <span>Account No : 10484461020001</span>
+                             <span style="color:black">Account No : 10484461020001</span>
                              <br/>
-                             <span>IBAN Number : ADBC(Abudhabi Commercial Bank)</span>
+                             <span style="color:black">IBAN Number : ADBC(Abudhabi Commercial Bank)</span>
                              <br/>
-                             <span>Bank Name : AE240030010484461020001</span>
+                             <span style="color:black">Bank Name : AE240030010484461020001</span>
                              <br/>
-                             <span>Swift Code: ADCBAEAA.</span>
+                             <span style="color:black">Swift Code: ADCBAEAA.</span>
                              <br/>
                          </td>
                      </div>
-
                 </t>
             </t>
         </t>

@@ -1,49 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="quotation_order_inherit_report_template" inherit_id="sale.report_saleorder_document">
-        Inherited view1
-        <xpath expr="//t/div/table/thead/tr/th[@name='th_description']" position="before">
-            <th name="th_code" class="text-start">Code</th>
-        </xpath>
-        <xpath expr="//t/div/table/tbody/t/tr/t/td" position="before">
-            <td name="td_code" class="text-start">
-                <span t-esc="line.product_id.default_code"/>
-            </td>
-        </xpath>
-        <xpath expr="//t/div/table/tbody/t/tr/t/td[@name='td_name']" position="replace">
-            <td class="text-start">
-                <span t-esc="line.product_id.name"/>
-            </td>
-        </xpath>
+<!--        <xpath expr="//t/div/table/thead/tr/th[@name='th_description']" position="before">-->
+<!--            <th style="color:#27B3CB;" name="th_code" class="text-start">Code</th>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//t/div/table/tbody/t/tr/t/td" position="before">-->
+<!--            <td name="td_code" class="text-start">-->
+<!--                <span t-esc="line.product_id.default_code"/>-->
+<!--            </td>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//t/div/table/tbody/t/tr/t/td[@name='td_name']" position="replace">-->
+<!--            <td class="text-start">-->
+<!--                <span t-esc="line.product_id.name"/>-->
+<!--            </td>-->
+<!--        </xpath>-->
         <xpath expr="//t/div/div/div[@name='expiration_date']" position="after">
             <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">
-                <strong>Payment Terms:</strong>
+                <strong style="color:#27B3CB;">Payment Terms:</strong>
                 <p class="m-0" t-field="doc.payment_term_id"/>
             </div>
         </xpath>
         <xpath expr="//t/div/div[@id='informations']" position="replace">
             <div class="row mt-4 mb-4" id="informations">
                 <div t-if="doc.date_order" class="col-auto col-3 mw-100 mb-2" name="informations_date">
-                    <strong t-if="doc.state in ['draft', 'sent']">Quotation Date:</strong>
-                    <strong t-else="">Order Date:</strong>
+                    <strong style="color:#27B3CB;" t-if="doc.state in ['draft', 'sent']">Quotation Date:</strong>
+                    <strong style="color:#27B3CB;" t-else="">Order Date:</strong>
                     <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
                 </div>
                 <div t-if="doc.validity_date and doc.state in ['draft', 'sent']"
                      class="col-auto col-3 mw-100 mb-2"
                      name="expiration_date">
-                    <strong>Expiration:</strong>
+                    <strong style="color:#27B3CB;">Expiration:</strong>
                     <p class="m-0" t-field="doc.validity_date"/>
                 </div>
                 <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
-                    <strong>Salesperson:</strong>
+                    <strong style="color:#27B3CB;">Salesperson:</strong>
                     <p class="m-0" t-field="doc.user_id"/>
                 </div>
                 <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">
-                    <strong>Payment Terms:</strong>
+                    <strong style="color:#27B3CB;">Payment Terms:</strong>
                     <p class="m-0" t-field="doc.payment_term_id"/>
                 </div>
                 <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
-                    <strong>Your Reference:</strong>
+                    <strong style="color:#27B3CB;">Reference:</strong>
                     <p class="m-0" t-field="doc.client_order_ref"/>
                 </div>
             </div>
@@ -69,9 +68,9 @@
         <xpath expr="//t/t[@t-set='forced_vat']" position="before">
             <h2 style="text-align:center;font-size:30px" class="mt-4">
                 <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice #</span>
-                <span t-elif="doc.state in ['draft','sent']">Quotation #</span>
+                <span  style="color:#27B3CB;" t-elif="doc.state in ['draft','sent']">Quotation #</span>
                 <span t-else="">Order #</span>
-                <span t-field="doc.name"/>
+                <span style="color:#27B3CB;" t-field="doc.name"/>
             </h2>
         </xpath>
         <xpath expr="//t/div/h2[@class='mt-4']" position="replace">
@@ -82,6 +81,100 @@
 <!--            <p t-if="not is_html_empty(doc.payment_term_id.note)">-->
 <!--            </p>-->
 <!--        </xpath>-->
+        <xpath expr="//t/div/table/tbody/t/tr/t/td[@name='td_subtotal']" position="replace">
+            <td style="background:white" t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//t/div/div/p[@t-if='not is_html_empty(doc.payment_term_id.note)']" position="replace">
+                <p t-if="not is_html_empty(doc.payment_term_id.note)">
+<!--                    <span t-field="doc.payment_term_id.note"/>-->
+                </p>
+        </xpath>
+        <xpath expr="//t/div/table[@class='table table-sm o_main_table mt-4']" position="replace">
+            <table class="table table-sm o_main_table mt-4">
+                <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                <thead style="display: table-row-group">
+                    <tr>
+                        <th style="color:#27B3CB;" name="th_code" class="text-start">Code</th>
+                        <th style="color:#27B3CB;" name="th_description" class="text-start">Description</th>
+                        <th style="color:#27B3CB;" name="th_quantity" class="text-end">Quantity</th>
+                        <th style="color:#27B3CB;" name="th_priceunit" class="text-end">Unit Price</th>
+                        <th style="color:#27B3CB;" name="th_discount" t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
+                            <span>Disc.%</span>
+                        </th>
+                        <th style="color:#27B3CB;" name="th_taxes" class="text-end">Taxes</th>
+                        <th style="color:#27B3CB;" name="th_subtotal" class="text-end">
+                            <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                            <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="sale_tbody">
+
+                    <t t-set="current_subtotal" t-value="0"/>
+
+                    <t t-foreach="lines_to_report" t-as="line">
+
+                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+
+                        <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                            <t t-if="not line.display_type">
+                                <td name="td_code" class="text-start">
+                                    <span t-esc="line.product_id.default_code"/>
+                                </td>
+                                <td name="td_name"><span t-field="line.name"/></td>
+                                <td name="td_quantity" class="text-end">
+                                    <span t-field="line.product_uom_qty"/>
+                                    <span t-field="line.product_uom"/>
+                                </td>
+                                <td name="td_priceunit" class="text-end">
+                                    <span t-field="line.price_unit"/>
+                                </td>
+                                <td t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
+                                    <span t-field="line.discount"/>
+                                </td>
+                                <td name="td_taxes" class="text-end">
+                                    <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                </td>
+                                <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                </td>
+                            </t>
+                            <t t-elif="line.display_type == 'line_section'">
+                                <td name="td_section_line" colspan="99">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <t t-set="current_section" t-value="line"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                            </t>
+                            <t t-elif="line.display_type == 'line_note'">
+                                <td name="td_note_line" colspan="99">
+                                    <span t-field="line.name"/>
+                                </td>
+                            </t>
+                        </tr>
+
+                        <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section') and not line.is_downpayment">
+                            <tr class="is-subtotal text-end">
+                                <td name="td_section_subtotal" colspan="99">
+                                    <strong class="mr16">Subtotal</strong>
+                                    <span
+                                        t-out="current_subtotal"
+                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                    />
+                                </td>
+                            </tr>
+                        </t>
+                    </t>
+                </tbody>
+            </table>
+        </xpath>
+
 
     </template>
 

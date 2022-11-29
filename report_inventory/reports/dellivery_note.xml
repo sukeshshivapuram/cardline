@@ -2,7 +2,6 @@
 <odoo>
     <template id="delivery_note_inherit_report_template" inherit_id="stock.report_delivery_document">
         <xpath expr="//t/t/t/div/div[@name='outgoing_warehouse_address']" position="replace">
-            <!--            <t t-set="address">-->
             <div name="div_outgoing_address">
                 <div name="outgoing_delivery_address"
                      t-if="o.move_ids_without_package and o.move_ids_without_package[0].partner_id and o.move_ids_without_package[0].partner_id != partner">
@@ -15,10 +14,8 @@
                 <div name="outgoing_warehouse_address"
                      t-if="o.picking_type_id.code != 'internal' and (not o.move_ids_without_package or not o.move_ids_without_package[0].partner_id or o.move_ids_without_package[0].partner_id == partner) and o.picking_type_id.warehouse_id.partner_id">
                     <span>
-                        <!--                            <strong>Warehouse Address:</strong>-->
+<!--                                                    <strong>Warehouse Address:</strong>-->
                     </span>
-                    <!--                        <div t-field="o.picking_type_id.warehouse_id.partner_id"-->
-                    <!--                             t-options='{"widget": "contact", "fields": ["address", "", ""], "no_marker": True, "phone_icons": True}'/>-->
                 </div>
             </div>
         </xpath>
@@ -29,7 +26,9 @@
 
 
             <!--            </t>-->
-            <tr><h2 style="text-align:center;font-size:25px;color:#27B3CB"><strong>Delivery Note</strong></h2></tr>
+            <tr>
+                <h1 style="font-size:30px;color:#27B3CB;text-align:center">DELIVERY NOTE</h1>
+            </tr>
 
             <table style="color: black; background: white; width:100%;border: white;">
                 <tr style="font-size:15px; color: black; background: white;">
@@ -51,7 +50,7 @@
                                 </div>
                                 <div name="customer_address" t-if="o.picking_type_id.code=='outgoing' and partner">
                                     <span>
-                                        <strong>Customer Address:</strong>
+                                        <b><strong style="color:#27B3CB;">Customer Address:</strong></b>
                                     </span>
                                 </div>
                                 <div t-if="partner" name="partner_header">
@@ -62,24 +61,24 @@
                         </div>
                     </td>
                     <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:150px;border: white;">
-                        <strong style="color:#27B3CB;">DN No
+                        <b><strong style="color:#27B3CB;">DN No
                             <span style="padding-left:50px;"></span>:
-                        </strong>
+                        </strong></b>
                         <t t-esc="o.name"/>
                         <br></br>
-                        <strong style="color:#27B3CB;">Invoice No
+                        <b><strong style="color:#27B3CB;">Invoice No
                             <span style="padding-left:23px;"></span>:
-                        </strong>
-                        <!--            <t t-esc="o.invoice_date"/>-->
+                        </strong></b>
+<!--                        <t t-esc="o.invoice_date"/>-->
                         <br></br>
-                        <strong style="color:#27B3CB;">Date
+                        <b><strong style="color:#27B3CB;">Date
                             <span style="padding-left:61px;"></span>:
-                        </strong>
-                        <t t-esc="o.scheduled_date"/>
+                        </strong></b>
+                            <t t-esc="datetime.datetime.strptime(str(o.scheduled_date.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                         <br></br>
-                        <strong style="color:#27B3CB;">Reference
+                        <b><strong style="color:#27B3CB;">Reference
                             <span style="padding-left:26px;"></span>:
-                        </strong>
+                        </strong></b>
                         <t t-esc="o.origin"/>
                         <br></br>
                     </td>
@@ -113,19 +112,48 @@
             </h2>
         </xpath>
 
-<!--         <xpath expr="//t/t/div/table[@name='stock_move_table']" position="before">-->
-<!--            <br></br>-->
-<!--            <br></br>-->
-<!--            <br></br>-->
-<!--         </xpath>-->
+
+        <xpath expr="//t/t/div/table[@name='stock_move_table']" position="replace">
+            <table class="table table-sm" t-if="o.state!='done'" name="stock_move_table">
+                <thead>
+                    <tr>
+                        <th name="th_sm_product">
+                            <strong style="color:#27B3CB;">Product</strong>
+                        </th>
+                        <th style="color:#27B3CB;" name="th_sm_ordered">
+                            <strong>Ordered</strong>
+                        </th>
+                        <th style="color:#27B3CB;" name="th_sm_quantity">
+                            <strong>Delivered</strong>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-set="lines" t-value="o.move_ids.filtered(lambda x: x.product_uom_qty)"/>
+                    <tr t-foreach="lines" t-as="move">
+                        <td>
+                            <span style="color:black" t-field="move.product_id"/>
+                            <p t-if="move.description_picking != move.product_id.name and move.description_picking != move.product_id.display_name">
+                                <span style="color:black" t-field="move.description_picking"/>
+                            </p>
+                        </td>
+                        <td>
+                            <span style="color:black" t-field="move.product_uom_qty"/>
+                            <span style="color:black" t-field="move.product_uom"/>
+                        </td>
+                        <td style="color:black;background:white">
+                            <span style="color:black;background:white" t-field="move.quantity_done"/>
+                            <span style="color:black;background:white" t-field="move.product_uom"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
 
         <xpath expr="//t/t/div/table[@name='stock_move_table']" position="after">
-            <br></br>
-            <br></br>
-            <br></br>
             <tr>
-                <p style="text-decoration:overline;padding-left:10%;">Receiver's Signature<span
-                        style="padding-left:45%;"></span>For CARDLINE ELETRONICS LLC
+                <p class="down" style="text-decoration:overline;padding-left:10%;padding-top:40em">Receiver's Signature<span class="down"
+                        style="padding-left:45%;padding-top:40em"></span>For CARDLINE ELETRONICS LLC
                 </p>
             </tr>
         </xpath>
