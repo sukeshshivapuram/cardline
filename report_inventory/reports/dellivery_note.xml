@@ -157,7 +157,7 @@
         <xpath expr="//t/t/div/table[@name='stock_move_table']" position="after">
             <tr>
                 <p class="down" style="text-decoration:overline;padding-left:10%;padding-top:40em">Receiver's Signature<span class="down"
-                        style="padding-left:45%;padding-top:40em"></span>For CARDLINE ELETRONICS LLC
+                        style="padding-left:45%;padding-top:40em"></span>For CARDLINE ELECTRONICS LLC
                 </p>
             </tr>
         </xpath>
