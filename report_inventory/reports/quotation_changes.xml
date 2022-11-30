@@ -68,9 +68,9 @@
         <xpath expr="//t/t[@t-set='forced_vat']" position="before">
             <h2 style="text-align:center;font-size:30px" class="mt-4">
                 <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice #</span>
-                <span style="color:#27B3CB;padding-top:5em" t-elif="doc.state in ['draft','sent']">Quotation #</span>
-                <span style="color:#27B3CB;" t-else="">Order #</span>
-                <span style="color:#27B3CB;padding-top:5em" t-field="doc.name"/>
+                <span style="color:#27B3CB;padding-top:5em;position: relative;bottom: 30px;" t-elif="doc.state in ['draft','sent']">Quotation #</span>
+                <span style="color:#27B3CB;position: relative;bottom: 30px;" t-else="">Order #</span>
+                <span style="color:#27B3CB;padding-top:5em;position: relative;bottom: 30px;" t-field="doc.name"/>
             </h2>
         </xpath>
         <xpath expr="//t/div/h2[@class='mt-4']" position="replace">
@@ -174,6 +174,18 @@
                 </tbody>
             </table>
         </xpath>
+        <xpath expr="//t/div/div[@class='clearfix']" position="after">
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+        </xpath>
 
         <xpath expr="//t/div/div[@class='clearfix']" position="replace">
             <div class="clearfix" name="so_total_summary">
@@ -219,6 +231,8 @@
 
             </div>
         </xpath>
+
+
 
 
     </template>

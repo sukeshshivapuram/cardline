@@ -22,7 +22,7 @@
                             style="margin-right:40%;font-size:15px;color: black; background: white;border: white;">
                             <h2 class="oe_highlight">
                                 <p style="color:#27B3CB ">
-                                    <strong style="font-size:20px;">
+                                    <strong style="font-size:17px;">
                                         Supplier Name
                                     </strong>
                                 </p>
@@ -38,25 +38,25 @@
                             <t t-esc="o.partner_id.country_id.name"/>
                         </td>
                         <td style="color: black;margin-left:80%; background: white;padding-left:20%;border: white;">
-                            <strong style="color:#27B3CB;font-size:20px;">PO Number
+                            <strong style="color:#27B3CB;font-size:17px;">PO Number
                                 <span style="padding-left:18px;"></span>:
                             </strong>
-                            <t style="font-size:19px;" t-esc="o.name"/>
+                            <t style="font-size:16px;" t-esc="o.name"/>
                             <br></br>
-                            <strong style="color:#27B3CB;font-size:20px;">PO Date
+                            <strong style="color:#27B3CB;font-size:17px;">PO Date
                                 <span style="padding-left:48px;"></span>:
                             </strong>
-                            <t style="font-size:19px;" t-esc="datetime.datetime.strptime(str(o.date_approve.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                            <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_approve.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                             <br></br>
-                            <strong style="color:#27B3CB;font-size:20px;">Due Date
+                            <strong style="color:#27B3CB;font-size:17px;">Due Date
                                 <span style="padding-left:40px;"></span>:
                             </strong>
-                                <t style="font-size:19px;" t-esc="datetime.datetime.strptime(str(o.date_planned.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                                <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_planned.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                             <br></br>
-                            <strong style="color:#27B3CB;font-size:20px;">Reference
+                            <strong style="color:#27B3CB;font-size:17px;">Reference
                                 <span style="padding-left:33px;"></span>:
                             </strong>
-                            <t style="font-size:19px;" t-esc="o.partner_ref"/>
+                            <t style="font-size:16px;" t-esc="o.partner_ref"/>
                         </td>
                     </tr>
                 </table>
