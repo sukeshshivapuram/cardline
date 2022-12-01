@@ -41,7 +41,7 @@
                     <strong style="color:#27B3CB;">Payment Terms:</strong>
                     <p class="m-0" t-field="doc.payment_term_id"/>
                 </div>
-                <div t-if="doc.client_order_ref" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
+                <div t-if="doc.customer_reference" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
                     <strong style="color:#27B3CB;">Reference:</strong>
                     <p class="m-0" t-field="doc.customer_reference"/>
                 </div>
