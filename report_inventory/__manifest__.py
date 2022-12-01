@@ -13,6 +13,7 @@
         'reports/dellivery_note.xml',
         'reports/new_quotation_report_template.xml',
         'reports/quotation_changes.xml',
+        'views/quotation_inherit_changes.xml',
         # 'reports/inherit_tax_invoice.xml',
     ],
     'installable': True,

@@ -6,6 +6,8 @@ from num2words import num2words
 class StockPicking(models.Model):
     _inherit = 'sale.order'
 
+    customer_reference = fields.Char(string="Customer Reference")
+
     def calculate_total(self):
         total = 0
         for records in self:
