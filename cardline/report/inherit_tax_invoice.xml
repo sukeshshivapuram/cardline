@@ -115,8 +115,7 @@
                             <strong style="padding-left:10px" class="mt-4">VAT 5%</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
-                            <span class="text-right"
-                                  t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                            <span class="text-right" t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
                         </td>
                     </tr>
                     <tr style="width:10%;color:white;background:#27B3CB;">
@@ -405,40 +404,40 @@
                 </div>
             </xpath>
         </template>
-        <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">
+<!--        <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">-->
 
-            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']"
-                   position="replace">
-                <br/>
-                <div class="footer">
-                    <div class="text-center" style="border-top: 1px solid black;"></div>
-                    <div class="text-center">
-                        <!--                <div t-field="company.report_footer"/>-->
-                        <span>Email:
-                            <span style="color:#277BDA">accounts@cardlineuae.com</span>
-                        </span>
-                        |
-                        <span>web:
-                            <span style="color:#277BDA">www.cardlineuae.com</span>
-                        </span>
+<!--            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']"-->
+<!--                   position="replace">-->
+<!--                <br/>-->
+<!--                <div class="footer">-->
+<!--                    <div class="text-center" style="border-top: 1px solid black;"></div>-->
+<!--                    <div class="text-center">-->
+<!--                        &lt;!&ndash;                <div t-field="company.report_footer"/>&ndash;&gt;-->
+<!--                        <span>Email:-->
+<!--                            <span style="color:#277BDA">accounts@cardlineuae.com</span>-->
+<!--                        </span>-->
+<!--                        |-->
+<!--                        <span>web:-->
+<!--                            <span style="color:#277BDA">www.cardlineuae.com</span>-->
+<!--                        </span>-->
 
-                        <div t-if="report_type == 'pdf'">
-                            Page:
-                            <span class="page"/>
-                            /
-                            <span class="topage"/>
-                        </div>
-                    </div>
-                </div>
+<!--                        <div t-if="report_type == 'pdf'">-->
+<!--                            Page:-->
+<!--                            <span class="page"/>-->
+<!--                            /-->
+<!--                            <span class="topage"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
-                <!--                <div class="footer">-->
-                <!--                    &lt;!&ndash;  code &ndash;&gt;-->
-                <!--                </div>-->
-            </xpath>
-<!--            <xpath expr="//div[@class='footer']" position="replace"></xpath>-->
+<!--                &lt;!&ndash;                <div class="footer">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    &lt;!&ndash;  code &ndash;&gt;&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </xpath>-->
+<!--&lt;!&ndash;            <xpath expr="//div[@class='footer']" position="replace"></xpath>&ndash;&gt;-->
 
-        </template>
+<!--        </template>-->
 
 
 
