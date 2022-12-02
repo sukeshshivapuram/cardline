@@ -8,15 +8,19 @@ class StockPicking(models.Model):
 
     customer_reference = fields.Char(string="Customer Reference")
 
-    def calculate_total(self):
-        total = 0
-        for records in self:
-            for line in records.order_line:
-                total = total + line.product_id.list_price
-        return round((total),2)
+    def calculations(self):
+        for rec in self:
+            # for lines in rec.order_lines:
+            result = rec.tax_totals['formatted_amount_total']
+            length = len(result)
+            # print("lengthhhhhhh",length)
+            slice_res = result[:length - 4]
+            # print("sliced result",slice_res)
+            # print("resulttttttttttttttttt",result)
+            final = slice_res +" "+"AED"
+            # print("finalllllllllll",final)
+            return final
 
-    # def final_total_value(self):
-    #     total=0
 
 
 

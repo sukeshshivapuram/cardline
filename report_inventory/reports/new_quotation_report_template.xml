@@ -125,8 +125,8 @@
                                              <strong style="padding-left:10px" class="mt-4">Total</strong>
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
-                                             <span t-esc="doc.tax_totals['formatted_amount_total'].strip('\xa0')"/>
-<!--                                             <span t-esc="doc.discount_calculate()"/>-->
+<!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
+                                             <span t-esc="doc.calculations()"/>
                                          </td>
                                      </tr>
                          </table>
