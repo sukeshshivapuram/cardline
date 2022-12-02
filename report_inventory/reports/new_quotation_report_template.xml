@@ -6,7 +6,6 @@
                 <t t-foreach="docs" t-as="doc">
                      <div class="page">
                         <div class="oe_structure"/>
-
                          <h2 style="text-align:center;font-size:30px" class="mt-4">
                              <span style="color:#27B3CB;font-size:30px;position: relative;bottom: 5px;" >PRO-FORMA INVOICE #</span>
                              <span style="color:#27B3CB;;position: relative;bottom: 5px;" t-field="doc.name"/>
@@ -118,8 +117,7 @@
                                          </td>
                                          <td style="text-align:right;width:20px;height: 30px;background:white">
                                              <span class="text-right"
-                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
-
+                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount'].strip('\xa0')"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%;color:white;background:#27B3CB">
@@ -127,7 +125,7 @@
                                              <strong style="padding-left:10px" class="mt-4">Total</strong>
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
-                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+                                             <span t-esc="doc.tax_totals['formatted_amount_total'].strip('\xa0')"/>
 <!--                                             <span t-esc="doc.discount_calculate()"/>-->
                                          </td>
                                      </tr>
