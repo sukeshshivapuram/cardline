@@ -8,7 +8,19 @@ class StockPicking(models.Model):
 
     customer_reference = fields.Char(string="Customer Reference")
 
-    def calculations_total(self):
+    def calculation_amount(self,format_amount):
+            str_con = str(format_amount)
+            print("string form",str_con)
+            # print("Fffformat amount",format_amount)
+            # length_amount = len(str_con)
+            # print("DDDDDddd ", length_amount)
+            # slice_res_amount = str_con[:length_amount - 4]
+            # print("SSSSSSSSs ", slice_res_amount)
+            final_untaxed_amount = str_con + " " + "AED"
+            print("JJJJJJf ", final_untaxed_amount)
+            return final_untaxed_amount
+
+    def calculations_total(self,):
         for rec in self:
             format_total = rec.tax_totals['formatted_amount_total']
             length_total = len(format_total)

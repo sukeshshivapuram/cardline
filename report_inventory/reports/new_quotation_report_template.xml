@@ -96,7 +96,7 @@
                                         <span style="color:black" t-field="line.tax_id"/>
                                     </td>
                                      <td name="td_amount" class="text-end">
-                                        <span style="color:black" t-field="line.price_subtotal"/>
+                                        <span style="color:black" t-esc="doc.calculation_amount(line.price_subtotal)"/>
                                     </td>
                                  </tr>
                              </tbody>
