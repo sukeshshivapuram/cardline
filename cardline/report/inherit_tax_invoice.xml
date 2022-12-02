@@ -328,9 +328,9 @@
                         <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">
                             CANCELLED INVOICE
                         </strong>
-                        <strong style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</strong>
+                        <span style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>
                         <strong style="color:black;" t-if="o.move_type == 'in_refund'">VENDOR CREDIT NOTE</strong>
-                        <strong style="color:#27B3CB ;" t-if="o.move_type == 'in_invoice'">DEBIT NOTE</strong>
+                        <span style="color:#27B3CB ;" t-if="o.move_type == 'in_invoice'">DEBIT NOTE</span>
                         <!--                            <span t-if="o.name != '/'" t-field="o.name"/>-->
                         <br/>
                         <h style="font-size:15px;">TRN:</h>
