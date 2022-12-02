@@ -126,7 +126,7 @@
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
                                              <span t-esc="doc.tax_totals['formatted_amount_total']"/>
-<!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
+<!--                                             <span t-esc="doc.discount_calculate()"/>-->
                                          </td>
                                      </tr>
                          </table>

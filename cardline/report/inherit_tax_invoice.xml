@@ -81,11 +81,12 @@
                 <table style="width:80%; margin-left:20%;">
                     <tr style="width:10%">
                         <td style="text-align:left;width: 20px;height: 30px">
-                            <strong style="padding-left:10px" class="mt-4">Taxable Amount</strong>
+                            <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
-                            <!--                                             <span t-esc="o.tax_totals['formatted_amount_untaxed']"/>-->
+                                                                         <span t-esc="o.total()"/>
+
                         </td>
                     </tr>
                     <tr style="width:10%">
@@ -94,16 +95,16 @@
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.discount" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
-                            <t t-foreach="o.invoice_line_ids" t-as="lines">
-                                <span t-esc="lines.discount"/>
-                            </t>
+<!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
+                                <span t-esc="o.discount_calculate()"/>
+<!--                            </t>-->
                         </td>
                     </tr>
 
 
                     <tr style="width:10%">
                         <td style="text-align:left;width: 20px;height: 30px">
-                            <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
+                            <strong style="padding-left:10px" class="mt-4">Taxable Amount</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
@@ -207,9 +208,9 @@
                                 t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>Unit Price</span>
                             </th>
-                            <th>
-                                <span>TAXABLE AMOUNT</span>
-                            </th>
+<!--                            <th>-->
+<!--                                <span>TAXABLE AMOUNT</span>-->
+<!--                            </th>-->
                             <th name="th_price_unit" t-if="display_discount"
                                 t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>Disc.%</span>
@@ -251,9 +252,9 @@
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span class="text-nowrap" t-field="line.price_unit"/>
                                     </td>
-                                    <td style="text-align:right;color:black;">
-                                        <span t-field="line.taxable_amount"/>
-                                    </td>
+<!--                                    <td style="text-align:right;color:black;">-->
+<!--                                        <span t-field="line.taxable_amount"/>-->
+<!--                                    </td>-->
                                     <td style="color:black;" t-if="display_discount"
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span class="text-nowrap" t-field="line.discount"/>
