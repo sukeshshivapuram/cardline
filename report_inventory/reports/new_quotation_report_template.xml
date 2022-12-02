@@ -117,7 +117,9 @@
                                              <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
                                          </td>
                                          <td style="text-align:right;width:20px;height: 30px;background:white">
-                                             <span class="text-right" t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                                             <span class="text-right"
+                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount'].replace('\u20ac'','')"/>
+
                                          </td>
                                      </tr>
                                      <tr style="width:10%;color:white;background:#27B3CB">
@@ -125,7 +127,7 @@
                                              <strong style="padding-left:10px" class="mt-4">Total</strong>
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
-                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+                                             <span t-esc="doc.tax_totals['formatted_amount_total']replace('\u20ac'','')"/>
 <!--                                             <span t-esc="doc.discount_calculate()"/>-->
                                          </td>
                                      </tr>
@@ -159,6 +161,7 @@
                 </t>
             </t>
         </t>
+
     </template>
 
 </odoo>
