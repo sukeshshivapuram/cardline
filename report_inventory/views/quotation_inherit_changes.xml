@@ -14,4 +14,16 @@
 
         </field>
     </record>
+
+    <record id="new_sale_order_inherit_form_2" model="ir.ui.view">
+        <field name="name">new.sale.order.inherit.form2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="replace">
+                <field name="discount" string="Discount"  optional="show" widget="sol_discount"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

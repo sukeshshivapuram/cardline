@@ -102,8 +102,8 @@
                         <th style="color:#27B3CB;" name="th_description" class="text-start">Description</th>
                         <th style="color:#27B3CB;" name="th_quantity" class="text-end">Quantity</th>
                         <th style="color:#27B3CB;" name="th_priceunit" class="text-end">Unit Price</th>
-                        <th style="color:#27B3CB;" name="th_discount" t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
-                            <span>Disc.%</span>
+                        <th style="color:#27B3CB;" name="th_discount" t-if="display_discount" class="text-end">
+                            <span>Discount</span>
                         </th>
                         <th style="color:#27B3CB;" name="th_taxes" class="text-end">Taxes</th>
                         <th style="color:#27B3CB;" name="th_subtotal" class="text-end">
@@ -134,7 +134,7 @@
                                 <td name="td_priceunit" class="text-end">
                                     <span t-field="line.price_unit"/>
                                 </td>
-                                <td t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
+                                <td t-if="display_discount" class="text-end" >
                                     <span t-field="line.discount"/>
                                 </td>
                                 <td name="td_taxes" class="text-end">
@@ -223,7 +223,10 @@
                             <strong style="padding-left:10px" class="mt-4">Total</strong>
                         </td>
                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
+<!--                            <t t-set="total" t-value="doc.tax_totals['formatted_amount_total']"/>-->
+<!--                            <span t-esc="total.strip("\u20ac")"/>-->
                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+<!--                            <t t-out="message.record_name and message.record_name.replace('\u20ac'','') or ''"/>-->
                             <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                         </td>
                     </tr>
@@ -231,9 +234,6 @@
 
             </div>
         </xpath>
-
-
-
 
     </template>
 
