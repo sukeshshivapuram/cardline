@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record id="statement_of_accounts_report_new" model="ir.actions.report">
-            <field name="name">statement of accounts report</field>
-            <field name="model">fourth.report</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="report_name">newmodule.statement_account_report</field>
-            <field name="report_file">newmodule.statement_account_report</field>
-            <field name="binding_model_id" ref="model_fourth_report"/>
-            <field name="binding_type">report</field>
-        </record>
+<!--        <record id="statement_of_accounts_report_new" model="ir.actions.report">-->
+<!--            <field name="name">statement of accounts report</field>-->
+<!--            <field name="model">fourth.report</field>-->
+<!--            <field name="report_type">qweb-pdf</field>-->
+<!--            <field name="report_name">newmodule.statement_account_report</field>-->
+<!--            <field name="report_file">newmodule.statement_account_report</field>-->
+<!--            <field name="binding_model_id" ref="model_fourth_report"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
 
         <template id="statement_account_report">
             <t t-call="web.html_container">
