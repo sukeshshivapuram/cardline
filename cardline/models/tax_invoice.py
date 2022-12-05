@@ -47,13 +47,13 @@ class InvoiceFormOrderLinesInherit(models.Model):
     _inherit = 'account.move.line'
 
     uom = fields.Float(string="UOM")
-    taxable_amount = fields.Float(string="Taxable Amount", compute="taxed_amount")
+    taxable_amount = fields.Float(string="Taxable Amount")
 
-    def taxed_amount(self):
-        for rec in self:
-            for line in rec.invoice_line_ids:
-                line.taxable_amount = (line.quantity * line.price_unit)
-                print(line.taxable_amount)
+    # def taxed_amount(self):
+    #     for rec in self:
+    #         for line in rec.invoice_line_ids:
+    #             line.taxable_amount = (line.quantity * line.price_unit)
+    #             print(line.taxable_amount)
                 # return line.taxable_amount
 
 

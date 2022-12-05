@@ -113,7 +113,7 @@
                     </tr>
                     <tr style="width:10%">
                         <td style="width: 20px;height: 30px">
-                            <strong style="padding-left:10px" class="mt-4">VAT 5%</strong>
+                            <strong style="padding-left:10px" class="mt-4">TAX 5%</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <span class="text-right" t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
@@ -213,11 +213,11 @@
                                 <span>Quantity</span>
                             </th>
                             <th name="th_priceunit"
-                                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>Unit Price</span>
                             </th>
-                            <th>
-                                <span>TAXABLE AMOUNT</span>
+                            <th style="text-align:left;">
+                                <span style="text-align:left;">TAXABLE AMOUNT</span>
                             </th>
                             <th name="th_price_unit" t-if="display_discount"
                                 t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
@@ -225,13 +225,13 @@
                             </th>
                             <th name="th_taxes"
                                 t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                <span>Taxes</span>
+                                <span>TAX %</span>
                             </th>
                             <th name="th_taxes" style="text-align:center;"
                                 t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                <span style="text-align:center;">VAT AMOUNT</span>
+                                <span style="text-align:center;">TAX AMOUNT</span>
                             </th>
-                            <th name="th_subtotal" class="text-end">
+                            <th name="th_subtotal" class="text-end" style="text-align:left;">
                                 <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
                                 <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
                             </th>
@@ -327,7 +327,7 @@
             <xpath expr="//t/div/div/table/thead/tr/th[@name='th_taxes']" position="replace">
                 <th name="th_taxes"
                     t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                    <span>VAT %</span>
+                    <span>TAX %</span>
                 </th>
             </xpath>
 
