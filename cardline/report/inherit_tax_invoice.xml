@@ -165,14 +165,20 @@
                             <span style="padding-left:36px;color:black;"></span>:ADCBAEAA.
                         </span>
                         <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+
                         <!--                        <sapn t-field="o.partner_bank_id.bank_id.bic"/>-->
 
                     </td>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
                     <u></u>
+                </div>
+            </xpath>
+            <xpath expr="//t/div/div[@name='comment']" position="after">
+            <br/>
+            <br/>
+           
                     <tr>
                         <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
                             Signature<span
@@ -180,10 +186,12 @@
                         </p>
 
                     </tr>
-
-                </div>
             </xpath>
-
+<!--            <xpath expr="//t/div/div[@name='comment']" position="replace">-->
+<!--                <div style="margin-top: 10px;" t-if="not is_html_empty(o.narration)" name="comment">-->
+<!--                    <span t-field="o.narration"/>-->
+<!--                </div>-->
+<!--            </xpath>-->
 
 
             <xpath expr="//t/div/div/h2" position="replace">
