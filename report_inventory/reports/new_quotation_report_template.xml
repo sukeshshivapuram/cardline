@@ -74,8 +74,9 @@
                                      <th style="color:#27B3CB;" name="th_description" class="text-start">Description</th>
                                      <th style="color:#27B3CB;" name="th_quantity" class="text-end">Quantity</th>
                                      <th style="color:#27B3CB;" name="th_priceunit" class="text-end">Unit Price</th>
+                                     <th style="color:#27B3CB;" name="th_discount" class="text-end">Discount</th>
                                      <th style="color:#27B3CB;" name="th_taxes" class="text-end">Taxes</th>
-                                     <th style="color:#27B3CB;" name="th_taxes" class="text-end">Amount</th>
+                                     <th style="color:#27B3CB;" name="th_amount" class="text-end">Amount</th>
                                  </tr>
                              </thead>
                              <tbody class="sale_tbody">
@@ -92,6 +93,9 @@
                                     <td name="td_priceunit" class="text-end">
                                         <span style="color:black" t-field="line.price_unit"/>
                                     </td>
+                                     <td name="td_discount" class="text-end">
+                                         <span style="color:black" t-field="line.discount"/>
+                                     </td>
                                      <td name="td_taxes" class="text-end">
                                         <span style="color:black" t-field="line.tax_id"/>
                                     </td>
@@ -157,7 +161,7 @@
                              <span style="color:black">Swift Code: ADCBAEAA.</span>
                              <br/>
                          </td>
-                         
+
                      </div>
                 </t>
             </t>
