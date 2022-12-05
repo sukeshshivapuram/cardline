@@ -178,7 +178,7 @@
             <xpath expr="//t/div/div[@name='comment']" position="after">
             <br/>
             <br/>
-           
+
                     <tr>
                         <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
                             Signature<span
@@ -327,17 +327,17 @@
             <xpath expr="//t/div/t/div[@name='address_same_as_shipping']" position="replace">
                 <div t-if="o.partner_id.vat" class="oe_highlight">
                     <h2 style="text-align:center;font-size:25px;">
-                        <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'posted'">TAX
+                        <strong style="color:#27B3CB;" t-if="o.move_type == 'out_invoice' and o.state == 'posted'">TAX
                             INVOICE
                         </strong>
-                        <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'draft'">DRAFT
+                        <strong style="color:#27B3CB;" t-if="o.move_type == 'out_invoice' and o.state == 'draft'">DRAFT
                             INVOICE
                         </strong>
-                        <strong style="color:black;" t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">
+                        <strong style="color:#27B3CB;" t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">
                             CANCELLED INVOICE
                         </strong>
                         <span style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>
-                        <strong style="color:black;" t-if="o.move_type == 'in_refund'">VENDOR CREDIT NOTE</strong>
+                        <strong style="color:#27B3CB;" t-if="o.move_type == 'in_refund'">VENDOR CREDIT NOTE</strong>
                         <span style="color:#27B3CB ;" t-if="o.move_type == 'in_invoice'">DEBIT NOTE</span>
                         <!--                            <span t-if="o.name != '/'" t-field="o.name"/>-->
                         <br/>
