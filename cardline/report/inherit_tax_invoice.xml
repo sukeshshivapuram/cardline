@@ -335,7 +335,7 @@
 
 
             <xpath expr="//t/div/t/div[@name='address_same_as_shipping']" position="replace">
-                <div t-if="o.partner_id.vat" class="oe_highlight">
+                <div t-if="o.partner_id" class="oe_highlight">
                     <h2 style="text-align:center;font-size:25px;">
                         <strong style="color:#27B3CB;" t-if="o.move_type == 'out_invoice' and o.state == 'posted'">TAX
                             INVOICE
