@@ -232,7 +232,7 @@
                                 <span style="text-align:center;">TAX AMOUNT</span>
                             </th>
                             <th name="th_subtotal" class="text-start" style="text-align:left;">
-                                <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                <span groups="account.group_show_line_subtotals_tax_excluded">TOTAL</span>
                                 <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
                             </th>
                         </tr>
