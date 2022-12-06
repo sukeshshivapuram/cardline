@@ -101,12 +101,12 @@
             </xpath>
             <xpath expr="//t/div/table/thead" position="replace">
                     <tr style="color:#27B3CB;">
-                        <th name="th_description"><strong>Description</strong></th>
-                        <th name="th_taxes"><strong>Taxes</strong></th>
-                        <th name="th_date_req" class="text-center"><strong>Date Req.</strong></th>
-                        <th name="th_quantity" class="text-end"><strong>Qty</strong></th>
-                        <th name="th_price_unit" class="text-end"><strong>Unit Price</strong></th>
-                        <th name="th_amount" class="text-end"><strong>Amount</strong></th>
+                        <th name="th_description"><strong>DISCRIPTION</strong></th>
+                        <th name="th_taxes"><strong>TAXES</strong></th>
+                        <th name="th_date_req" class="text-center"><strong>DATE REQ.</strong></th>
+                        <th name="th_quantity" class="text-end"><strong>QTY</strong></th>
+                        <th name="th_price_unit" class="text-end"><strong>UNIT PRICE</strong></th>
+                        <th name="th_amount" class="text-end"><strong>AMOUNT</strong></th>
                     </tr>
             </xpath>
 
