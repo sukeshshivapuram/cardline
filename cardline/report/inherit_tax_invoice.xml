@@ -96,7 +96,7 @@
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.discount" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
 <!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
-                                <span t-esc="o.discount_calculate()"/>
+                                <span t-esc="o.amount_discount"/>
 <!--                            </t>-->
                         </td>
                     </tr>
@@ -203,35 +203,35 @@
                 <table class="table table-sm o_main_table" name="invoice_line_table">
                     <thead>
                         <tr>
-                            <th name="th_description" class="text-start">
+                            <th name="th_description" class="text-center">
                                 <span>Description</span>
                             </th>
-                            <th class="text-start">
+                            <th class="text-center">
                                 <span>UOM</span>
                             </th>
-                            <th name="th_quantity" class="text-start">
+                            <th name="th_quantity" class="text-center">
                                 <span>Quantity</span>
                             </th>
                             <th name="th_priceunit"
-                                t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>Unit Price</span>
                             </th>
-                            <th style="text-align:left;">
+                            <th class="text-center">
                                 <span style="text-align:left;">TAXABLE AMOUNT</span>
                             </th>
                             <th name="th_price_unit" t-if="display_discount"
-                                t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>Disc.%</span>
                             </th>
                             <th name="th_taxes"
-                                t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>TAX %</span>
                             </th>
                             <th name="th_taxes" style="text-align:center;"
-                                t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                <span style="text-align:center;">TAX AMOUNT</span>
+                                t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                <span>TAX AMOUNT</span>
                             </th>
-                            <th name="th_subtotal" class="text-start" style="text-align:left;">
+                            <th name="th_subtotal" class="text-center">
                                 <span groups="account.group_show_line_subtotals_tax_excluded">TOTAL</span>
                                 <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
                             </th>
@@ -331,9 +331,6 @@
                 </th>
             </xpath>
 
-
-
-
             <xpath expr="//t/div/t/div[@name='address_same_as_shipping']" position="replace">
                 <div t-if="o.partner_id" class="oe_highlight">
                     <h2 style="text-align:center;font-size:25px;">
@@ -352,7 +349,7 @@
                         <!--                            <span t-if="o.name != '/'" t-field="o.name"/>-->
                         <br/>
                         <h style="font-size:15px;">TRN:</h>
-                        <span style="color: black;font-size:15px;" t-esc="o.partner_id.vat"/>
+                        <span style="color: black;font-size:15px;" t-esc="o.company_id.vat"/>
                     </h2>
 
 
@@ -376,6 +373,7 @@
                                 <t t-esc="o.partner_id.city"/>
                                 <!--                        <t t-esc="doc.company_id.zip"/>-->
                                 <t t-esc="o.partner_id.country_id.name"/>
+                                <t t-esc="o.partner_id.vat"/>
                             </td>
                             <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:150px;border: white;">
                                 <strong style="color:#27B3CB;">Invoice No

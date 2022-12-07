@@ -101,7 +101,7 @@
             </xpath>
             <xpath expr="//t/div/table/thead" position="replace">
                     <tr style="color:#27B3CB;">
-                        <th name="th_description"><strong>DISCRIPTION</strong></th>
+                        <th name="th_description"><strong>DESCRIPTION</strong></th>
                         <th name="th_taxes"><strong>TAXES</strong></th>
                         <th name="th_date_req" class="text-center"><strong>DATE REQ.</strong></th>
                         <th name="th_quantity" class="text-end"><strong>QTY</strong></th>
