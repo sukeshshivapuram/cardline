@@ -96,7 +96,7 @@
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.discount" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
 <!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
-                                <span t-esc="o.amount_discount"/>
+                                <span t-esc="o.discount_rate"/>
 <!--                            </t>-->
                         </td>
                     </tr>
