@@ -70,13 +70,13 @@
                          <table class="table table-sm o_main_table mt-4">
                              <thead style="display: table-row-group">
                                  <tr>
-                                     <th style="color:#27B3CB;" name="th_code" class="text-start">Code</th>
-                                     <th style="color:#27B3CB;" name="th_description" class="text-start">Description</th>
-                                     <th style="color:#27B3CB;" name="th_quantity" class="text-end">Quantity</th>
-                                     <th style="color:#27B3CB;" name="th_priceunit" class="text-end">Unit Price</th>
-                                     <th style="color:#27B3CB;" name="th_discount" class="text-end">Discount</th>
-                                     <th style="color:#27B3CB;" name="th_taxes" class="text-end">Taxes</th>
-                                     <th style="color:#27B3CB;" name="th_amount" class="text-end">Amount</th>
+                                     <th style="color:#27B3CB;" name="th_code" class="text-center">Code</th>
+                                     <th style="color:#27B3CB;" name="th_description" class="text-center">Description</th>
+                                     <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
+                                     <th style="color:#27B3CB;" name="th_priceunit" class="text-center">Unit Price</th>
+                                     <th style="color:#27B3CB;" name="th_discount" class="text-center">Discount</th>
+                                     <th style="color:#27B3CB;" name="th_taxes" class="text-center">Taxes</th>
+                                     <th style="color:#27B3CB;" name="th_amount" class="text-center">Amount</th>
                                  </tr>
                              </thead>
                              <tbody class="sale_tbody">
@@ -97,10 +97,10 @@
                                          <span style="color:black" t-field="line.discount"/>
                                      </td>
                                      <td name="td_taxes" class="text-end">
-                                        <span style="color:black" t-field="line.tax_id"/>
+                                        <span style="color:black" t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                                     </td>
                                      <td name="td_amount" class="text-end">
-                                        <span style="color:black" t-esc="doc.calculation_amount(line.price_subtotal)"/>
+                                        <span style="color:black"  t-set="total_sum" t-esc="doc.calculation_amount(line.price_subtotal)"/><span style="color:black" t-esc="doc.currency_sale"/>
                                     </td>
                                  </tr>
                              </tbody>
@@ -113,7 +113,7 @@
                                          <td style="text-align:right;width: 20px;height: 30px;background:white">
 <!--                                             <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>-->
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
-                                             <span t-esc="doc.calculations_untaxed_amt()"/>
+                                             <span t-esc="doc.calculations_untaxed_amt()"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%">
@@ -123,7 +123,7 @@
                                          <td style="text-align:right;width:20px;height: 30px;background:white">
 <!--                                             <span class="text-right"-->
 <!--                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>-->
-                                             <span t-esc="doc.calculations_vat()"/>
+                                             <span  t-esc="doc.calculations_vat()"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%;color:white;background:#27B3CB">
@@ -132,16 +132,19 @@
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
-                                             <span t-esc="doc.calculations_total()"/>
+                                             <span t-esc="doc.calculations_total()"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
                                          </td>
                                      </tr>
+<!--                                     <p style="padding-left: 30px;color:black">-->
+<!--                                         Amount In Words :-->
+<!--                                         <span style="color:black" t-esc="doc.amount_to_text(doc.calculations_total())"/>-->
+<!--                                     </p>-->
                          </table>
                          <br></br>
-                         <br></br>
-                         <br></br>
-                         <br></br>
-                         <br></br>
-                         <br></br>
+<!--                         <p style="color:black">-->
+<!--                             Amount In Words :-->
+<!--                             <span style="color:black" t-esc="doc.amount_to_text(doc.calculations_total())"/>-->
+<!--                         </p>-->
                          <br></br>
                          <td colspan="6"
                              style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
@@ -150,7 +153,7 @@
                              </b>
                              <br/>
                              <br></br>
-                             <span style="color:black">Account Name : Cardline Electronics llc</span>
+                             <span style="color:black">Beneficiary Name : Cardline Electronics LLC</span>
                              <br/>
                              <span style="color:black">Account No : 10484461020001</span>
                              <br/>
@@ -159,6 +162,8 @@
                              <span style="color:black">Bank Name : AE240030010484461020001</span>
                              <br/>
                              <span style="color:black">Swift Code: ADCBAEAA.</span>
+                             <br/>
+                             <span style="color:black">Currency: AED.</span>
                              <br/>
                          </td>
 

@@ -25,25 +25,25 @@
                 <div t-if="doc.date_order" class="col-auto col-3 mw-100 mb-2" name="informations_date">
                     <strong style="color:#27B3CB;" t-if="doc.state in ['draft', 'sent']">Quotation Date:</strong>
                     <strong style="color:#27B3CB;" t-else="">Order Date:</strong>
-                    <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                    <p class="m-0" style="color:black" t-field="doc.date_order" t-options='{"widget": "date"}'/>
                 </div>
                 <div t-if="doc.validity_date and doc.state in ['draft', 'sent']"
                      class="col-auto col-3 mw-100 mb-2"
                      name="expiration_date">
                     <strong style="color:#27B3CB;">Expiration:</strong>
-                    <p class="m-0" t-field="doc.validity_date"/>
+                    <p class="m-0" style="color:black" t-field="doc.validity_date"/>
                 </div>
                 <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
                     <strong style="color:#27B3CB;">Salesperson:</strong>
-                    <p class="m-0" t-field="doc.user_id"/>
+                    <p class="m-0" style="color:black" t-field="doc.user_id"/>
                 </div>
                 <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">
                     <strong style="color:#27B3CB;">Payment Terms:</strong>
-                    <p class="m-0" t-field="doc.payment_term_id"/>
+                    <p class="m-0" style="color:black" t-field="doc.payment_term_id"/>
                 </div>
                 <div t-if="doc.customer_reference" class="col-auto col-3 mw-100 mb-2" name="informations_reference">
                     <strong style="color:#27B3CB;">Reference:</strong>
-                    <p class="m-0" t-field="doc.customer_reference"/>
+                    <p class="m-0" style="color:black" t-field="doc.customer_reference"/>
                 </div>
             </div>
         </xpath>
@@ -52,15 +52,15 @@
             <div>
                 <tr style="font-size:40px;padding-top:5em">
                     <td colspan="5" style="text-align:left;width:100px;font-size:10px">
-                        <t t-esc="doc.partner_id.name"/>
+                        <t style="color:black" t-esc="doc.partner_id.name"/>
                         <br></br>
-                        <t t-esc="doc.partner_id.street"/>
+                        <t style="color:black" t-esc="doc.partner_id.street"/>
                         <br></br>
-                        <t t-esc="doc.partner_id.street2"/>
+                        <t style="color:black" t-esc="doc.partner_id.street2"/>
                         <br></br>
-                        <t t-esc="doc.partner_id.city"/>
+                        <t style="color:black" t-esc="doc.partner_id.city"/>
                         <!--                        <t t-esc="doc.company_id.zip"/>-->
-                        <t t-esc="doc.partner_id.country_id.name"/>
+                        <t style="color:black" t-esc="doc.partner_id.country_id.name"/>
                     </td>
                 </tr>
             </div>
@@ -98,15 +98,15 @@
                 <!-- In case we want to repeat the header, remove "display: table-row-group" -->
                 <thead style="display: table-row-group">
                     <tr>
-                        <th style="color:#27B3CB;" name="th_code" class="text-start">Code</th>
-                        <th style="color:#27B3CB;" name="th_description" class="text-start">Description</th>
-                        <th style="color:#27B3CB;" name="th_quantity" class="text-end">Quantity</th>
-                        <th style="color:#27B3CB;" name="th_priceunit" class="text-end">Unit Price</th>
-                        <th style="color:#27B3CB;" name="th_discount" t-if="display_discount" class="text-end">
+                        <th style="color:#27B3CB;" name="th_code" class="text-center">Code</th>
+                        <th style="color:#27B3CB;" name="th_description" class="text-center">Description</th>
+                        <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
+                        <th style="color:#27B3CB;" name="th_priceunit" class="text-center">Unit Price</th>
+                        <th style="color:#27B3CB;" name="th_discount" t-if="display_discount" class="text-center">
                             <span>Discount</span>
                         </th>
-                        <th style="color:#27B3CB;" name="th_taxes" class="text-end">Taxes</th>
-                        <th style="color:#27B3CB;" name="th_subtotal" class="text-end">
+                        <th style="color:#27B3CB;" name="th_taxes" class="text-center">Taxes</th>
+                        <th style="color:#27B3CB;" name="th_subtotal" class="text-center">
                             <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
                             <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
                         </th>
@@ -124,23 +124,23 @@
                         <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
                             <t t-if="not line.display_type">
                                 <td name="td_code" class="text-start">
-                                    <span t-esc="line.product_id.default_code"/>
+                                    <span style="color:black" t-esc="line.product_id.default_code"/>
                                 </td>
-                                <td name="td_name"><span t-field="line.name"/></td>
-                                <td name="td_quantity" class="text-end">
+                                <td style="color:black" name="td_name"><span t-field="line.name"/></td>
+                                <td style="color:black" name="td_quantity" class="text-end">
                                     <span t-field="line.product_uom_qty"/>
                                     <span t-field="line.product_uom"/>
                                 </td>
-                                <td name="td_priceunit" class="text-end">
+                                <td style="color:black" name="td_priceunit" class="text-end">
                                     <span t-field="line.price_unit"/>
                                 </td>
-                                <td t-if="display_discount" class="text-end" >
+                                <td style="color:black" t-if="display_discount" class="text-end" >
                                     <span t-field="line.discount"/>
                                 </td>
-                                <td name="td_taxes" class="text-end">
+                                <td style="color:black" name="td_taxes" class="text-end">
                                     <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                                 </td>
-                                <td style="background:white" t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                                <td style="background:white;color:black" t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
                                     <span style="background:white" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                                     <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
                                 </td>
@@ -204,7 +204,7 @@
                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;background:white">
-                            <span t-esc="doc.amount_untaxed"
+                            <span style="padding-right:5px;color:black" t-esc="doc.amount_untaxed"
                                   t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
                             <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
                         </td>
@@ -214,7 +214,7 @@
                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
                         </td>
                         <td style="text-align:right;width:20px;height: 30px;background:white">
-                            <span class="text-right"
+                            <span style="padding-right:5px;color:black"
                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
                         </td>
                     </tr>
@@ -225,7 +225,7 @@
                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
 <!--                            <t t-set="total" t-value="doc.tax_totals['formatted_amount_total']"/>-->
 <!--                            <span t-esc="total.strip("\u20ac")"/>-->
-                            <span t-esc="doc.tax_totals['formatted_amount_total']"/>
+                            <span style="padding-right:5px;color:white" t-esc="doc.tax_totals['formatted_amount_total']"/>
 <!--                            <t t-out="message.record_name and message.record_name.replace('\u20ac'','') or ''"/>-->
                             <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                         </td>

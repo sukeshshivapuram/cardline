@@ -83,30 +83,30 @@
                 </td>
             </xpath>
             <xpath expr="//t/div/table/tbody/t/tr/t/td[@class='text-end']" position="replace">
-                <td style="color:black;">
+                <td style="color:black;"  class="text-center">
                     <span t-field="line.product_qty"/>
                     <span t-field="line.product_uom.name" groups="uom.group_uom"/>
                 </td>
             </xpath>
             <xpath expr="//t/div/table/tbody/t/tr/t/td[@class='text-end']" position="replace">
-                <td style="color:black;">
+                <td style="color:black;"  class="text-center">
                     <span t-field="line.price_unit"/>
                 </td>
             </xpath>
             <xpath expr="//t/div/table/tbody/t/tr/t/td[@class='text-end']" position="replace">
-                <td style="color:black;">
+                <td style="color:black;text-align:right;">
                     <span t-field="line.price_subtotal"
                           t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                 </td>
             </xpath>
             <xpath expr="//t/div/table/thead" position="replace">
                     <tr style="color:#27B3CB;">
-                        <th name="th_description"><strong>DESCRIPTION</strong></th>
-                        <th name="th_taxes"><strong>TAXES</strong></th>
-                        <th name="th_date_req" class="text-center"><strong>DATE REQ.</strong></th>
-                        <th name="th_quantity" class="text-end"><strong>QTY</strong></th>
-                        <th name="th_price_unit" class="text-end"><strong>UNIT PRICE</strong></th>
-                        <th name="th_amount" class="text-end"><strong>AMOUNT</strong></th>
+                        <th name="th_description" class="text-center"><span>DESCRIPTION</span></th>
+                        <th name="th_taxes" class="text-center"><span>TAXES</span></th>
+                        <th name="th_date_req" class="text-center"><span>DATE REQ.</span></th>
+                        <th name="th_quantity" class="text-center"><span>QTY</span></th>
+                        <th name="th_price_unit" class="text-center"><span>UNIT PRICE</span></th>
+                        <th name="th_amount" class="text-center"><span>AMOUNT</span></th>
                     </tr>
             </xpath>
 
@@ -121,7 +121,7 @@
                                          </td>
                                          <td style="text-align:right;width: 20px;height: 30px;color:black;">
 <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
-                                             <span t-esc="o.tax_totals['formatted_amount_untaxed']"/>
+                                             <span style="padding-right:5px" t-esc="o.tax_totals['formatted_amount_untaxed']"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%">
@@ -129,7 +129,7 @@
                                              <strong style="padding-left:10px" class="mt-4">VAT 5%</strong>
                                          </td>
                                          <td style="text-align:right;width: 20px;height: 30px;color:black;">
-                                             <span class="text-right" t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                                             <span  style="padding-right:5px" t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%;color:white;background:#27B3CB;">
@@ -137,7 +137,7 @@
                                              <strong style="padding-left:10px;color:white;" class="mt-4">Total</strong>
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
-                                             <span t-esc="o.tax_totals['formatted_amount_total']"/>
+                                             <span style="padding-right:5px" t-esc="o.tax_totals['formatted_amount_total']"/>
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                                          </td>
                                      </tr>
