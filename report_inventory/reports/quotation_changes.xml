@@ -231,6 +231,12 @@
                         </td>
                     </tr>
                 </table>
+                <br></br>
+                <br></br>
+                <p style="color:black">
+                    Amount In Words :
+                    <span style="color:black" t-esc="doc.amount_to_text(doc.amount_total)"/>
+                </p>
 
             </div>
         </xpath>

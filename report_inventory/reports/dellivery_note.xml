@@ -50,7 +50,7 @@
                                 </div>
                                 <div name="customer_address" t-if="o.picking_type_id.code=='outgoing' and partner">
                                     <span>
-                                        <b><strong style="color:#27B3CB;">Customer Address:</strong></b>
+                                        <b><span style="color:#27B3CB;">Customer Address:</span></b>
                                     </span>
                                 </div>
                                 <div t-if="partner" name="partner_header">
@@ -61,24 +61,24 @@
                         </div>
                     </td>
                     <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:150px;border: white;">
-                        <b><strong style="color:#27B3CB;">DN No
+                        <b><span style="color:#27B3CB;">DN No
                             <span style="padding-left:50px;"></span>:
-                        </strong></b>
+                        </span></b>
                         <t t-esc="o.name"/>
                         <br></br>
-                        <b><strong style="color:#27B3CB;">Invoice No
+                        <b><sapn style="color:#27B3CB;">Invoice No
                             <span style="padding-left:23px;"></span>:
-                        </strong></b>
+                        </sapn></b>
 <!--                        <t t-esc="o.invoice_date"/>-->
                         <br></br>
-                        <b><strong style="color:#27B3CB;">Date
+                        <b><span style="color:#27B3CB;">Date
                             <span style="padding-left:61px;"></span>:
-                        </strong></b>
+                        </span></b>
                             <t t-esc="datetime.datetime.strptime(str(o.scheduled_date.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                         <br></br>
-                        <b><strong style="color:#27B3CB;">Reference
+                        <b><span style="color:#27B3CB;">Reference
                             <span style="padding-left:26px;"></span>:
-                        </strong></b>
+                        </span></b>
                         <t t-esc="o.origin"/>
                         <br></br>
                     </td>
@@ -122,13 +122,13 @@
                 <thead>
                     <tr>
                         <th name="th_sm_product">
-                            <strong style="color:#27B3CB;">Product</strong>
+                            <span style="color:#27B3CB;">Product</span>
                         </th>
                         <th style="color:#27B3CB;" name="th_sm_ordered">
-                            <strong>Ordered</strong>
+                            <span>Ordered</span>
                         </th>
                         <th style="color:#27B3CB;" name="th_sm_quantity">
-                            <strong>Delivered</strong>
+                            <span>Delivered</span>
                         </th>
                     </tr>
                 </thead>

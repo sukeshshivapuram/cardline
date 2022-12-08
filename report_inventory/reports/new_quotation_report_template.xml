@@ -93,8 +93,8 @@
                                     <td name="td_priceunit" class="text-end">
                                         <span style="color:black" t-field="line.price_unit"/>
                                     </td>
-                                     <td name="td_discount" class="text-end">
-                                         <span style="color:black" t-field="line.discount"/>
+                                     <td style="color:black" class="text-end">
+                                         <span t-field="line.discount"/>
                                      </td>
                                      <td name="td_taxes" class="text-end">
                                         <span style="color:black" t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
@@ -108,31 +108,31 @@
                          <table style="width:50%; margin-left:50%;">
                                      <tr style="width:10%">
                                          <td style="text-align:left;width: 20px;height: 30px">
-                                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</strong>
+                                             <span style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</span>
                                          </td>
                                          <td style="text-align:right;width: 20px;height: 30px;background:white">
 <!--                                             <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>-->
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
-                                             <span t-esc="doc.calculations_untaxed_amt()"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
+                                             <span style="padding-right:5px;" t-esc="doc.amount_untaxed"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%">
                                          <td style="width: 20px;height: 30px">
-                                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
+                                             <span style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</span>
                                          </td>
                                          <td style="text-align:right;width:20px;height: 30px;background:white">
 <!--                                             <span class="text-right"-->
 <!--                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>-->
-                                             <span  t-esc="doc.calculations_vat()"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
+                                             <span style="padding-right:5px;" t-esc="doc.amount_tax"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%;color:white;background:#27B3CB">
                                          <td style="width: 20px;height: 30px">
-                                             <strong style="padding-left:10px" class="mt-4">Total</strong>
+                                             <span style="padding-left:10px" class="mt-4">Total</span>
                                          </td>
                                          <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
-                                             <span t-esc="doc.calculations_total()"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
+                                             <span style="padding-right:5px;" t-esc="doc.amount_total"/><span style="padding-right:5px;" t-esc="doc.currency_sale"/>
                                          </td>
                                      </tr>
 <!--                                     <p style="padding-left: 30px;color:black">-->
@@ -141,10 +141,10 @@
 <!--                                     </p>-->
                          </table>
                          <br></br>
-<!--                         <p style="color:black">-->
-<!--                             Amount In Words :-->
-<!--                             <span style="color:black" t-esc="doc.amount_to_text(doc.calculations_total())"/>-->
-<!--                         </p>-->
+                         <p style="color:black">
+                             Amount In Words :
+                             <span style="color:black" t-esc="doc.amount_to_text(doc.amount_total)"/>
+                         </p>
                          <br></br>
                          <td colspan="6"
                              style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px">
