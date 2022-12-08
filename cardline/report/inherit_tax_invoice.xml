@@ -18,25 +18,19 @@
 
         <template id="report_tax_invoice_document_inherit" inherit_id="account.report_invoice_document">
             <xpath expr="//div[@class='col-auto col-3 mw-100 mb-2']" position="replace">
-                <br>
-                    <div colspan='6' class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_date" name="invoice_date"
-                         style="margin-left:50%; text-align: end; ">
-                        <div colspan='6' class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_origin" name="origin"
-                             style="margin-left:80%;text-align: start;white-space: nowrap;">
-                            <table>
-                            </table>
-                            <br>
-                            </br>
-                        </div>
+                <div colspan='6'  t-if="o.invoice_date" name="invoice_date"
+                     style="margin-left:50%; text-align: end; ">
+                    <div colspan='6'  t-if="o.invoice_origin" name="origin"
+                         style="margin-left:80%;text-align: start;white-space: nowrap;">
                     </div>
-                </br>
+                </div>
             </xpath>
             <xpath expr="//t/div/div/div/div[@name='due_date']" position="replace">
             </xpath>
-<!--            <xpath expr="//t[@t-call='web.external_layout']" position="replace">-->
-<!--&lt;!&ndash;                <t t-call="tax_invoice_form_inherit1"></t>&ndash;&gt;-->
+            <!--            <xpath expr="//t[@t-call='web.external_layout']" position="replace">-->
+            <!--&lt;!&ndash;                <t t-call="tax_invoice_form_inherit1"></t>&ndash;&gt;-->
 
-<!--            </xpath>-->
+            <!--            </xpath>-->
 
             <!--            _______uom and taxable amount_______-->
             <!--            <xpath expr="//t/div/div/table/thead/tr/th[@name='th_description']" position="after">-->
@@ -67,11 +61,17 @@
             </xpath>
             <xpath expr="//t/div/p[@name='payment_communication']" position="replace">
                 <p style="color:black;" t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_reference"
-                   name="payment_communication" class="mt-4">
-<!--                    Please use the following communication for your payment :-->
-<!--                    <b>-->
-<!--                        <span t-field="o.payment_reference"/>-->
-<!--                    </b>-->
+                                           name="payment_communication" class="mt-4">
+                                            <!--                    Please use the following communication for your payment :-->
+                                            <!--                    <b>-->
+                                            <!--                        <span t-field="o.payment_reference"/>-->
+                                            <!--                    </b>-->
+                    <p style="color:black">
+                        Amount In Words :
+                        <span style="color:black">Dirhams</span>
+                        <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>
+                        <span style="color:black">Fils Only</span>
+                    </p>
                 </p>
 
             </xpath>
@@ -79,30 +79,34 @@
 
             <xpath expr="//t/div/div/div/div/div/table[@class='table table-sm']" position="replace">
                 <table style="width:80%; margin-left:20%;">
-                    <tr style="width:10%">
+                    <tr style="width:10%;height:50px">
                         <td style="text-align:left;width: 20px;height: 30px">
                             <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
-                            <span style="padding-right:5px" t-esc="o.total()"/><span style="padding-left:1px;padding-right:5px" t-esc="o.currency"/>
+                            <span style="padding-right:5px" t-esc="o.total()"/>
+                            <span style="padding-left:1px;padding-right:5px" t-esc="o.currency"/>
 
                         </td>
                     </tr>
-                    <tr style="width:10%">
+                    <tr style="width:10%;height:50px">
                         <td style="text-align:left;width: 20px;height: 30px">
                             <strong style="padding-left:10px" class="mt-4">Discount</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
                             <!--                                             <span t-esc="o.discount" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
-<!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
-                                <span t-esc="o.discount_rate"/><span style="padding-left:3px;" t-esc="o.currency"/>
-<!--                            </t>-->
+                            <!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
+<!--                                                            <span t-esc="o.discount_rate"/><span style="padding-left:3px;" t-esc="o.currency"/>-->
+                                                            <span style="padding-right:5px" t-esc="o.discount_calculate()"/>
+                                                        <span style="padding-left:1px;padding-right:5px" t-esc="o.currency"/>
+
+                            <!--                            </t>-->
                         </td>
                     </tr>
 
 
-                    <tr style="width:10%">
+                    <tr style="width:10%;height:50px">
                         <td style="text-align:left;width: 20px;height: 30px">
                             <strong style="padding-left:10px" class="mt-4">Taxable Amount</strong>
                         </td>
@@ -111,15 +115,16 @@
                             <span style="padding-right:5px" t-esc="o.tax_totals['formatted_amount_untaxed']"/>
                         </td>
                     </tr>
-                    <tr style="width:10%">
+                    <tr style="width:10%height:50px">
                         <td style="width: 20px;height: 30px">
                             <strong style="padding-left:10px" class="mt-4">TAX 5%</strong>
                         </td>
                         <td style="text-align:right;width: 20px;height: 30px;color:black;">
-                            <span style="padding-right:5px" t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
+                            <span style="padding-right:5px"
+                                  t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
                         </td>
                     </tr>
-                    <tr style="width:10%;color:white;background:#27B3CB;">
+                    <tr style="width:10%;color:white;background:#27B3CB;height:50px">
                         <td style="width: 20px;height: 30px;background:#27B3CB;color:white;">
                             <strong style="padding-left:10px;color:white;" class="mt-4">Total</strong>
                         </td>
@@ -141,6 +146,7 @@
                         <b style="color:#27B3CB;">
                             <u>Bank Details</u>
                         </b>
+                        <br/>
                         <br/>
                         <span style="color:black;">Benificiary Name
                             <span style="padding-left:3px;color:black;"></span>:Cardline Electronics LLC
@@ -179,22 +185,32 @@
                 </div>
             </xpath>
             <xpath expr="//t/div/div[@name='comment']" position="after">
-            <br/>
-            <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <tr>
+                    <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
+                        Signature<span
+                                style="padding-left:45%;"></span>For CARDLINE ELECTRONICS LLC
+                    </p>
 
-                    <tr>
-                        <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
-                            Signature<span
-                                    style="padding-left:45%;"></span>For CARDLINE ELECTRONICS LLC
-                        </p>
-
-                    </tr>
+                </tr>
             </xpath>
-<!--            <xpath expr="//t/div/div[@name='comment']" position="replace">-->
-<!--                <div style="margin-top: 10px;" t-if="not is_html_empty(o.narration)" name="comment">-->
-<!--                    <span t-field="o.narration"/>-->
-<!--                </div>-->
-<!--            </xpath>-->
+            <!--            <xpath expr="//t/div/div[@name='comment']" position="replace">-->
+            <!--                <div style="margin-top: 10px;" t-if="not is_html_empty(o.narration)" name="comment">-->
+            <!--                    <span t-field="o.narration"/>-->
+            <!--                </div>-->
+            <!--            </xpath>-->
 
 
             <xpath expr="//t/div/div/h2" position="replace">
@@ -205,7 +221,7 @@
             <xpath expr="//t/div/div/table[@class='table table-sm o_main_table']" position="replace">
                 <table class="table table-sm o_main_table" name="invoice_line_table">
                     <thead>
-                        <tr>
+                        <tr style="height:50px">
                             <th name="th_description" class="text-center">
                                 <span>Description</span>
                             </th>
@@ -251,7 +267,7 @@
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
                                groups="account.group_show_line_subtotals_tax_included"/>
 
-                            <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                            <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''" style="height:50px">
                                 <t t-if="line.display_type == 'product'" name="account_invoice_line_accountable">
                                     <td style="color:black;" name="account_invoice_line_name">
                                         <span t-field="line.name" t-options="{'widget': 'text'}"/>
@@ -268,7 +284,7 @@
                                         <span class="text-nowrap" t-field="line.price_unit"/>
                                     </td>
                                     <td style="text-align:right;color:black;">
-                                <span t-esc="line.quantity * line.price_unit"/>
+                                        <span t-esc="line.quantity * line.price_unit"/>
                                     </td>
                                     <td style="color:black;" t-if="display_discount"
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
@@ -316,7 +332,7 @@
                             </t>
                         </t>
                     </tbody>
-                </table >
+                </table>
 
             </xpath>
 
@@ -354,8 +370,6 @@
                         <h style="font-size:15px;">TRN:</h>
                         <span style="color: black;font-size:15px;" t-esc="o.company_id.vat"/>
                     </h2>
-
-
                     <table style="color: black; background: white; width:100%;border: white;">
                         <tr style="font-size:15px; color: black; background: white;">
                             <td width="50%"
@@ -378,7 +392,7 @@
                                 <t t-esc="o.partner_id.country_id.name"/>
                                 <t t-esc="o.partner_id.vat"/>
                             </td>
-                            <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:150px;border: white;">
+                            <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:350px;border: white;">
                                 <strong style="color:#27B3CB;">Invoice No
                                     <span style="padding-left:50px;"></span>:
                                 </strong>
@@ -423,48 +437,41 @@
                     </table>
                 </div>
             </xpath>
-
-
-<!--                        <xpath expr="//t/div/t[@t-elif='o.partner_shipping_id and (o.partner_shipping_id == o.partner_id)']" position="replace">-->
-<!--            </xpath>-->
-
         </template>
-<!--        <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">-->
+        <!--        <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">-->
 
-<!--            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']"-->
-<!--                   position="replace">-->
-<!--                <br/>-->
-<!--                <div class="footer">-->
-<!--                    <div class="text-center" style="border-top: 1px solid black;"></div>-->
-<!--                    <div class="text-center">-->
-<!--                        &lt;!&ndash;                <div t-field="company.report_footer"/>&ndash;&gt;-->
-<!--                        <span>Email:-->
-<!--                            <span style="color:#277BDA">accounts@cardlineuae.com</span>-->
-<!--                        </span>-->
-<!--                        |-->
-<!--                        <span>web:-->
-<!--                            <span style="color:#277BDA">www.cardlineuae.com</span>-->
-<!--                        </span>-->
+        <!--            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']"-->
+        <!--                   position="replace">-->
+        <!--                <br/>-->
+        <!--                <div class="footer">-->
+        <!--                    <div class="text-center" style="border-top: 1px solid black;"></div>-->
+        <!--                    <div class="text-center">-->
+        <!--                        &lt;!&ndash;                <div t-field="company.report_footer"/>&ndash;&gt;-->
+        <!--                        <span>Email:-->
+        <!--                            <span style="color:#277BDA">accounts@cardlineuae.com</span>-->
+        <!--                        </span>-->
+        <!--                        |-->
+        <!--                        <span>web:-->
+        <!--                            <span style="color:#277BDA">www.cardlineuae.com</span>-->
+        <!--                        </span>-->
 
-<!--                        <div t-if="report_type == 'pdf'">-->
-<!--                            Page:-->
-<!--                            <span class="page"/>-->
-<!--                            /-->
-<!--                            <span class="topage"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-<!--                &lt;!&ndash;                <div class="footer">&ndash;&gt;-->
-<!--                &lt;!&ndash;                    &lt;!&ndash;  code &ndash;&gt;&ndash;&gt;-->
-<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            </xpath>-->
-<!--&lt;!&ndash;            <xpath expr="//div[@class='footer']" position="replace"></xpath>&ndash;&gt;-->
-
-<!--        </template>-->
+        <!--                        <div t-if="report_type == 'pdf'">-->
+        <!--                            Page:-->
+        <!--                            <span class="page"/>-->
+        <!--                            /-->
+        <!--                            <span class="topage"/>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
 
 
+        <!--                &lt;!&ndash;                <div class="footer">&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    &lt;!&ndash;  code &ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+        <!--            </xpath>-->
+        <!--&lt;!&ndash;            <xpath expr="//div[@class='footer']" position="replace"></xpath>&ndash;&gt;-->
+
+        <!--        </template>-->
 
 
     </data>

@@ -9,13 +9,26 @@
                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='account_id']" position="after">
                     <field name="uom"/>
                 </xpath>
-                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='price_unit']" position="after">
+                <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='price_unit']" position="after">
                     <field name="taxable_amount"/>
                 </xpath>
                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="replace">
-                                        <field name="discount" string="Discount" optional="hide"/>
+                    <field name="discount" string="Discount" optional="hide"/>
                 </xpath>
             </field>
         </record>
+<!--        <record id="view_partner_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">res.partner.form.inherit</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            &lt;!&ndash;            <field name="priority" eval="1"/>&ndash;&gt;-->
+<!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//form/sheet/group/group/field[@name='vat']" position="attributes">-->
+<!--                    <attribute name="readonly">True</attribute>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
     </data>
 </odoo>
