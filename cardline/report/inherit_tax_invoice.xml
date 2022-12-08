@@ -289,6 +289,7 @@
                                     <td style="color:black;" t-if="display_discount"
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span class="text-nowrap" t-field="line.discount"/>
+                                        <span>%</span>
                                     </td>
                                     <td style="color:black;"
                                         t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
@@ -340,7 +341,7 @@
             <xpath expr="//t/div/div/table/thead/tr/th[@name='th_price_unit']" position="replace">
                 <th name="th_price_unit" t-if="display_discount"
                     t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                    <span>DISCOUNT</span>
+                    <span>DISCOUNT %</span>
                 </th>
             </xpath>
             <xpath expr="//t/div/div/table/thead/tr/th[@name='th_taxes']" position="replace">
@@ -392,7 +393,7 @@
                                 <t t-esc="o.partner_id.country_id.name"/>
                                 <t t-esc="o.partner_id.vat"/>
                             </td>
-                            <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:350px;border: white;">
+                            <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:120px;border: white;">
                                 <strong style="color:#27B3CB;">Invoice No
                                     <span style="padding-left:50px;"></span>:
                                 </strong>
