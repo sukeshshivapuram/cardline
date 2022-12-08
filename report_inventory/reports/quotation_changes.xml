@@ -103,7 +103,7 @@
                         <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
                         <th style="color:#27B3CB;" name="th_priceunit" class="text-center">Unit Price</th>
                         <th style="color:#27B3CB;" name="th_discount" t-if="display_discount" class="text-center">
-                            <span>Discount</span>
+                            <span>Discount %</span>
                         </th>
                         <th style="color:#27B3CB;" name="th_taxes" class="text-center">Taxes</th>
                         <th style="color:#27B3CB;" name="th_subtotal" class="text-center">
@@ -136,6 +136,7 @@
                                 </td>
                                 <td style="color:black" t-if="display_discount" class="text-end" >
                                     <span t-field="line.discount"/>
+                                    <span style="color:black">%</span>
                                 </td>
                                 <td style="color:black" name="td_taxes" class="text-end">
                                     <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
@@ -235,9 +236,10 @@
                 <br></br>
                 <p style="color:black">
                     Amount In Words :
+                    <span style="color:black">Dirhams</span>
                     <span style="color:black" t-esc="doc.amount_to_text(doc.amount_total)"/>
+                    <span style="color:black">Fils Only</span>
                 </p>
-
             </div>
         </xpath>
 
