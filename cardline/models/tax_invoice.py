@@ -9,7 +9,7 @@ class TaxInvoiceReportInherit(models.Model):
     _inherit = 'account.move'
 
     exchange_rate = fields.Float(string="Exchange Rate")
-    currency = fields.Char(string="Currency")
+    currency = fields.Char(string="Currency" ,default='AED')
 
     def total(self):
         total = 0
