@@ -68,9 +68,9 @@
                                             <!--                    </b>-->
                     <p style="color:black">
                         Amount In Words :
-<!--                        <span style="color:black">Dirhams</span>-->
+                        <span style="color:black">Dirhams</span>
                         <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>
-<!--                        <span style="color:black">Fils Only</span>-->
+                        <span style="color:black">Fils Only</span>
                     </p>
                 </p>
 
