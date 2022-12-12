@@ -138,10 +138,10 @@
                                     <span t-field="line.discount"/>
                                     <span style="color:black">%</span>
                                 </td>
-                                <td style="color:black" name="td_taxes" class="text-end">
+                                <td style="color:black;width:80px" name="td_taxes" class="text-end">
                                     <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                                 </td>
-                                <td style="background:white;color:black" t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                                <td style="background:white;color:black;width:80px" t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
                                     <span style="background:white" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                                     <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
                                 </td>

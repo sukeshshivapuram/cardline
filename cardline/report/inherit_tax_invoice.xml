@@ -52,7 +52,7 @@
 
 
             <xpath expr="//t/div/div/div/div[@name='origin']" position="replace">
-                <div class="col-auto col-3 mw-100 mb-2" t-if="o.invoice_origin" name="origin">
+                <div  t-if="o.invoice_origin" name="origin">
                 </div>
             </xpath>
             <xpath expr="//t/div/div[@name='payment_term']" position="replace">
@@ -68,9 +68,9 @@
                                             <!--                    </b>-->
                     <p style="color:black">
                         Amount In Words :
-                        <span style="color:black">Dirhams</span>
+<!--                        <span style="color:black">Dirhams</span>-->
                         <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>
-                        <span style="color:black">Fils Only</span>
+<!--                        <span style="color:black">Fils Only</span>-->
                     </p>
                 </p>
 
@@ -78,23 +78,23 @@
 
 
             <xpath expr="//t/div/div/div/div/div/table[@class='table table-sm']" position="replace">
-                <table style="width:80%; margin-left:20%;">
-                    <tr style="width:10%;height:50px">
-                        <td style="text-align:left;width: 20px;height: 30px">
+                <table style="width:80%; margin-left:20%;font-size:12px">
+                    <tr style="width:10%;text-align:center;">
+                        <td style="text-align:left;width: 20px;">
                             <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
                         </td>
-                        <td style="text-align:right;width: 20px;height: 30px;color:black;">
+                        <td style="text-align:right;width: 20px;color:black;">
                             <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
                             <span style="padding-right:5px" t-esc="o.total()"/>
                             <span style="padding-left:1px;padding-right:5px" t-esc="o.currency"/>
 
                         </td>
                     </tr>
-                    <tr style="width:10%;height:50px">
-                        <td style="text-align:left;width: 20px;height: 30px">
+                    <tr style="width:10%;vertical-align:center;">
+                        <td style="text-align:left;width: 20px;">
                             <strong style="padding-left:10px" class="mt-4">Discount</strong>
                         </td>
-                        <td style="text-align:right;width: 20px;height: 30px;color:black;">
+                        <td style="text-align:right;width: 20px;color:black;">
                             <!--                                             <span t-esc="o.discount" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
                             <!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
 <!--                                                            <span t-esc="o.discount_rate"/><span style="padding-left:3px;" t-esc="o.currency"/>-->
@@ -106,29 +106,29 @@
                     </tr>
 
 
-                    <tr style="width:10%;height:50px">
-                        <td style="text-align:left;width: 20px;height: 30px">
+                    <tr style="width:10%;">
+                        <td style="text-align:left;width: 20px;">
                             <strong style="padding-left:10px" class="mt-4">Taxable Amount</strong>
                         </td>
-                        <td style="text-align:right;width: 20px;height: 30px;color:black;">
+                        <td style="text-align:right;width: 20px;color:black;">
                             <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
                             <span style="padding-right:5px" t-esc="o.tax_totals['formatted_amount_untaxed']"/>
                         </td>
                     </tr>
-                    <tr style="width:10%height:50px">
-                        <td style="width: 20px;height: 30px">
+                    <tr style="width:10%;">
+                        <td style="width: 20px;">
                             <strong style="padding-left:10px" class="mt-4">TAX 5%</strong>
                         </td>
-                        <td style="text-align:right;width: 20px;height: 30px;color:black;">
+                        <td style="text-align:right;width: 20px;color:black;">
                             <span style="padding-right:5px"
                                   t-esc="o.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>
                         </td>
                     </tr>
-                    <tr style="width:10%;color:white;background:#27B3CB;height:50px">
-                        <td style="width: 20px;height: 30px;background:#27B3CB;color:white;">
+                    <tr style="width:10%;color:white;background:#27B3CB;">
+                        <td style="width: 20px;background:#27B3CB;color:white;">
                             <strong style="padding-left:10px;color:white;" class="mt-4">Total</strong>
                         </td>
-                        <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
+                        <td style="text-align:right;color:white;background:#27B3CB;width: 20px;">
                             <span style="padding-right:5px" t-esc="o.tax_totals['formatted_amount_total']"/>
                             <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                         </td>
@@ -142,41 +142,41 @@
                 <div>
 <!--                    <span style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>-->
                     <td colspan="6"
-                         t-if="o.move_type != 'out_refund'" style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:13px;color:black;">
+                         t-if="o.move_type != 'out_refund'" style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:12px;color:black;">
                         <b style="color:#27B3CB;">
                             <u>Bank Details</u>
                         </b>
                         <br/>
                         <br/>
-                        <span style="color:black;">Benificiary Name
+                        <span style="color:black;font-size:14px">Benificiary Name
                             <span style="padding-left:3px;color:black;"></span>:Cardline Electronics LLC
                         </span>
                         <!--                        <span t-field="Cardline Electronics llc"/>-->
                         <br/>
 
-                        <span style="color:black;">Account No
-                            <span style="padding-left:40px;color:black;"></span>:10484461020001
+                        <span style="color:black;font-size:14px">Account No
+                            <span style="padding-left:37px;color:black;"></span>:10484461020001
                         </span>
                         <!--                        <span t-field="o.partner_bank_id.acc_number"/>-->
                         <br/>
-                        <span style="color:black;">IBAN Number
+                        <span style="color:black;font-size:14px">IBAN Number
                             <span style="padding-left:24px;color:black;"></span>:AE240030010484461020001
                         </span>
                         <br/>
-                        <span style="color:black;">Bank Name
-                            <span style="padding-left:43px;color:black;"></span>:ADCB (Abudhabi Commercial Bank)
+                        <span style="color:black;font-size:14px">Bank Name
+                            <span style="padding-left:40px;color:black;"></span>:ADCB (Abudhabi Commercial Bank)
                         </span>
                         <br/>
-                        <span style="color:black;">Swift Code
-                            <span style="padding-left:46px;color:black;"></span>:ADCBAEAA.
+                        <span style="color:black;font-size:14px">Swift Code
+                            <span style="padding-left:45px;color:black;"></span>:ADCBAEAA.
                         </span>
                         <br/>
-                        <span style="color:black;">Currency
-                            <span style="padding-left:54px;color:black;"></span>:AED
+                        <span style="color:black;font-size:14px">Currency
+                            <span style="padding-left:53px;color:black;"></span>:AED
                         </span>
                         <br/>
                         <br/>
-                        <br/>
+
 
                         <!--                        <sapn t-field="o.partner_bank_id.bank_id.bic"/>-->
 
@@ -193,15 +193,10 @@
                 <br/>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
                 <tr>
                     <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
                         Signature<span
-                                style="padding-left:45%;"></span>For CARDLINE ELECTRONICS LLC
+                                style="padding-left:50%;"></span>For CARDLINE ELECTRONICS LLC
                     </p>
 
                 </tr>
@@ -219,10 +214,10 @@
             </xpath>
 
             <xpath expr="//t/div/div/table[@class='table table-sm o_main_table']" position="replace">
-                <table class="table table-sm o_main_table" name="invoice_line_table">
+                <table class="table table-sm o_main_table" name="invoice_line_table" style="font-size:12px">
                     <thead>
-                        <tr style="height:50px">
-                            <th name="th_description" class="text-center">
+                        <tr>
+                            <th name="th_description" class="text-center" style="width:40%">
                                 <span>Description</span>
                             </th>
                             <th class="text-center">
@@ -267,7 +262,7 @@
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_total"
                                groups="account.group_show_line_subtotals_tax_included"/>
 
-                            <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''" style="height:50px">
+                            <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''" >
                                 <t t-if="line.display_type == 'product'" name="account_invoice_line_accountable">
                                     <td style="color:black;" name="account_invoice_line_name">
                                         <span t-field="line.name" t-options="{'widget': 'text'}"/>
@@ -291,8 +286,8 @@
                                         <span class="text-nowrap" t-field="line.discount"/>
                                         <span>%</span>
                                     </td>
-                                    <td style="color:black;"
-                                        t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                    <td style="color:black;width:60px;"
+                                        t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))"
                                               id="line_tax_ids"/>
                                     </td>
@@ -340,13 +335,13 @@
 
             <xpath expr="//t/div/div/table/thead/tr/th[@name='th_price_unit']" position="replace">
                 <th name="th_price_unit" t-if="display_discount"
-                    t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                    t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                     <span>DISCOUNT %</span>
                 </th>
             </xpath>
             <xpath expr="//t/div/div/table/thead/tr/th[@name='th_taxes']" position="replace">
                 <th name="th_taxes"
-                    t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                    t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                     <span>TAX %</span>
                 </th>
             </xpath>
@@ -373,8 +368,8 @@
                     </h2>
                     <table style="color: black; background: white; width:100%;border: white;">
                         <tr style="font-size:15px; color: black; background: white;">
-                            <td width="50%"
-                                style="margin-right:40%;font-size:15px;color: black; background: white;border: white;">
+                            <td
+                                style="font-size:15px;color: black; background: white;border: white;">
                                 <h2 class="oe_highlight">
                                     <p style="color:#27B3CB ">
                                         <strong>
@@ -393,7 +388,7 @@
                                 <t t-esc="o.partner_id.country_id.name"/>
                                 <t t-esc="o.partner_id.vat"/>
                             </td>
-                            <td style="color: black;margin-left:80%; background: white;font-size:15px;padding-left:120px;border: white;">
+                            <td style="color: black;width: 35%; background: white;font-size:15px;border: white;">
                                 <strong style="color:#27B3CB;">Invoice No
                                     <span style="padding-left:50px;"></span>:
                                 </strong>

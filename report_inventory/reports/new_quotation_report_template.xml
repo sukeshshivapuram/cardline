@@ -71,12 +71,20 @@
                              <thead style="display: table-row-group">
                                  <tr>
                                      <th style="color:#27B3CB;" name="th_code" class="text-center">Code</th>
-                                     <th style="color:#27B3CB;" name="th_description" class="text-center">Description</th>
+                                     <th style="color:#27B3CB;" name="th_description" class="text-center">Description
+                                     </th>
                                      <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
                                      <th style="color:#27B3CB;" name="th_priceunit" class="text-center">Unit Price</th>
-                                     <th style="color:#27B3CB;" name="th_discount" class="text-center">Discount %</th>
+                                     <th style="color:#27B3CB;" name="th_discount"
+                                         class="text-center">
+                                         <span>Discount %</span>
+                                     </th>
                                      <th style="color:#27B3CB;" name="th_taxes" class="text-center">Taxes</th>
-                                     <th style="color:#27B3CB;" name="th_amount" class="text-center">Amount</th>
+                                     <th style="color:#27B3CB;" name="th_subtotal" class="text-center">
+                                         <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                         <span groups="account.group_show_line_subtotals_tax_included">Total Price
+                                         </span>
+                                     </th>
                                  </tr>
                              </thead>
                              <tbody class="sale_tbody">
@@ -97,10 +105,10 @@
                                          <span t-field="line.discount"/>
                                          <span style="color:black">%</span>
                                      </td>
-                                     <td name="td_taxes" class="text-end">
-                                        <span style="color:black" t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
-                                    </td>
-                                     <td name="td_amount" class="text-end">
+                                     <td style="color:black;width:80px" name="td_taxes" class="text-end">
+                                         <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                     </td>
+                                     <td style="color:black;width:80px" name="td_amount" class="text-end">
                                         <span style="color:black"  t-set="total_sum" t-esc="doc.calculation_amount(line.price_subtotal)"/><span style="color:black" t-esc="doc.currency_sale"/>
                                     </td>
                                  </tr>
@@ -156,17 +164,17 @@
                              </b>
                              <br/>
                              <br></br>
-                             <span style="color:black">Beneficiary Name : Cardline Electronics LLC</span>
+                             <span style="color:black">Beneficiary Name <span style="color:black;padding-left:15px">: Cardline Electronics LLC</span></span>
                              <br/>
-                             <span style="color:black">Account No : 10484461020001</span>
+                             <span style="color:black">Account No  <span style="color:black;padding-left:55px'">: 10484461020001</span></span>
                              <br/>
-                             <span style="color:black">IBAN Number : ADBC(Abudhabi Commercial Bank)</span>
+                             <span style="color:black">IBAN Number  <span style="color:black;padding-left:39px">: ADBC(Abudhabi Commercial Bank)</span></span>
                              <br/>
-                             <span style="color:black">Bank Name : AE240030010484461020001</span>
+                             <span style="color:black">Bank Name  <span style="color:black;padding-left:57px">: AE240030010484461020001</span></span>
                              <br/>
-                             <span style="color:black">Swift Code: ADCBAEAA.</span>
+                             <span style="color:black">Swift Code <span style="color:black;padding-left:60px">: ADCBAEAA</span></span>
                              <br/>
-                             <span style="color:black">Currency: AED.</span>
+                             <span style="color:black">Currency<span style="color:black;padding-left:72px">: AED.</span></span>
                              <br/>
                          </td>
 
