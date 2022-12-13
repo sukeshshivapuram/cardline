@@ -78,7 +78,7 @@
 
 
             <xpath expr="//t/div/div/div/div/div/table[@class='table table-sm']" position="replace">
-                <table style="width:80%; margin-left:20%;font-size:12px">
+                <table style="width:80%; margin-left:20%;font-size:14px">
                     <tr style="width:10%;text-align:center;">
                         <td style="text-align:left;width: 20px;">
                             <strong style="padding-left:10px" class="mt-4">Untaxed Amount</strong>
@@ -185,7 +185,6 @@
                 </div>
             </xpath>
             <xpath expr="//t/div/div[@name='comment']" position="after">
-                <br/>
                 <br/>
                 <br/>
                 <br/>
