@@ -20,12 +20,6 @@
             </div>
         </xpath>
         <xpath expr="//t/t/t[@t-set='information_block']" position="replace">
-            <!--            <t t-set="information_block">-->
-
-            <!--                </t>-->
-
-
-            <!--            </t>-->
             <tr>
                 <h1 style="font-size:30px;color:#27B3CB;text-align:center">DELIVERY NOTE</h1>
             </tr>
@@ -112,11 +106,6 @@
             </h2>
         </xpath>
 
-<!--         <xpath expr="//t/t/div/table[@name='stock_move_table']" position="before">-->
-<!--            <br></br>-->
-<!--            <br></br>-->
-<!--            <br></br>-->
-<!--         </xpath>-->
         <xpath expr="//t/t/div/table[@name='stock_move_table']" position="replace">
             <table class="table table-sm" t-if="o.state!='done'" name="stock_move_table">
                 <thead>
@@ -162,15 +151,4 @@
             </tr>
         </xpath>
     </template>
-
-<!--    <template id="report_delivery_document_inherit_sale_stock" inherit_id="stock.report_delivery_document">-->
-<!--        <xpath expr="//div[@name='div_sched_date']" position="after">-->
-<!--            <div class="row justify-content-end" t-if="o.sudo().sale_id.client_order_ref">-->
-<!--                <div class="col-auto">-->
-<!--                    <strong style="color:white">Customer Reference:</strong>-->
-<!--                    <p style="color:white" t-field="o.sudo().sale_id.client_order_ref"/>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </xpath>-->
-<!--    </template>-->
 </odoo>

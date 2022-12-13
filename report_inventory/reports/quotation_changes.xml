@@ -234,12 +234,12 @@
                 </table>
                 <br></br>
                 <br></br>
-                <p style="color:black">
-                    Amount In Words :
-                    <span style="color:black">Dirhams</span>
-                    <span style="color:black" t-esc="doc.amount_to_text(doc.amount_total)"/>
-                    <span style="color:black">Fils Only</span>
-                </p>
+<!--                <p style="color:black">-->
+<!--                    Amount In Words :-->
+<!--                    <span style="color:black">Dirhams</span>-->
+<!--                    <span style="color:black" t-esc="doc.amount_to_text(doc.amount_total)"/>-->
+<!--                    <span style="color:black">Fils Only</span>-->
+<!--                </p>-->
             </div>
         </xpath>
 
