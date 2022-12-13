@@ -1,18 +1,16 @@
 
 from odoo import api, models, fields
 from num2words import num2words
+# from odoo.tools import amount_to_text_en
+
 
 
 class StockPicking(models.Model):
     _inherit = 'sale.order'
 
     customer_reference = fields.Char(string="Customer Reference")
-    currency_sale = fields.Char(string="Currency",default="AED")
+    currency_sale = fields.Char(string="Currency",default='AED')
 
-    def amount_to_text(self, total):
-        # total_amount =
-        amount_txt = num2words(total)
-        return amount_txt.title()
 
     def calculation_amount(self,result):
         res = str(result)
