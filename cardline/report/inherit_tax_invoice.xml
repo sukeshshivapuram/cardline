@@ -86,7 +86,7 @@
                         <td style="text-align:right;width: 20px;color:black;">
                             <!--                                             <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.pricelist_id.currency_id}'/>-->
                             <span style="padding-right:5px" t-esc="o.total()"/>
-                            <span style="padding-left:1px;padding-right:5px" t-esc="o.currency"/>
+                            <span style="padding-left:1px;padding-right:5px" t-esc="o.currency_id.name"/>
 
                         </td>
                     </tr>
@@ -99,7 +99,7 @@
                             <!--                            <t t-foreach="o.invoice_line_ids" t-as="lines">-->
 <!--                                                            <span t-esc="o.discount_rate"/><span style="padding-left:3px;" t-esc="o.currency"/>-->
                                                             <span style="padding-right:5px" t-esc="o.discount_calculate()"/>
-                                                        <span style="padding-left:1px;padding-right:5px" t-esc="o.currency"/>
+                                                        <span style="padding-left:1px;padding-right:5px" t-esc="o.currency_id.name"/>
 
                             <!--                            </t>-->
                         </td>
@@ -149,7 +149,7 @@
                         <br/>
                         <br/>
                         <span style="color:black;font-size:14px">Benificiary Name
-                            <span style="padding-left:3px;color:black;"></span>:Cardline Electronics LLC
+                            <span style="padding-left:4px;color:black;"></span>:Cardline Electronics LLC
                         </span>
                         <!--                        <span t-field="Cardline Electronics llc"/>-->
                         <br/>
@@ -160,19 +160,19 @@
                         <!--                        <span t-field="o.partner_bank_id.acc_number"/>-->
                         <br/>
                         <span style="color:black;font-size:14px">IBAN Number
-                            <span style="padding-left:24px;color:black;"></span>:AE240030010484461020001
+                            <span style="padding-left:23px;color:black;"></span>:AE240030010484461020001
                         </span>
                         <br/>
                         <span style="color:black;font-size:14px">Bank Name
-                            <span style="padding-left:40px;color:black;"></span>:ADCB (Abudhabi Commercial Bank)
+                            <span style="padding-left:39px;color:black;"></span>:ADCB (Abudhabi Commercial Bank)
                         </span>
                         <br/>
                         <span style="color:black;font-size:14px">Swift Code
-                            <span style="padding-left:45px;color:black;"></span>:ADCBAEAA.
+                            <span style="padding-left:43px;color:black;"></span>:ADCBAEAA.
                         </span>
                         <br/>
                         <span style="color:black;font-size:14px">Currency
-                            <span style="padding-left:53px;color:black;"></span>:AED
+                            <span style="padding-left:52px;color:black;"></span>:AED
                         </span>
                         <br/>
                         <br/>
@@ -185,10 +185,6 @@
                 </div>
             </xpath>
             <xpath expr="//t/div/div[@name='comment']" position="after">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
                 <br/>
                 <br/>
                 <br/>
@@ -328,8 +324,9 @@
                         </t>
                     </tbody>
                 </table>
-
             </xpath>
+
+
 
 
             <xpath expr="//t/div/div/table/thead/tr/th[@name='th_price_unit']" position="replace">
@@ -426,13 +423,15 @@
                                 <strong style="color:#27B3CB;">Currency
                                     <span style="padding-left:62px;"></span>:
                                 </strong>
-                                <t t-esc="o.currency"/>
+                                <t t-esc="o.currency_id.name"/>
                             </td>
                         </tr>
                     </table>
                 </div>
             </xpath>
+
         </template>
+
         <!--        <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">-->
 
         <!--            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']"-->
@@ -469,5 +468,10 @@
         <!--        </template>-->
 
 
+<!--        <template id="report_tax_invoice_document_inherit_template" inherit_id="account.document_tax_totals">-->
+<!--            <xpath expr="//t/tr[@class='border-black o_subtotal']" position="replace">-->
+
+<!--            </xpath>-->
+<!--        </template>-->
     </data>
 </odoo>

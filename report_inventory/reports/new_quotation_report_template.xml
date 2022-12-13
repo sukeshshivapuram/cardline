@@ -108,7 +108,7 @@
                                      <td style="color:black;width:80px;padding-right:5px" name="td_taxes" class="text-end">
                                          <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                                      </td>
-                                     <td style="color:black;width:80px;background:white;padding-right:5px" name="td_amount" class="text-end">
+                                     <td style="color:black;width:90px;background:white;padding-right:5px" name="td_amount" class="text-end">
                                         <span style="color:black"  t-set="total_sum" t-esc="doc.calculation_amount(line.price_subtotal)"/><span style="color:black" t-esc="doc.pricelist_id.currency_id.name"/>
                                     </td>
                                  </tr>
@@ -117,30 +117,30 @@
                          <br/>
                          <table style="width:50%; margin-left:50%;font-size:14px">
                                      <tr style="height:5px">
-                                         <td style="text-align:left;width: 20px;">
+                                         <td style="text-align:left;width: 20px;height: 30px">
                                              <span style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</span>
                                          </td>
-                                         <td style="text-align:right;width: 20px;background:white">
+                                         <td style="text-align:right;width: 20px;background:white;height: 30px">
 <!--                                             <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>-->
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
                                              <span style="padding-right:5px;" t-esc="doc.amount_untaxed"/><span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%">
-                                         <td style="width: 20px;">
+                                         <td style="width: 20px;height: 30px">
                                              <span style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</span>
                                          </td>
-                                         <td style="text-align:right;width:20px;background:white">
+                                         <td style="text-align:right;width:20px;background:white;height: 30px">
 <!--                                             <span class="text-right"-->
 <!--                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>-->
                                              <span style="padding-right:5px;" t-esc="doc.amount_tax"/><span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
                                          </td>
                                      </tr>
                                      <tr style="width:10%;color:white;background:#27B3CB">
-                                         <td style="width: 20px;">
+                                         <td style="width: 20px;height: 30px">
                                              <span style="padding-left:10px" class="mt-4">Total</span>
                                          </td>
-                                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;">
+                                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
 <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                                              <span style="padding-right:5px;" t-esc="doc.amount_total"/><span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
                                          </td>
@@ -158,6 +158,9 @@
 <!--&lt;!&ndash;                             <span style="color:black">Fils Only</span>&ndash;&gt;-->
 <!--                         </p>-->
                          <br></br>
+                         <p t-if="doc.note">
+                             <span t-field="doc.note"/>
+                         </p>
                          <td colspan="6"
                              style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:12px">
                              <b>
@@ -175,7 +178,7 @@
                              <br/>
                              <span style="color:black">Swift Code <span style="color:black;padding-left:60px">: ADCBAEAA</span></span>
                              <br/>
-                             <span style="color:black">Currency<span style="color:black;padding-left:72px">: AED.</span></span>
+                             <span style="color:black">Currency<span style="color:black;padding-left:76px">: AED.</span></span>
                              <br/>
                          </td>
 

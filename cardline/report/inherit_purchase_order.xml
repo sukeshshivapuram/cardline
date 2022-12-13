@@ -44,17 +44,17 @@
                             <t style="font-size:16px;" t-esc="o.name"/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">PO Date
-                                <span style="padding-left:48px;"></span>:
+                                <span style="padding-left:43px;"></span>:
                             </strong>
                             <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_approve.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">Due Date
-                                <span style="padding-left:40px;"></span>:
+                                <span style="padding-left:36px;"></span>:
                             </strong>
                                 <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_planned.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">Reference
-                                <span style="padding-left:33px;"></span>:
+                                <span style="padding-left:30px;"></span>:
                             </strong>
                             <t style="font-size:16px;" t-esc="o.partner_ref"/>
                         </td>
@@ -152,20 +152,6 @@
             </xpath>
 
             <xpath expr="//t/div/div[@id='total']" position="after">
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
