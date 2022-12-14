@@ -299,7 +299,7 @@
                                         <span t-field="line.name" t-options="{'widget': 'text'}"/>
                                     </td>
                                     <td style="color:black;">
-                                        <span t-field="line.uom"/>
+                                        <span t-field="line.product_uom_id"/>
                                     </td>
                                     <td style="color:black;" class="text-end">
                                         <span t-field="line.quantity"/>
