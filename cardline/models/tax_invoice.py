@@ -13,6 +13,7 @@ class TaxInvoiceReportInherit(models.Model):
     exchange_rate = fields.Float(string="Exchange Rate")
     currency = fields.Char(string="Currency" ,default='AED')
 
+
     def total(self):
         total = 0
         for rec in self:
@@ -33,48 +34,47 @@ class TaxInvoiceReportInherit(models.Model):
     #
     # amt_in_words = fields.Char(compute='set_amt_in_worlds')
 
-    def amount_text(self, total_sum):
-        # total_amount =
-        amount_text = num2words(total_sum)
-        print(amount_text,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        return amount_text.title()
+    # def amount_text(self, total_sum):
+    #     # total_amount =
+    #     amount_text = num2words(total_sum,lang='en_IN')
+    #     print(amount_text,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    #     return amount_text.title()
 
-    # def amount_text(self, total):
-    #     for rec in self:
-    #         if rec.currency_id == "AED":
-    #             # print("SSSSSSSS", total)
-    #             # preci = round(total,3)
-    #             # print(preci,"KKKKKKKKKKKKKKKKHHHHHHHHHHHHH)))))))))")
-    #             splited_value = str(total)
-    #             # print(splited_value, "AAAAAAAA")
-    #             res = splited_value.split('.')
-    #             print("RRRRRRRRR", res)
-    #             dihrams = rec.currency_id.currency_unit_label
-    #             fills = rec.currency_id.currency_subunit_label
-    #             print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",fills)
-    #             amount_txt_1 = num2words(int(splited_value.split(".")[0]))
-    #             amount_txt_2 = num2words(int(splited_value.split(".")[1]))
-    #             final_output = dihrams +" "+ amount_txt_1 + " " + fills + " " + amount_txt_2 + " " + "only"
-    #             print(final_output, "TTTTTTTTTTTT")
-    #             print("PPPPPPPPPP", num2words(int(splited_value.split(".")[0])))
-    #             print("PPPPPPPPPP", num2words(int(splited_value.split(".")[1])))
-    #             return final_output
-    #         else:
-    #             rec.currency_id == "INR" or rec.currency_id == "USD"
-    #             # print("SSSSSSSS", total)
-    #             splited_value = str(total)
-    #             # print(splited_value, "AAAAAAAA")
-    #             res = splited_value.split('.')
-    #             print("RRRRRRRRR", res)
-    #             dihrams = rec.currency_id.currency_unit_label
-    #             fills = rec.currency_id.currency_subunit_label
-    #             amount_txt_1 = num2words(int(splited_value.split(".")[0]))
-    #             amount_txt_2 = num2words(int(splited_value.split(".")[1]))
-    #             final_output1 = dihrams +" "+ amount_txt_1 + " " + fills + " " + amount_txt_2 + " " + "only"
-    #             print(final_output1, "TTTTTTTTTTTT")
-    #             print("PPPPPPPPPP1", num2words(int(splited_value.split(".")[0])))
-    #             print("PPPPPPPPPP2", num2words(int(splited_value.split(".")[1])))
-    #             return final_output1
+    def amount_text(self, total):
+        for rec in self:
+            if rec.currency_id.name == "AED":
+                # print("SSSSSSSS", total)
+                # preci = round(total,3)
+                # print(preci,"KKKKKKKKKKKKKKKKHHHHHHHHHHHHH)))))))))")
+                splited_value = str(total)
+                # print(splited_value, "AAAAAAAA")
+                res = splited_value.split('.')
+                print("RRRRRRRRR", res)
+                dihrams = rec.currency_id.currency_unit_label
+                fills = rec.currency_id.currency_subunit_label
+                print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",fills)
+                amount_txt_1 = num2words(int(splited_value.split(".")[0]))
+                amount_txt_2 = num2words(int(splited_value.split(".")[1]))
+                final_output = dihrams +" "+ amount_txt_1 + " " + fills + " " + amount_txt_2 + " " + "only"
+                print(final_output, "TTTTTTTTTTTT")
+                print("PPPPPPPPPP", num2words(int(splited_value.split(".")[0])))
+                print("PPPPPPPPPP", num2words(int(splited_value.split(".")[1])))
+                return final_output
+            else:
+                # if rec.currency_id.name == "INR" or rec.currency_id.name == "USD":
+                    splited_value = str(total)
+                    # print(splited_value, "AAAAAAAA")
+                    res = splited_value.split('.')
+                    print("RRRRRRRRR", res)
+                    dihrams = rec.currency_id.currency_unit_label
+                    fills = rec.currency_id.currency_subunit_label
+                    amount_txt_1 = num2words(int(splited_value.split(".")[0]))
+                    amount_txt_2 = num2words(int(splited_value.split(".")[1]))
+                    final_output1 = amount_txt_1 + " " + dihrams + " " + amount_txt_2 + " " + fills + " "
+                    print(final_output1, "TTTTTTTTTTTT")
+                    print("PPPPPPPPPP1", num2words(int(splited_value.split(".")[0])))
+                    print("PPPPPPPPPP2", num2words(int(splited_value.split(".")[1])))
+                    return final_output1
 
 
 
