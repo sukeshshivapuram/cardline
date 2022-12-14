@@ -69,6 +69,7 @@
 <!--                    <strong style="color:#27B3CB;">-->
 <!--                        Amount In Words :</strong>-->
 <!--                        <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>-->
+
                 </p>
             </xpath>
 
@@ -156,6 +157,7 @@
                         </td>
                     </tr>
                 </table>
+
 <!--                <p style="padding-right:100px;width:100%;"><strong style="color:#27B3CB;">-->
 <!--                        Amount In Words :</strong>-->
 <!--                    <span style="color:black" t-esc="o.amount_text(o.amount_total)"/></p>-->
@@ -168,12 +170,12 @@
 <!--                    <span t-field="o.narration"/>-->
 <!--                </div>-->
                 <div>
-                        <p style="padding-right:100px;width:100%;"><strong style="color:#27B3CB;">
+                    <strong style="color:#27B3CB;">
                         Amount In Words :</strong>
-                    <span style="color:black" t-esc="o.amount_text(o.amount_total)"/></p>
-                                    <span t-if="not is_html_empty(o.narration)" name="comment">
+                    <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>
+                    <p name="comment">
                     <span t-field="o.narration"/>
-                </span>
+                </p>
 
 <!--                    <span style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>-->
                     <td colspan="6"
@@ -268,7 +270,7 @@
                                 t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>Disc.%</span>
                             </th>
-                            <th name="th_taxes" style="width:70px;"
+                            <th name="th_taxes" style="width:80px;"
                                 t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>TAX %</span>
                             </th>
