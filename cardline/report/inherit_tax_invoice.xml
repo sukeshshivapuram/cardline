@@ -68,16 +68,8 @@
                                             <!--                    </b>-->
                     <strong style="color:#27B3CB;">
                         Amount In Words :</strong>
-<!--                        <span style="color:black">Dirhams</span>-->
                         <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>
-<!--                        <span style="color:black">Fils Only</span>-->
-                    <div t-if="not is_html_empty(o.narration)" name="comment">
-                    <span t-field="o.narration"/>
-                </div>
-
                 </p>
-
-
             </xpath>
 
 
@@ -173,6 +165,10 @@
 <!--                    <span t-field="o.narration"/>-->
 <!--                </div>-->
                 <div>
+                                    <span name="comment">
+                    <span t-field="o.narration"/>
+                </span>
+
 <!--                    <span style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>-->
                     <td colspan="6"
                          t-if="o.move_type != 'out_refund'" style="width:40%;border-top:1px black solid;boder-left:1px solid black;border-right:2px solid black;border-bottom:1px solid black;font-size:12px;color:black;">
@@ -218,8 +214,6 @@
                 </div>
             </xpath>
             <xpath expr="//t/div/div[@name='comment']" position="after">
-                <br/>
-                <br/>
                 <br/>
                 <tr>
                     <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
@@ -317,7 +311,7 @@
                                         <span class="text-nowrap" t-field="line.discount"/>
                                         <span>%</span>
                                     </td>
-                                    <td style="color:black;width:68px;"
+                                    <td style="color:black;width:72px;"
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))"
                                               id="line_tax_ids"/>
