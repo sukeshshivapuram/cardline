@@ -66,13 +66,17 @@
                                             <!--                    <b>-->
                                             <!--                        <span t-field="o.payment_reference"/>-->
                                             <!--                    </b>-->
-                    <p style="color:black">
-                        Amount In Words :
+                    <strong style="color:#27B3CB;">
+                        Amount In Words :</strong>
 <!--                        <span style="color:black">Dirhams</span>-->
                         <span style="color:black" t-esc="o.amount_text(o.amount_total)"/>
 <!--                        <span style="color:black">Fils Only</span>-->
-                    </p>
+                    <div t-if="not is_html_empty(o.narration)" name="comment">
+                    <span t-field="o.narration"/>
+                </div>
+
                 </p>
+
 
             </xpath>
 
@@ -165,6 +169,9 @@
 
 
             <xpath expr="//t/div/p[@name='payment_communication']" position="after">
+<!--                <div t-if="not is_html_empty(o.narration)" name="comment">-->
+<!--                    <span t-field="o.narration"/>-->
+<!--                </div>-->
                 <div>
 <!--                    <span style="color:#27B3CB ;" t-if="o.move_type == 'out_refund'">CREDIT NOTE</span>-->
                     <td colspan="6"
@@ -194,11 +201,11 @@
                         </span>
                         <br/>
                         <span style="color:black;font-size:14px">Swift Code
-                            <span style="padding-left:43px;color:black;"></span>: ADCBAEAA.
+                            <span style="padding-left:42px;color:black;"></span>: ADCBAEAA
                         </span>
                         <br/>
                         <span style="color:black;font-size:14px">Currency
-                            <span style="padding-left:53px;color:black;"></span>: AED
+                            <span style="padding-left:54px;color:black;"></span>: AED
                         </span>
                         <br/>
                         <br/>
@@ -233,6 +240,9 @@
                 <h2>
                 </h2>
             </xpath>
+            <xpath expr="//t/div/div[@name='comment']" position="replace">
+            </xpath>
+
 
             <xpath expr="//t/div/div/table[@class='table table-sm o_main_table']" position="replace">
                 <table class="table table-sm o_main_table" name="invoice_line_table" style="font-size:12px">
@@ -307,7 +317,7 @@
                                         <span class="text-nowrap" t-field="line.discount"/>
                                         <span>%</span>
                                     </td>
-                                    <td style="color:black;width:64px;"
+                                    <td style="color:black;width:68px;"
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))"
                                               id="line_tax_ids"/>
@@ -408,6 +418,7 @@
                                 <t t-esc="o.partner_id.city"/>
                                 <!--                        <t t-esc="doc.company_id.zip"/>-->
                                 <t t-esc="o.partner_id.country_id.name"/>
+                                <br/>
                                 <t t-esc="o.partner_id.vat"/>
                             </td>
                             <td style="color: black;width: 35%; background: white;font-size:15px;border: white;">
