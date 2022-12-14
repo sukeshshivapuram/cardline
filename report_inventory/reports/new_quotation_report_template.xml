@@ -150,14 +150,6 @@
 <!--                                         <span style="color:black" t-esc="doc.amount_to_text(doc.calculations_total())"/>-->
 <!--                                     </p>-->
                          </table>
-                         <br></br>
-<!--                         <p style="color:black">-->
-<!--                             Amount In Words :-->
-<!--&lt;!&ndash;                             <span style="color:black">Dirhams</span>&ndash;&gt;-->
-<!--                             <span style="color:black" t-esc="doc.amount_to_text(doc.amount_total)"/>-->
-<!--&lt;!&ndash;                             <span style="color:black">Fils Only</span>&ndash;&gt;-->
-<!--                         </p>-->
-                         <br></br>
                          <p t-if="doc.note">
                              <span t-field="doc.note"/>
                          </p>
@@ -170,11 +162,11 @@
                              <br></br>
                              <span style="color:black">Beneficiary Name <span style="color:black;padding-left:15px">: Cardline Electronics LLC</span></span>
                              <br/>
-                             <span style="color:black">Account No  <span style="color:black;padding-left:55px'">: 10484461020001</span></span>
+                             <span style="color:black">Account No  <span style="color:black;padding-left:53px'">: 10484461020001</span></span>
                              <br/>
                              <span style="color:black">IBAN Number  <span style="color:black;padding-left:39px">: ADBC(Abudhabi Commercial Bank)</span></span>
                              <br/>
-                             <span style="color:black">Bank Name  <span style="color:black;padding-left:57px">: AE240030010484461020001</span></span>
+                             <span style="color:black">Bank Name  <span style="color:black;padding-left:56px">: AE240030010484461020001</span></span>
                              <br/>
                              <span style="color:black">Swift Code <span style="color:black;padding-left:60px">: ADCBAEAA</span></span>
                              <br/>
