@@ -54,9 +54,11 @@ class TaxInvoiceReportInherit(models.Model):
                 fills = rec.currency_id.currency_subunit_label
                 print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",fills)
                 amount_txt_1 = num2words(int(splited_value.split(".")[0]))
+                amount_txt_3 = amount_txt_1.replace("and","")
                 amount_txt_2 = num2words(int(splited_value.split(".")[1]))
-                final_output = dihrams +" "+ amount_txt_1 + " " + fills + " " + amount_txt_2 + " " + "only"
+                final_output = dihrams +" "+ amount_txt_3 + " " + fills + " " + amount_txt_2 + " " + "only"
                 print(final_output, "TTTTTTTTTTTT")
+                print(amount_txt_3, "TTTTTTTTTTTTqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
                 print("PPPPPPPPPP", num2words(int(splited_value.split(".")[0])))
                 print("PPPPPPPPPP", num2words(int(splited_value.split(".")[1])))
                 return final_output.title()
@@ -69,8 +71,9 @@ class TaxInvoiceReportInherit(models.Model):
                     dihrams = rec.currency_id.currency_unit_label
                     fills = rec.currency_id.currency_subunit_label
                     amount_txt_1 = num2words(int(splited_value.split(".")[0]))
+                    amount_txt_3 = amount_txt_1.replace("and","")
                     amount_txt_2 = num2words(int(splited_value.split(".")[1]))
-                    final_output1 = amount_txt_1 + " " + dihrams + " " + amount_txt_2 + " " + fills + " "
+                    final_output1 = amount_txt_3 + " " + dihrams + " " + amount_txt_2 + " " + fills + " "
                     print(final_output1, "TTTTTTTTTTTT")
                     print("PPPPPPPPPP1", num2words(int(splited_value.split(".")[0])))
                     print("PPPPPPPPPP2", num2words(int(splited_value.split(".")[1])))
