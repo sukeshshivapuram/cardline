@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="quotation_order_inherit_report_template" inherit_id="sale.report_saleorder_document">
-<!--        <xpath expr="//t/div/table/thead/tr/th[@name='th_description']" position="before">-->
-<!--            <th style="color:#27B3CB;" name="th_code" class="text-start">Code</th>-->
-<!--        </xpath>-->
-<!--        <xpath expr="//t/div/table/tbody/t/tr/t/td" position="before">-->
-<!--            <td name="td_code" class="text-start">-->
-<!--                <span t-esc="line.product_id.default_code"/>-->
-<!--            </td>-->
-<!--        </xpath>-->
-<!--        <xpath expr="//t/div/table/tbody/t/tr/t/td[@name='td_name']" position="replace">-->
-<!--            <td class="text-start">-->
-<!--                <span t-esc="line.product_id.name"/>-->
-<!--            </td>-->
-<!--        </xpath>-->
         <xpath expr="//t/div/div/div[@name='expiration_date']" position="after">
             <div t-if="doc.payment_term_id.name" class="col-auto col-3 mw-100 mb-2">
                 <strong style="color:#27B3CB;">Payment Terms:</strong>
@@ -176,15 +163,6 @@
             </table>
         </xpath>
         <xpath expr="//t/div/div[@class='clearfix']" position="after">
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <br></br>
         </xpath>
 
