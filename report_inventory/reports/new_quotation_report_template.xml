@@ -120,52 +120,101 @@
                                  <td style="text-align:left;width: 20px;height: 30px">
                                      <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</strong>
                                  </td>
-                                 <td style="text-align:right;width: 20px;background:white;height: 30px">
-                                     <!--                                             <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>-->
-                                     <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
-                                     <span style="padding-right:5px;" t-esc="doc.amount_untaxed"/>
-                                     <span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
-                                 </td>
+<!--                                 <td>-->
+                                     <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
+                                         <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
+                                             <span style="padding-right:5px;" t-esc="doc.amount_untaxed"/>
+                                             <span style="padding-left:1px;padding-right:5px"
+                                                   t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                         </td>
+                                     </t>
+                                     <t  t-else=" ">
+                                         <td style="text-align:right;width: 20px;color:black;background:white;height: 30px">
+                                             <span style="padding-left:1px;padding-right:5px"
+                                                   t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                             <span style="padding-right:5px;" t-esc="doc.amount_untaxed"/>
+                                         </td>
+                                     </t>
+<!--                                 </td>-->
+<!--                                 <td style="text-align:right;width: 20px;background:white;height: 30px">-->
+<!--                                                                                  <span t-esc="doc.amount_untaxed" t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>-->
+<!--                                                                                  <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
+<!--                                     <span style="padding-right:5px;" t-esc="doc.amount_untaxed"/>-->
+<!--                                     <span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>-->
+<!--                                 </td>-->
                              </tr>
                              <tr style="width:10%;vertical-align:center;">
                                  <td style="text-align:left;width: 20px;">
                                      <strong style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</strong>
                                  </td>
-                                 <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
-                                     <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
-                                         <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
-                                         <span style="padding-left:1px;padding-right:5px"
-                                               t-esc="doc.pricelist_id.currency_id.symbol"/>
-                                     </td>
-                                 </t>
-                                 <t t-if="not doc.pricelist_id.currency_id.name == 'AED'">
-                                     <td style="text-align:right;width: 20px;color:black;">
-                                         <span style="padding-left:1px;padding-right:5px"
-                                               t-esc="doc.pricelist_id.currency_id.symbol"/>
-                                         <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
-                                     </td>
-                                 </t>
+<!--                                 <td>-->
+                                     <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
+                                         <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
+                                             <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
+                                             <span style="padding-left:1px;padding-right:5px"
+                                                   t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                         </td>
+                                     </t>
+                                     <t t-else="">
+                                         <td style="text-align:right;width: 20px;color:black;background:white;height: 30px">
+                                             <span style="padding-left:1px;padding-right:5px"
+                                                   t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                             <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
+                                         </td>
+                                     </t>
+<!--                                 </td>-->
                              </tr>
                              <tr style="width:10%">
-                                         <td style="width: 20px;height: 30px">
-                                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
+                                 <td style="width: 20px;height: 30px">
+                                     <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
+                                 </td>
+<!--                                 <td>-->
+                                     <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
+                                         <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
+                                             <span style="padding-right:5px;" t-esc="doc.amount_tax"/>
+                                             <span style="padding-left:1px;padding-right:5px"
+                                                   t-esc="doc.pricelist_id.currency_id.symbol"/>
                                          </td>
-                                         <td style="text-align:right;width:20px;background:white;height: 30px">
+                                     </t>
+                                     <t t-else="">
+                                         <td style="text-align:right;width: 20px;color:black;background:white;height: 30px">
+                                             <span style="padding-left:1px;padding-right:5px"
+                                                   t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                             <span style="padding-right:5px;" t-esc="doc.amount_tax"/>
+                                         </td>
+                                     </t>
+<!--                                 </td>-->
+<!--                                 <td style="text-align:right;width:20px;background:white;height: 30px">-->
 <!--                                             <span class="text-right"-->
 <!--                                                   t-esc="doc.tax_totals['groups_by_subtotal']['Untaxed Amount'][0]['formatted_tax_group_amount']"/>-->
-                                             <span style="padding-right:5px;" t-esc="doc.amount_tax"/><span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
-                                         </td>
-                                     </tr>
-                                     <tr style="width:10%;color:white;background:#27B3CB">
-                                         <td style="width: 20px;height: 30px">
-                                             <strong style="padding-left:10px" class="mt-4">Total</strong>
-                                         </td>
-                                         <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">
-<!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
-                                             <span style="padding-right:5px;" t-esc="doc.amount_total"/><span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
-                                         </td>
-                                     </tr>
-<!--                                     <p style="padding-left: 30px;color:black">-->
+<!--                                             <span style="padding-right:5px;" t-esc="doc.amount_tax"/><span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>-->
+<!--                                         </td>-->
+                             </tr>
+                             <tr style="width:10%;color:white;background:#27B3CB">
+                                 <td style="width: 20px;height: 30px">
+                                     <strong style="padding-left:10px" class="mt-4">Total</strong>
+                                 </td>
+                                 <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
+                                     <td style="text-align:right;width: 20px;height: 30px;color:white;background:#27B3CB">
+                                         <span style="padding-right:5px;" t-esc="doc.amount_total"/>
+                                         <span style="padding-left:1px;padding-right:5px"
+                                               t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                     </td>
+                                 </t>
+                                 <t t-else=" ">
+                                     <td style="text-align:right;width: 20px;color:white;background:#27B3CB;height: 30px">
+                                         <span style="padding-left:1px;padding-right:5px"
+                                               t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                         <span style="padding-right:5px;" t-esc="doc.amount_total"/>
+                                     </td>
+                                 </t>
+<!--                                 <td style="text-align:right;color:white;background:#27B3CB;width: 20px;height: 30px">-->
+<!--                                     <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
+<!--                                     <span style="padding-right:5px;" t-esc="doc.amount_total"/>-->
+<!--                                     <span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>-->
+<!--                                 </td>-->
+                             </tr>
+                             <!--                                     <p style="padding-left: 30px;color:black">-->
 <!--                                         Amount In Words :-->
 <!--                                         <span style="color:black" t-esc="doc.amount_to_text(doc.calculations_total())"/>-->
 <!--                                     </p>-->

@@ -226,7 +226,7 @@
                 <br/>
                 <br/>
                 <tr>
-                    <p style="text-decoration:overline;padding-left:10%;font-size:15px;color:black;">Receiver's
+                    <p style="text-decoration:overline;padding-left:10%;font-size:15px;">Receiver's
                         Signature<span
                                 style="padding-left:50%;"></span>For CARDLINE ELECTRONICS LLC
                     </p>
@@ -470,7 +470,8 @@
                     </table>
                 </div>
             </xpath>
-
+<!--            <xpath expr="//t/div/div/div/div/div/table/t[@t-if='print_with_payments']" position="replace">-->
+<!--            </xpath>-->
         </template>
 
         <!--        <template id="external_layout_footer_inherit_tax" inherit_id="web.external_layout_boxed">-->
@@ -509,10 +510,9 @@
         <!--        </template>-->
 
 
-<!--        <template id="report_tax_invoice_document_inherit_template" inherit_id="account.document_tax_totals">-->
-<!--            <xpath expr="//t/tr[@class='border-black o_subtotal']" position="replace">-->
-
-<!--            </xpath>-->
-<!--        </template>-->
+        <template id="report_tax_invoice_document_inherit_exchage_rate" inherit_id="l10n_ae.report_invoice_document">
+            <xpath expr="//div[@id='aed_amounts']" position="replace">
+            </xpath>
+        </template>
     </data>
 </odoo>
