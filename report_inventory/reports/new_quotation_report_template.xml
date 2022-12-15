@@ -138,8 +138,8 @@
                                                t-esc="doc.pricelist_id.currency_id.symbol"/>
                                      </td>
                                  </t>
-                                 <t t-if="not doc.pricelist_id.currency_id.name == 'AED'">
-                                     <td style="text-align:right;width: 20px;color:black;">
+                                 <t t-else=" ">
+                                     <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
                                          <span style="padding-left:1px;padding-right:5px"
                                                t-esc="doc.pricelist_id.currency_id.symbol"/>
                                          <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
