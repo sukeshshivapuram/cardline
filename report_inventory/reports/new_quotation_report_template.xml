@@ -141,7 +141,7 @@
                                  <t t-else=" ">
                                      <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
                                          <span style="padding-left:1px;padding-right:5px"
-                                               t-esc="doc.pricelist_id.currency_id.symbol"/>
+                                               t-esc="doc.pricelist_id.currency_id.name"/>
                                          <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
                                      </td>
                                  </t>
@@ -198,6 +198,7 @@
                 </t>
             </t>
         </t>
+
 
     </template>
 
