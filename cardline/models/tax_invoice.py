@@ -59,7 +59,7 @@ class TaxInvoiceReportInherit(models.Model):
                 print(final_output, "TTTTTTTTTTTT")
                 print("PPPPPPPPPP", num2words(int(splited_value.split(".")[0])))
                 print("PPPPPPPPPP", num2words(int(splited_value.split(".")[1])))
-                return final_output
+                return final_output.title()
             else:
                 # if rec.currency_id.name == "INR" or rec.currency_id.name == "USD":
                     splited_value = str(total)
@@ -74,7 +74,7 @@ class TaxInvoiceReportInherit(models.Model):
                     print(final_output1, "TTTTTTTTTTTT")
                     print("PPPPPPPPPP1", num2words(int(splited_value.split(".")[0])))
                     print("PPPPPPPPPP2", num2words(int(splited_value.split(".")[1])))
-                    return final_output1
+                    return final_output1.title()
 
 
 
