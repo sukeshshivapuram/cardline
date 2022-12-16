@@ -255,9 +255,9 @@
                             <th name="th_description" class="text-center" style="width:40%">
                                 <span>Description</span>
                             </th>
-                            <th class="text-center">
-                                <span>UOM</span>
-                            </th>
+<!--                            <th class="text-center">-->
+<!--                                <span>UOM</span>-->
+<!--                            </th>-->
                             <th name="th_quantity" class="text-center">
                                 <span>Quantity</span>
                             </th>
@@ -302,9 +302,9 @@
                                     <td style="color:black;" name="account_invoice_line_name">
                                         <span t-field="line.name" t-options="{'widget': 'text'}"/>
                                     </td>
-                                    <td style="color:black;">
-                                        <span t-field="line.product_uom_id"/>
-                                    </td>
+<!--                                    <td style="color:black;">-->
+<!--                                        <span t-field="line.product_uom_id"/>-->
+<!--                                    </td>-->
                                     <td style="color:black;" class="text-end">
                                         <span t-field="line.quantity"/>
                                         <span t-field="line.product_uom_id" groups="uom.group_uom"/>
