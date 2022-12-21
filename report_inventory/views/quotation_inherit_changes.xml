@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="new_sale_order_inherit_form_" model="ir.ui.view">
+        <field name="name">new.sale.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//form/sheet/notebook/page/group/group/field[@name='tag_ids']" position="after">
+                <field name="customer_reference"/>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='client_order_ref']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='team_id']" position="after">
+                <field name="currency_sale"/>
+            </xpath>
+<!--            <xpath expr="//form/sheet/notebook/page/field/form/group/group/field[@name='price_unit']" position="after">-->
+<!--                <field name="taxable_amount_sale"/>-->
+<!--            </xpath>-->
+
+        </field>
+    </record>
+
+    <record id="new_sale_order_inherit_form_2" model="ir.ui.view">
+        <field name="name">new.sale.order.inherit.form2</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="replace">
+                <field name="discount" string="Discount"  optional="show" widget="sol_discount"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="taxable_amount" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+
+</odoo>
