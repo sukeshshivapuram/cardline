@@ -7,7 +7,7 @@
     'sequence': 10,
     'description': """    """,
     'category': 'Inventory',
-    'depends': ['base', 'stock','sale','account','purchase',],
+    'depends': ['base', 'stock','sale','account','purchase','l10n_ae'],
     'data': [
         'views/inherit_invoice_form.xml',
         'report/inherit_purchase_order.xml',
