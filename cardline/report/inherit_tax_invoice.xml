@@ -248,7 +248,7 @@
             </xpath>
 
 
-            <xpath expr="//t/div/div/table[@class='table table-sm o_main_table']" position="replace">
+            <xpath expr="//t/div/div/table[@name='invoice_line_table']" position="replace">
                 <table class="table table-sm o_main_table" name="invoice_line_table" style="font-size:12px">
                     <thead>
                         <tr>
