@@ -11,9 +11,7 @@
     'data': [
         'views/inherit_invoice_form.xml',
         'report/inherit_purchase_order.xml',
-        # 'report/statement_of_accounts.xml',
-        # 'report/soa_report.xml',
-        'report/inherit_tax_invoice.xml',
+        # 'report/inherit_tax_invoice.xml',
     ],
     'installable': True,
     'application': False,
