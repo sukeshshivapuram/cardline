@@ -5,8 +5,8 @@
 
 
         </xpath>
-        <xpath expr="//t/t/t/div/div[@name='outgoing_warehouse_address']" position="replace">
-            <div name="div_outgoing_address">
+<!--        <xpath expr="//t/t/t/div/div[@name='outgoing_warehouse_address']" position="replace">-->
+<!--            <div name="div_outgoing_address">-->
 <!--                <div name="outgoing_delivery_address"-->
 <!--                     t-if="o.move_ids_without_package and o.move_ids_without_package[0].partner_id and o.move_ids_without_package[0].partner_id != partner">-->
 <!--                    <span>-->
@@ -15,14 +15,14 @@
 <!--                    <div t-field="o.move_ids_without_package[0].partner_id"-->
 <!--                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>-->
 <!--                </div>-->
-                <div name="outgoing_warehouse_address"
-                     t-if="o.picking_type_id.code != 'internal' and (not o.move_ids_without_package or not o.move_ids_without_package[0].partner_id or o.move_ids_without_package[0].partner_id == partner) and o.picking_type_id.warehouse_id.partner_id">
-                    <span>
-<!--                                                    <strong>Warehouse Address:</strong>-->
-                    </span>
-                </div>
-            </div>
-        </xpath>
+<!--                <div name="outgoing_warehouse_address"-->
+<!--                     t-if="o.picking_type_id.code != 'internal' and (not o.move_ids_without_package or not o.move_ids_without_package[0].partner_id or o.move_ids_without_package[0].partner_id == partner) and o.picking_type_id.warehouse_id.partner_id">-->
+<!--                    <span>-->
+<!--&lt;!&ndash;                                                    <strong>Warehouse Address:</strong>&ndash;&gt;-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </xpath>-->
         <xpath expr="//t/t/t[@t-set='information_block']" position="replace">
             <tr>
                 <h1 style="font-size:30px;color:#27B3CB;text-align:center">DELIVERY NOTE</h1>
@@ -155,5 +155,6 @@
             </tr>
         </xpath>
 
+        
     </template>
 </odoo>
