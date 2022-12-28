@@ -188,7 +188,8 @@
                             <!--                                             <span t-esc="doc.tax_totals['formatted_amount_untaxed']"/>-->
                         </td>
                     </tr>
-                    <tr style="width:10%;vertical-align:center;">
+                    <t t-foreach="doc.order_line" t-as="lines"/>
+                    <tr t-if="lines.discount!=0.0" style="width:10%;vertical-align:center;">
                         <td style="text-align:left;width: 20px;">
                             <strong style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</strong>
                         </td>
@@ -205,6 +206,7 @@
                             </td>
                         </t>
                     </tr>
+                    <t/>
                     <tr style="width:10%">
                         <td style="width: 20px;height: 30px">
                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>

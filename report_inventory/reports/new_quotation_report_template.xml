@@ -60,8 +60,8 @@
                              <td t-if="doc.payment_term_id" style="border:white;background:white;color:black">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.payment_term_id"/>
                              </td>
-                             <td t-if="doc.client_order_ref" style="border:white;background:white;color:black">
-                                 <span style="text-align:center;padding-left:60px;background:white;color:black;border:white" t-field="doc.client_order_ref"/>
+                             <td t-if="doc.customer_reference" style="border:white;background:white;color:black">
+                                 <span style="text-align:center;padding-left:60px;background:white;color:black;border:white" t-field="doc.customer_reference"/>
                              </td>
                          </tr>
                          </table>
@@ -69,14 +69,14 @@
                          <br></br>
                          <table style="font-size:14px;width:100%">
                              <thead style="display: table-row-group">
+                                 <t t-foreach="doc.order_line" t-as="lines"/>
                                  <tr>
 <!--                                     <th style="color:#27B3CB;" name="th_code" class="text-center">Code</th>-->
                                      <th style="color:#27B3CB;" name="th_description" class="text-center">Description
                                      </th>
                                      <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
                                      <th style="color:#27B3CB;" name="th_priceunit" class="text-center">Unit Price</th>
-                                     <th style="color:#27B3CB;" name="th_discount"
-                                         class="text-center">
+                                     <th style="color:#27B3CB;" name="th_discount" t-if="lines.discount!=0.0" class="text-center">
                                          <span>Discount %</span>
                                      </th>
                                      <th style="color:#27B3CB;" name="th_taxes" class="text-center">Taxes</th>
@@ -101,7 +101,7 @@
                                     <td style="padding-right:5px" name="td_priceunit" class="text-end">
                                         <span style="color:black" t-field="line.price_unit"/>
                                     </td>
-                                     <td style="color:black;padding-right:5px" class="text-end">
+                                     <td style="color:black;padding-right:5px" t-if="lines.discount!=0.0" class="text-end">
                                          <span t-field="line.discount"/>
                                          <span style="color:black">%</span>
                                      </td>
@@ -127,12 +127,13 @@
                                      <span style="padding-right:5px;" t-esc="doc.pricelist_id.currency_id.name"/>
                                  </td>
                              </tr>
-                             <tr style="width:10%;vertical-align:center;">
+                             <t t-foreach="doc.order_line" t-as="lines"/>
+                             <tr t-if="lines.discount!=0.0" style="width:10%;vertical-align:center;">
                                  <td style="text-align:left;width: 20px;">
-                                     <strong style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</strong>
+                                     <strong><span style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</span></strong>
                                  </td>
                                  <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
-                                     <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
+                                     <td t-if="lines.discount!=0.0" style="text-align:right;width: 20px;color:black;height: 30px;background:white">
                                          <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
                                          <span style="padding-left:1px;padding-right:5px"
                                                t-esc="doc.pricelist_id.currency_id.symbol"/>
@@ -147,6 +148,7 @@
                                      </td>
                                  </t>
                              </tr>
+                             <t/>
                              <tr style="width:10%">
                                          <td style="width: 20px;height: 30px">
                                              <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">VAT 5%</strong>
