@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="delivery_note_inherit_report_template" inherit_id="stock.report_delivery_document">
+        <xpath expr="//t/t/t/div[@name='div_outgoing_address']" position="replace">
+
+
+        </xpath>
         <xpath expr="//t/t/t/div/div[@name='outgoing_warehouse_address']" position="replace">
             <div name="div_outgoing_address">
 <!--                <div name="outgoing_delivery_address"-->
@@ -150,5 +154,6 @@
                 </p>
             </tr>
         </xpath>
+
     </template>
 </odoo>
