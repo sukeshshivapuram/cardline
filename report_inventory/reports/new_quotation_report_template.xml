@@ -90,9 +90,9 @@
                              <tbody class="sale_tbody">
                                  <t t-set="current_subtotal" t-value="0"/>
                                  <tr t-foreach="doc.order_line" t-as="line">
-                                     <td style="padding-left:5px" name="td_code" class="text-start">
-                                         <span style="color:black" t-field="line.product_id.default_code"/>
-                                     </td>
+<!--                                     <td style="padding-left:5px" name="td_code" class="text-start">-->
+<!--                                         <span style="color:black" t-field="line.product_id.default_code"/>-->
+<!--                                     </td>-->
                                      <td style="padding-left:5px" name="td_name"><span style="color:black" t-field="line.name"/></td>
                                     <td style="padding-right:5px" name="td_quantity" class="text-end">
                                         <span style="color:black" t-field="line.product_uom_qty"/>

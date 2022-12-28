@@ -110,9 +110,9 @@
 
                         <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
                             <t t-if="not line.display_type">
-                                <td name="td_code" class="text-start">
-                                    <span style="color:black" t-esc="line.product_id.default_code"/>
-                                </td>
+<!--                                <td name="td_code" class="text-start">-->
+<!--                                    <span style="color:black" t-esc="line.product_id.default_code"/>-->
+<!--                                </td>-->
                                 <td style="color:black" name="td_name"><span t-field="line.name"/></td>
                                 <td style="color:black" name="td_quantity" class="text-end">
                                     <span t-field="line.product_uom_qty"/>
