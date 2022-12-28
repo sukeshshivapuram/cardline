@@ -70,7 +70,7 @@
                          <table style="font-size:14px;width:100%">
                              <thead style="display: table-row-group">
                                  <tr>
-                                     <th style="color:#27B3CB;" name="th_code" class="text-center">Code</th>
+<!--                                     <th style="color:#27B3CB;" name="th_code" class="text-center">Code</th>-->
                                      <th style="color:#27B3CB;" name="th_description" class="text-center">Description
                                      </th>
                                      <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
