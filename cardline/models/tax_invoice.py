@@ -47,7 +47,7 @@ class TaxInvoiceReportInherit(models.Model):
                 # preci = round(total,3)
                 # print(preci,"KKKKKKKKKKKKKKKKHHHHHHHHHHHHH)))))))))")
                 splited_value = str(total)
-                # print(splited_value, "AAAAAAAA")
+                print(round(total,2), "AAAAAAAA")
                 res = splited_value.split('.')
                 print("RRRRRRRRR", res)
                 dihrams = rec.currency_id.currency_unit_label
@@ -57,7 +57,15 @@ class TaxInvoiceReportInherit(models.Model):
                 amount_txt_3 = amount_txt_1.replace("and", '' ,2)
                 amount_txt_4 = amount_txt_3.replace("thous", 'thousand')
                 amount_txt_2 = num2words(int(splited_value.split(".")[1]))
-                final_output = dihrams +" "+ amount_txt_4 + " " + fills + " " + amount_txt_2 + " " + "only"
+                print(int(splited_value.split(".")[1]),"ddddddddddddddkyui")
+
+                y = len(splited_value.split(".")[1])
+                print(y, "ssssssssssssssssssssssss")
+                if y == 1:
+                    final_output = dihrams + " " + amount_txt_4 + " " + fills + " " + amount_txt_2 + " " + 'zero' + " " +"only"
+                else:
+
+                    final_output = dihrams +" "+ amount_txt_4 + " " + fills + " " + amount_txt_2 + " " + "only"
                 print(final_output, "TTTTTTTTTTTT")
                 print(amount_txt_1, "TTTTTTTTTTTTqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
                 print(amount_txt_3, "dsgfhjkl;jhgfqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq")
