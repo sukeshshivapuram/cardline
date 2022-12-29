@@ -24,6 +24,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
         ('posted', 'All Posted Entries'),
         ('all', 'All Entries'),
     ], string='Target Moves', required=True, default='posted')
+    partner_ids = fields.Many2one('res.partner',string='Customer')
 
 
     def excel_header(self,worksheet,res):
