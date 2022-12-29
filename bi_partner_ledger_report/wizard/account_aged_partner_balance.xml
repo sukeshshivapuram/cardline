@@ -9,7 +9,6 @@
                 <separator string="Aged Partner Balance"/>
                 <group col="4">
                     <field name="date_from"/>
-                    <field name="partner_ids"/>
                     <field name="period_length"/>
                     <newline/>
                     <field name="result_selection" widget="radio"/>

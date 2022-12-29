@@ -24,7 +24,6 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
         ('posted', 'All Posted Entries'),
         ('all', 'All Entries'),
     ], string='Target Moves', required=True, default='posted')
-    partner_ids = fields.Many2one('res.partner',string='Customer')
 
 
     def excel_header(self,worksheet,res):
@@ -81,7 +80,6 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
             'period_length': self.period_length,
             'journal_ids': [a.id for a in self.env['account.journal'].search([])],
             'date_from': self.date_from,
-            'partner_ids':self.partner_ids,
         })
         used_context.update(
             {
