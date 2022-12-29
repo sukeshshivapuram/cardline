@@ -81,6 +81,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
             'period_length': self.period_length,
             'journal_ids': [a.id for a in self.env['account.journal'].search([])],
             'date_from': self.date_from,
+            'partner_ids':self.partner_ids,
         })
         used_context.update(
             {
