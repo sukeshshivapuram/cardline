@@ -152,31 +152,14 @@
             </xpath>
 
             <xpath expr="//t/div/p[@t-field='o.notes']" position="after">
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <tr>
+                <div style="position:fixed;top:1000px;">
+<!--                    <div style="margin-top:10px;margin-bottom:10px">-->
                     <p style="font-size:15px;text-align:center;"><span/>This document is computer generated and does not
                         require a signature or the company stamp in order to be considered valid.
                     </p>
-                </tr>
+
+                </div>
+<!--                </div>-->
                 <!--                    </div>-->
 
 
