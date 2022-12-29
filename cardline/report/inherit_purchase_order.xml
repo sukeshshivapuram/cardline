@@ -151,9 +151,7 @@
 
             </xpath>
 
-            <xpath expr="//t/div/div[@id='total']" position="after">
-                <br></br>
-                <br></br>
+            <xpath expr="//t/div/p[@t-field='o.notes']" position="after">
                 <br></br>
                 <br></br>
                 <br></br>
