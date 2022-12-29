@@ -92,7 +92,7 @@
                         </thead>
                         <tbody>
                             <tr t-foreach="get_partner_lines" t-as="partner">
-                                <td t-if="partner['name'] == data[partner_ids]">
+                                <td>
                                     <span t-esc="partner['name']"/>
                                 </td>
                                 <td class="text-right">
