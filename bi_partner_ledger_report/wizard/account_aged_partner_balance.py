@@ -24,6 +24,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
         ('posted', 'All Posted Entries'),
         ('all', 'All Entries'),
     ], string='Target Moves', required=True, default='posted')
+    partner_ids = fields.Many2one('res.partner',string='Customer')
 
 
     def excel_header(self,worksheet,res):
@@ -54,6 +55,8 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
         worksheet.write(5, 6, res['0']['name'], style=style_table_header)
         worksheet.write(5, 7, "Total")
 
+
+
     def print_report_aged_partner(self):
         if self.period_length <= 0:
             raise UserError(_('You must set a period length greater than 0.'))
@@ -80,6 +83,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
             'period_length': self.period_length,
             'journal_ids': [a.id for a in self.env['account.journal'].search([])],
             'date_from': self.date_from,
+            'partner_ids':self.partner_ids.name,
         })
         used_context.update(
             {
@@ -155,3 +159,4 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
                 'target': 'new'
             }
             return res
+
