@@ -15,6 +15,10 @@
                             <strong>Period Length (days)</strong>
                             <p t-esc="data['period_length']"/>
                         </div>
+<!--                        <div style="width:25%;">-->
+<!--                            <strong>Customer</strong>-->
+<!--                            <p t-esc="data['partner_ids']"/>-->
+<!--                        </div>-->
                         <div style="width:25%;">
                             <strong>Partner's:</strong>
                             <p>
