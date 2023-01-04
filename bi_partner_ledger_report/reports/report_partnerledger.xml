@@ -54,7 +54,7 @@
                                             <strong style="background:white;color:black" t-esc="o.name"/>
                                         </td>
                                         <td class="text-right">
-                                            <strong style="background:white;color:black" t-esc="sum_partner(data, o, 'debit').replace('Â','')"
+                                            <strong style="background:white;color:black" t-esc="sum_partner(data, o, 'debit')"
                                                     t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
                                         <td class="text-right">
