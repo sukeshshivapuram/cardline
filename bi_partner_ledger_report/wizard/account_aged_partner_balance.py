@@ -56,14 +56,6 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
         worksheet.write(5, 7, "Total")
 
     def print_report_aged_partner(self):
-        # sample = []
-        # print(self.partner_ids)
-        # print(self.env['account.move.line'].search([('id', '=', self.partner_ids.id)]))
-        # lines = self.env['account.move.line'].search([('partner_id.name', '=', self.partner_ids.name)])
-        # for i in lines:
-        #     sample.append(i.id)
-        # print(sample)
-
         if self.period_length <= 0:
             raise UserError(_('You must set a period length greater than 0.'))
         if not self.date_from:
@@ -74,9 +66,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
         res = {}
         used_context = {}
         for i in range(5)[::-1]:
-            print("SSSSSSSSSSSSSSSSSSSSS",i)
             stop = start - relativedelta(days=self.period_length - 1)
-            print("stoppppppppppppppppppppppppppp",stop)
             res[str(i)] = {
                 'name': (i != 0 and (
                             str((5 - (i + 1)) * self.period_length) + '-' + str((5 - i) * self.period_length)) or (
@@ -85,8 +75,6 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
                 'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
             }
             start = stop - relativedelta(days=1)
-            print("start variable",start)
-            print("ressssss",res)
         data['form'] = ({
             'target_move': self.target_move,
             'result_selection': self.result_selection,
@@ -95,7 +83,6 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
             'date_from': self.date_from,
             'partner_ids': self.partner_ids.name,
         })
-        print("data formmmmmmmmmmmm",data['form'])
         used_context.update(
             {
                 'state': self.target_move,
@@ -105,14 +92,8 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
 
             }
         )
-        print(data,"dddddddddddddddddddddddddddddddddddddatttttttttttttaaaaaaaaaaa")
-        print(used_context,"useddddddddddddcon textttttaaaaaaaaaaa")
-        print(used_context,"used contextt")
         data['form']['used_context'] = used_context
-        print(data['form']['used_context'],"date from used context")
-        print(data,"daaaaaaaaaaaaaaaaaaaaaaaaatttttttttta  222222222222222")
         data['form'].update(res)
-        print("date form update with res",data['form'].update(res))
         if not self._context.get('report_type') == 'excel':
             return self.env.ref('bi_partner_ledger_report.action_aged_partner_balance_report').with_context(
                 landscape=True).report_action(self, data=data)
@@ -178,19 +159,3 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
             return res
 
 
-    # @api.onchange('partner_ids')
-    # def _onchange_partner_id(self):
-    #     # account_move_line = self.env['account.move.line'].search([('partner_id.name', '=', self.partner_ids.name)])
-    #
-    #     sample=[]
-    #     # sample = [i.id for i in self.env['account.move.line'].search([('partner_id.name', '=', self.partner_ids.name)])]
-    #     for i in self.env['account.move.line'].search([('partner_id.name', '=', self.partner_ids.name)]):
-    #         sample.append(i)
-    #     print(sample)
-        # print(sample,"sampleeeeeeeeeeeeeeeeeeeee")
-        # for i in account_move_line:
-        #     print("//////////////",i.id)
-        # xyz = len(account_move_line)
-        # print(xyz,'hhhhhhhhh')
-        # print("filtered ",account_move_line)
-        # print("filtered1111111111111 ",len(account_move_line))

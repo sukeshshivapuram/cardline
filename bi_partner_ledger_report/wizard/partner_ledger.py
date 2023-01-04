@@ -25,6 +25,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
                                          ('supplier', 'Payable Accounts'),
                                          ('customer_supplier', 'Receivable and Payable Accounts')
                                          ], string="Partner's", required=True, default='customer')
+    customer_ids = fields.Many2one('res.partner', string='Customer')
 
 
     def excel_header(self,worksheet):
@@ -104,7 +105,8 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             'date_from': self.date_from,
             'date_to': self.date_to,
             'target_move': self.target_move,
-            'amount_currency': self.amount_currency
+            'amount_currency': self.amount_currency,
+            'customer_ids': self.customer_ids.name,
         }
         if self._context.get('report_type') != 'excel':
             return self.env.ref('bi_partner_ledger_report.bi_report_partnerledger_action').with_context(

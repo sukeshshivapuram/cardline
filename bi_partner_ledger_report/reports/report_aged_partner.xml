@@ -2,7 +2,7 @@
 <odoo>
     <template id="bi_report_agedpartnerbalance">
         <t t-call="web.html_container">
-            <t t-call="web.internal_layout">
+            <t t-call="web.external_layout">
                 <div class="page">
                    <center> <h2>Aged Partner Balance</h2></center>
 
@@ -15,6 +15,10 @@
                             <strong>Period Length (days)</strong>
                             <p t-esc="data['period_length']"/>
                         </div>
+<!--                        <div style="width:25%;">-->
+<!--                            <strong>Customer</strong>-->
+<!--                            <p t-esc="data['partner_ids']"/>-->
+<!--                        </div>-->
                         <div style="width:25%;">
                             <strong>Partner's:</strong>
                             <p>
@@ -94,33 +98,33 @@
                             <tr t-foreach="get_partner_lines" t-as="partner">
                                 <t t-if="partner['name'] == data['partner_ids']">
                                     <td>
-                                        <span t-esc="partner['name']"/>
+                                        <span style="background:white;color:black" t-esc="partner['name']"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="partner['direction']"
+                                        <span style="background:white;color:black" t-esc="partner['direction']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="partner['4']"
+                                        <span style="background:white;color:black" t-esc="partner['4']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="partner['3']"
+                                        <span style="background:white;color:black" t-esc="partner['3']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="partner['2']"
+                                        <span style="background:white;color:black" t-esc="partner['2']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="partner['1']"
+                                        <span style="background:white;color:black" t-esc="partner['1']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="partner['0']"
+                                        <span style="background:white;color:black" t-esc="partner['0']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
-                                    <td class="text-right">
+                                    <td style="background:white" class="text-right">
                                         <span t-esc="partner['total']"
                                               t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>

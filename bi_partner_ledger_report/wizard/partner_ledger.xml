@@ -15,6 +15,7 @@
                 <field name="reconciled"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
+                <field name="customer_ids"/>
             </group>
             <group>
                 <field name="journal_ids" widget="many2many_tags" options="{'no_create': True}"/>
