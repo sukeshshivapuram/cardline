@@ -58,11 +58,11 @@
                                                     t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
                                         <td class="text-right">
-                                            <strong style="background:white;color:black" t-esc="sum_partner(data, o, 'credit').replace('Â','')"
+                                            <strong style="background:white;color:black" t-esc="sum_partner(data, o, 'credit')"
                                                     t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
                                         <td style="background:white" class="text-right">
-                                            <strong t-esc="sum_partner(data, o, 'debit - credit').replace('Â','')"
+                                            <strong t-esc="sum_partner(data, o, 'debit - credit')"
                                                     t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
                                     </tr>
