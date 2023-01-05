@@ -80,7 +80,10 @@ class BiReportPartnerLedger(models.AbstractModel):
         if contemp is not None:
             result = contemp[0] or 0.0
         print("RRRRRRRRRresult1",result)
-        return result
+
+        result_1 = result.replace('Â','')
+
+        return result_1
 
 
     @api.model
