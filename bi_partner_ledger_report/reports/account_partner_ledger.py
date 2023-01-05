@@ -102,9 +102,9 @@ class BiReportPartnerLedger(models.AbstractModel):
         }
         return abc
 
-    def remove_character(self,income):
-        print("hi")
-        print("IIIIIIIncome",income)
-        for rec in self:
-            ans = rec._sum_partner()
-            print("reulst value in remove character fun",ans)
+    # def remove_character(self,income):
+    #     print("hi")
+    #     print("IIIIIIIncome",income)
+    #     for rec in self:
+    #         ans = rec._sum_partner()
+    #         print("reulst value in remove character fun",ans)
