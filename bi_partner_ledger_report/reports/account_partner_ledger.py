@@ -81,7 +81,7 @@ class BiReportPartnerLedger(models.AbstractModel):
             result = contemp[0] or 0.0
         print("RRRRRRRRRresult1",result)
 
-        result_1 = float(str(result.replace('Â','')))
+        result_1 = float(str(result).replace('Â',''))
 
         return result_1
 
