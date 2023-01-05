@@ -79,7 +79,9 @@ class BiReportPartnerLedger(models.AbstractModel):
         contemp = self.env.cr.fetchone()
         if contemp is not None:
             result = contemp[0] or 0.0
-        return float(str(result).replace('Â',''))
+        print("RRRRRRRRRresult1",result)
+        return result
+
 
     @api.model
     def _get_report_values(self, docids, data=None):
@@ -100,3 +102,9 @@ class BiReportPartnerLedger(models.AbstractModel):
         }
         return abc
 
+    def remove_character(self,income):
+        print("hi")
+        print("IIIIIIIncome",income)
+        for rec in self:
+            ans = rec._sum_partner()
+            print("reulst value in remove character fun",ans)
