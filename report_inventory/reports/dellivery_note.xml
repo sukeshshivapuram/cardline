@@ -67,7 +67,7 @@
                         <b><sapn style="color:#27B3CB;">Invoice No
                             <span style="padding-left:23px;"></span>:
                         </sapn></b>
-<!--                        <t t-esc="o.invoice_date"/>-->
+                        <t t-esc="o.invoice_number_ref"/>
                         <br></br>
                         <b><span style="color:#27B3CB;">Date
                             <span style="padding-left:61px;"></span>:
@@ -154,7 +154,10 @@
                 </p>
             </tr>
         </xpath>
-
-        
     </template>
+
+<!--    <record id="cardline_reports.delivery_note_report" model="ir.actions.report">-->
+<!--        <field name="binding_model_id" eval="False"/>-->
+<!--    </record>-->
+
 </odoo>

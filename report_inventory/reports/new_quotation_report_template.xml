@@ -8,7 +8,7 @@
                         <div class="oe_structure"/>
                          <h2 style="text-align:center;font-size:30px" class="mt-4">
                              <span style="color:#27B3CB;font-size:30px;position: relative;bottom: 15px;" >PRO-FORMA INVOICE #</span>
-                             <span style="color:#27B3CB;;position: relative;bottom: 15px;" t-field="doc.name"/>
+                             <span style="color:#27B3CB;position: relative;bottom: 15px;" t-field="doc.name"/>
                          </h2>
                          <br></br>
                          <br></br>

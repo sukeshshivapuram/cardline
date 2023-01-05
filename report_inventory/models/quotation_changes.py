@@ -42,4 +42,7 @@ class SaleOrderLineInherit(models.Model):
             rec.taxable_amount = rec.product_uom_qty * rec.price_unit
 
 
+class StockPickingInherit(models.Model):
+    _inherit = 'stock.picking'
 
+    invoice_number_ref = fields.Char(string="Invoice No")
