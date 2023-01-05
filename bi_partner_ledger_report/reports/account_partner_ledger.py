@@ -79,7 +79,7 @@ class BiReportPartnerLedger(models.AbstractModel):
         contemp = self.env.cr.fetchone()
         if contemp is not None:
             result = contemp[0] or 0.0
-        return str(result).replace('Â','')
+        return float(str(result).replace('Â',''))
 
     @api.model
     def _get_report_values(self, docids, data=None):
