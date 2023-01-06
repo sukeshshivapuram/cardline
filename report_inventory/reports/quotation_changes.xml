@@ -178,6 +178,8 @@
 <!--                    </div>-->
 <!--                </div>-->
                 <table style="width:50%; margin-left:50%;">
+<!--                    <t t-foreach="doc.order_line" t-as="lines"/>-->
+<!--                    <t t-if="doc.add_note_control == 'line_note'">-->
                     <tr style="width:10%">
                         <td style="text-align:left;width: 20px;height: 30px">
                             <strong style="padding-left:10px;color:#27B3CB;" class="mt-4">Untaxed Amount</strong>
@@ -189,7 +191,8 @@
                         </td>
                     </tr>
                     <t t-foreach="doc.order_line" t-as="lines"/>
-                    <tr t-if="lines.discount!=0.0" style="width:10%;vertical-align:center;">
+                    <t t-set="total_dis" t-value="doc.discount_calculate_quotation()"/>
+                    <tr t-if="total_dis > 0" style="width:10%;vertical-align:center;">
                         <td style="text-align:left;width: 20px;">
                             <strong style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</strong>
                         </td>
@@ -228,6 +231,8 @@
                             <!--                                             <span t-esc="doc.tax_totals['formatted_amount_total']"/>-->
                         </td>
                     </tr>
+<!--                    </t>-->
+<!--                    <t/>-->
                 </table>
                 <br></br>
                 <br></br>
