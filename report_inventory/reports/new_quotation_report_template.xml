@@ -128,7 +128,8 @@
                                  </td>
                              </tr>
                              <t t-foreach="doc.order_line" t-as="lines"/>
-                             <tr t-if="lines.discount!=0.0" style="width:10%;vertical-align:center;">
+                             <t t-set="total_dis" t-value="doc.discount_calculate_quotation()"/>
+                             <tr t-if="total_dis > 0" style="width:10%;vertical-align:center;">
                                  <td style="text-align:left;width: 20px;">
                                      <strong><span style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</span></strong>
                                  </td>

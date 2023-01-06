@@ -39,7 +39,10 @@ class SaleOrderLineInherit(models.Model):
     @api.depends('product_uom_qty', 'price_unit')
     def compute_taxable_amount_sale(self):
         for rec in self:
+            print(rec.discount,"AAAAA")
             rec.taxable_amount = rec.product_uom_qty * rec.price_unit
+
+
 
 
 class StockPickingInherit(models.Model):
