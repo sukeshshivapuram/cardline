@@ -28,7 +28,7 @@ class StockPicking(models.Model):
                 discount = (discount + line.taxable_amount)
                 discount1 = (discount1 + line.price_subtotal)
                 discount2 = discount - discount1
-        return discount2
+        return round(discount2,2)
 
 
 class SaleOrderLineInherit(models.Model):

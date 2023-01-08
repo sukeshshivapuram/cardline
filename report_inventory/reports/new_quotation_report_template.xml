@@ -104,7 +104,7 @@
                                             <td style="padding-right:5px" name="td_priceunit" class="text-end">
                                                 <span style="color:black" t-field="line.price_unit"/>
                                             </td>
-                                             <td style="color:black;padding-right:5px" t-if="line.discount" class="text-end">
+                                             <td style="color:black;padding-right:5px" t-if="line.discount>=0.0" class="text-end">
                                                  <span t-field="line.discount"/>
                                                  <span style="color:black">%</span>
                                              </td>
