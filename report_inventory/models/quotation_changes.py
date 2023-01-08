@@ -28,7 +28,7 @@ class StockPicking(models.Model):
                 discount = (discount + line.taxable_amount)
                 discount1 = (discount1 + line.price_subtotal)
                 discount2 = discount - discount1
-        return discount2
+        return round(discount2,2)
 
 
 class SaleOrderLineInherit(models.Model):
@@ -39,7 +39,10 @@ class SaleOrderLineInherit(models.Model):
     @api.depends('product_uom_qty', 'price_unit')
     def compute_taxable_amount_sale(self):
         for rec in self:
+            print(rec.discount,"AAAAA")
             rec.taxable_amount = rec.product_uom_qty * rec.price_unit
+
+
 
 
 class StockPickingInherit(models.Model):
