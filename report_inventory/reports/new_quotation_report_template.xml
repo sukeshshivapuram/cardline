@@ -68,6 +68,7 @@
                          <br></br>
                          <br></br>
                          <table style="font-size:14px;width:100%">
+                             <t t-set="total_dis" t-value="doc.discount_calculate_quotation()"/>
                              <thead style="display: table-row-group">
                                  <t t-foreach="doc.order_line" t-as="lines"/>
                                  <tr>
@@ -76,7 +77,7 @@
                                      </th>
                                      <th style="color:#27B3CB;" name="th_quantity" class="text-center">Quantity</th>
                                      <th style="color:#27B3CB;" name="th_priceunit" class="text-center">Unit Price</th>
-                                     <th style="color:#27B3CB;" name="th_discount" t-if="lines.discount!=0.0" class="text-center">
+                                     <th style="color:#27B3CB;" name="th_discount"  t-if="total_dis>0" class="text-center">
                                          <span>Discount %</span>
                                      </th>
                                      <th style="color:#27B3CB;" name="th_taxes" class="text-center">Taxes</th>
@@ -89,29 +90,45 @@
                              </thead>
                              <tbody class="sale_tbody">
                                  <t t-set="current_subtotal" t-value="0"/>
-                                 <tr t-foreach="doc.order_line" t-as="line">
-<!--                                     <td style="padding-left:5px" name="td_code" class="text-start">-->
-<!--                                         <span style="color:black" t-field="line.product_id.default_code"/>-->
-<!--                                     </td>-->
-                                     <td style="padding-left:5px" name="td_name"><span style="color:black" t-field="line.name"/></td>
-                                    <td style="padding-right:5px" name="td_quantity" class="text-end">
-                                        <span style="color:black" t-field="line.product_uom_qty"/>
-<!--                                        <span style="color:black" t-field="line.product_uom"/>-->
-                                    </td>
-                                    <td style="padding-right:5px" name="td_priceunit" class="text-end">
-                                        <span style="color:black" t-field="line.price_unit"/>
-                                    </td>
-                                     <td style="color:black;padding-right:5px" t-if="lines.discount!=0.0" class="text-end">
-                                         <span t-field="line.discount"/>
-                                         <span style="color:black">%</span>
-                                     </td>
-                                     <td style="color:black;width:80px;padding-right:5px" name="td_taxes" class="text-end">
-                                         <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
-                                     </td>
-                                     <td style="color:black;width:90px;background:white;padding-right:5px" name="td_amount" class="text-end">
-                                        <span style="color:black"  t-set="total_sum" t-esc="doc.calculation_amount(line.price_subtotal)"/><span style="color:black" t-esc="doc.pricelist_id.currency_id.name"/>
-                                    </td>
-                                 </tr>
+                                 <t t-foreach="doc.order_line" t-as="line">
+                                     <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                         <t t-if="not line.display_type">
+        <!--                                     <td style="padding-left:5px" name="td_code" class="text-start">-->
+        <!--                                         <span style="color:black" t-field="line.product_id.default_code"/>-->
+        <!--                                     </td>-->
+                                             <td style="padding-left:5px" name="td_name"><span style="color:black" t-field="line.name"/></td>
+                                            <td style="padding-right:5px" name="td_quantity" class="text-end">
+                                                <span style="color:black" t-field="line.product_uom_qty"/>
+        <!--                                        <span style="color:black" t-field="line.product_uom"/>-->
+                                            </td>
+                                            <td style="padding-right:5px" name="td_priceunit" class="text-end">
+                                                <span style="color:black" t-field="line.price_unit"/>
+                                            </td>
+                                             <td style="color:black;padding-right:5px" t-if="line.discount" class="text-end">
+                                                 <span t-field="line.discount"/>
+                                                 <span style="color:black">%</span>
+                                             </td>
+                                             <td style="color:black;width:80px;padding-right:5px" name="td_taxes" class="text-end">
+                                                 <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
+                                             </td>
+                                             <td style="color:black;width:90px;background:white;padding-right:5px" name="td_amount" class="text-end">
+                                                <span style="color:black"  t-set="total_sum" t-esc="doc.calculation_amount(line.price_subtotal)"/><span style="color:black" t-esc="doc.pricelist_id.currency_id.name"/>
+                                            </td>
+                                     </t>
+                                         <t t-elif="line.display_type == 'line_section'">
+                                             <td style="background:white" name="td_section_line" colspan="99">
+                                                 <span style="padding-left:5px" t-field="line.name"/>
+                                             </td>
+<!--                                             <t t-set="current_section" t-value="line"/>-->
+<!--                                             <t t-set="current_subtotal" t-value="0"/>-->
+                                         </t>
+                                         <t t-elif="line.display_type == 'line_note'">
+                                             <td style="background:white" name="td_note_line" colspan="99">
+                                                 <span style="padding-left:5px" t-field="line.name"/>
+                                             </td>
+                                         </t>
+                                     </tr>
+                                 </t>
                              </tbody>
                          </table>
                          <br/>
@@ -134,7 +151,7 @@
                                      <strong><span style="padding-left:10px;color:#27B3CB" class="mt-4">Discount</span></strong>
                                  </td>
                                  <t t-if="doc.pricelist_id.currency_id.name == 'AED'">
-                                     <td t-if="lines.discount!=0.0" style="text-align:right;width: 20px;color:black;height: 30px;background:white">
+                                     <td style="text-align:right;width: 20px;color:black;height: 30px;background:white">
                                          <span style="padding-right:5px" t-esc="doc.discount_calculate_quotation()"/>
                                          <span style="padding-left:1px;padding-right:5px"
                                                t-esc="doc.pricelist_id.currency_id.symbol"/>
@@ -186,15 +203,15 @@
                              <br></br>
                              <span style="color:black">Beneficiary Name <span style="color:black;padding-left:15px">: Cardline Electronics LLC</span></span>
                              <br/>
-                             <span style="color:black">Account No  <span style="color:black;padding-left:53px'">: 10484461020001</span></span>
+                             <span style="color:black">Account No  <span style="color:black;padding-left:55px'">: 10484461020001</span></span>
                              <br/>
                              <span style="color:black">IBAN Number  <span style="color:black;padding-left:39px">: ADBC(Abudhabi Commercial Bank)</span></span>
                              <br/>
-                             <span style="color:black">Bank Name  <span style="color:black;padding-left:56px">: AE240030010484461020001</span></span>
+                             <span style="color:black">Bank Name  <span style="color:black;padding-left:57px">: AE240030010484461020001</span></span>
                              <br/>
                              <span style="color:black">Swift Code <span style="color:black;padding-left:60px">: ADCBAEAA</span></span>
                              <br/>
-                             <span style="color:black">Currency<span style="color:black;padding-left:76px">: AED.</span></span>
+                             <span style="color:black">Currency<span style="color:black;padding-left:73px">: AED.</span></span>
                              <br/>
                          </td>
 
