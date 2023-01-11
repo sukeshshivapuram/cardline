@@ -2,7 +2,9 @@ import base64
 import io
 
 import xlwt
-from odoo import api, fields, models
+from odoo import fields, models, api, _
+from odoo.exceptions import UserError
+from dateutil.relativedelta import relativedelta
 
 
 class Accounting_reportPartner_ledger(models.TransientModel):
@@ -26,6 +28,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
                                          ('customer_supplier', 'Receivable and Payable Accounts')
                                          ], string="Partner's", required=True, default='customer')
     customer_ids = fields.Many2one('res.partner', string='Customer')
+    period_length = fields.Integer(string='Period Length (days)', required=True, default=30)
 
 
     def excel_header(self,worksheet):
@@ -107,7 +110,58 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             'target_move': self.target_move,
             'amount_currency': self.amount_currency,
             'customer_ids': self.customer_ids.name,
+            'period_length': self.period_length,
+            'result_selection': self.result_selection,
         }
+        print("Data dict of Parner ledger Report",final_dict)
+
+
+        if self.period_length <= 0:
+            raise UserError(_('You must set a period length greater than 0.'))
+        if not self.date_from:
+            raise UserError(_('You must set a start date.'))
+
+        start_1 = self.date_from
+        data_1 = {}
+        res_1 = {}
+        used_context = {}
+        for i in range(5)[::-1]:
+            stop = start_1 - relativedelta(days=self.period_length - 1)
+            res_1[str(i)] = {
+                'name': (i != 0 and (
+                        str((5 - (i + 1)) * self.period_length) + '-' + str((5 - i) * self.period_length)) or (
+                                 '+' + str(4 * self.period_length))),
+                'stop': start_1.strftime('%Y-%m-%d'),
+                'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
+            }
+            # print("res str[i]///////////////", res_1[str(i)])
+            start = stop - relativedelta(days=1)
+        data_1['form'] = ({
+            'target_move': self.target_move,
+            'result_selection': self.result_selection,
+            'period_length': self.period_length,
+            'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+            'date_from': self.date_from,
+            # 'partner_ids': self.partner_ids.name,
+        })
+        # print("data[form]/////", data_1['form'])
+        used_context.update(
+            {
+                'state': self.target_move,
+                'strict_range': True,
+                'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+                'date_from': self.date_from
+
+            }
+        )
+        # print("used context", used_context)
+        data_1['form']['used_context'] = used_context
+        # print("used context assigned to data[form]", data_1['form']['used_context'])
+        data_1['form'].update(res_1)
+        # print("data which is passed to report", data_1)
+
+        final_dict['result_selection'] = data_1
+        print("finallllllllllllllllllllllllllllllllll",final_dict)
         if self._context.get('report_type') != 'excel':
             return self.env.ref('bi_partner_ledger_report.bi_report_partnerledger_action').with_context(
                 used_context).report_action(self, data=final_dict)
@@ -179,4 +233,113 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             }
             return res
 
+    # def print_report_aged_partner_1(self):
+    #     if self.period_length <= 0:
+    #         raise UserError(_('You must set a period length greater than 0.'))
+    #     if not self.date_from:
+    #         raise UserError(_('You must set a start date.'))
+    #
+    #     start_1 = self.date_from
+    #     data_1 = {}
+    #     res_1 = {}
+    #     used_context = {}
+    #     for i in range(5)[::-1]:
+    #         stop = start - relativedelta(days=self.period_length - 1)
+    #         res_1[str(i)] = {
+    #             'name': (i != 0 and (
+    #                     str((5 - (i + 1)) * self.period_length) + '-' + str((5 - i) * self.period_length)) or (
+    #                              '+' + str(4 * self.period_length))),
+    #             'stop': start.strftime('%Y-%m-%d'),
+    #             'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
+    #         }
+    #         print("res str[i]///////////////", res_1[str(i)])
+    #         start = stop - relativedelta(days=1)
+    #     data_1['form'] = ({
+    #         'target_move': self.target_move,
+    #         'result_selection': self.result_selection,
+    #         'period_length': self.period_length,
+    #         'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+    #         'date_from': self.date_from,
+    #         # 'partner_ids': self.partner_ids.name,
+    #     })
+    #     print("data[form]/////", data_1['form'])
+    #     used_context.update(
+    #         {
+    #             'state': self.target_move,
+    #             'strict_range': True,
+    #             'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+    #             'date_from': self.date_from
+    #
+    #         }
+    #     )
+    #     print("used context", used_context)
+    #     data_1['form']['used_context'] = used_context
+    #     print("used context assigned to data[form]", data_1['form']['used_context'])
+    #     data_1['form'].update(res_1)
+    #     print("data which is passed to report", data_1)
+    #     if not self._context.get('report_type') == 'excel':
+    #         return self.env.ref('bi_partner_ledger_report.action_aged_partner_balance_report').with_context(
+    #             landscape=True).report_action(self, data=data_1)
+    #
+    #     else:
+    #         pass
+            # filename = 'Aged Partner Balance.xls'
+            # workbook = xlwt.Workbook()
+            # worksheet = workbook.add_sheet('Sheet 1')
+            # self.excel_header(worksheet, res)
+            #
+            # date_format = xlwt.XFStyle()
+            # date_format.num_format_str = 'dd/mm/yyyy'
+            # style_header = xlwt.easyxf(
+            #     "font:height 300; font: name Liberation Sans, bold on,color black; align: horiz center")
+            # style_table_header = xlwt.easyxf(
+            #     "font: name Liberation Sans, bold on,color black; align: horiz center")
+            #
+            # row = 6
+            # col = 0
+            # count = 1
+            # report_values = self.env['report.bi_partner_ledger_report.bi_report_agedpartnerbalance']._get_report_values(
+            #     self, data=data)
+            # if report_values['get_partner_lines']:
+            #     worksheet.write(row, col, 'Account Total', style=style_table_header)
+            #     worksheet.write(row, col + 1, report_values['get_direction'][6], style=style_table_header)
+            #     worksheet.write(row, col + 2, report_values['get_direction'][4], style=style_table_header)
+            #     worksheet.write(row, col + 3, report_values['get_direction'][3], style=style_table_header)
+            #     worksheet.write(row, col + 4, report_values['get_direction'][2], style=style_table_header)
+            #     worksheet.write(row, col + 5, report_values['get_direction'][1], style=style_table_header)
+            #     worksheet.write(row, col + 6, report_values['get_direction'][0], style=style_table_header)
+            #     worksheet.write(row, col + 7, report_values['get_direction'][5], style=style_table_header)
+            # row += 1
+            # for partner in report_values['get_partner_lines']:
+            #     if row > 50000:
+            #         count += 1
+            #         worksheet = workbook.add_sheet('Sheet ' + str(count))
+            #         self.excel_header(worksheet)
+            #         row = 6
+            #         col = 0
+            #
+            #     worksheet.write(row, col, partner['name'])
+            #     worksheet.write(row, col + 1, partner['direction'])
+            #     worksheet.write(row, col + 2, partner['4'])
+            #     worksheet.write(row, col + 3, partner['3'])
+            #     worksheet.write(row, col + 4, partner['2'])
+            #     worksheet.write(row, col + 5, partner['1'])
+            #     worksheet.write(row, col + 6, partner['0'])
+            #     worksheet.write(row, col + 7, partner['total'])
+            #     row += 1
+            #
+            # fp = io.BytesIO()
+            # workbook.save(fp)
+            #
+            # export_id = self.env['excel.report'].create(
+            #     {'excel_file': base64.encodebytes(fp.getvalue()), 'file_name': filename})
+            # res = {
+            #     'view_mode': 'form',
+            #     'res_id': export_id.id,
+            #     'res_model': 'excel.report',
+            #     'view_type': 'form',
+            #     'type': 'ir.actions.act_window',
+            #     'target': 'new'
+            # }
+            # return res
 

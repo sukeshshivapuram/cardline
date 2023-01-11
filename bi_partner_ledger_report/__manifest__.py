@@ -12,7 +12,7 @@
         'security/ir.model.access.csv',
         'reports/reports.xml',
         'reports/report_partnerledger.xml',
-        # 'reports/report_aged_partner.xml',
+        'reports/report_aged_partner.xml',
         'wizard/partner_ledger.xml',
         'wizard/excel_report.xml',
         'wizard/account_aged_partner_balance.xml'
