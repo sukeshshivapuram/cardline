@@ -49,7 +49,7 @@
                          <br></br>
                          <tr>
                              <td t-if="doc.date_order" style="border:white;background:white;color:black">
-                                 <span style="text-align:center" t-esc="doc.date_order.date()"/>
+                                 <span class="m-0" style="text-align:center" t-field="doc.date_order" t-options='{"widget": "date"}'/>
                              </td>
                              <td t-if="doc.validity_date" style="border:white;background:white;color:black">
                                  <span style="text-align:center;padding-left:60px;" t-field="doc.validity_date"/>
