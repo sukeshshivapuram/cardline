@@ -98,7 +98,9 @@
                         </t>
 
                     </tr>
-                    <tr t-if="line.discount!=0.0"  style="width:10%;vertical-align:center;">
+                    <t t-set="total_dis" t-value="o.discount_calculate()"/>
+<!--                    <tr t-if="total_dis > 0" style="width:10%;vertical-align:center;">-->
+                    <tr t-if="total_dis > 0" style="width:10%;vertical-align:center;">
                         <td style="text-align:left;width: 20px;color:#27B3CB;">
                             <strong style="padding-left:10px" class="mt-4">Discount</strong>
                         </td>
