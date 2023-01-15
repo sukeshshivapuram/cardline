@@ -137,31 +137,33 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             # print("res str[i]///////////////", res_1[str(i)])
             start = stop - relativedelta(days=1)
         data_1['form'] = ({
-            'target_move': self.target_move,
-            'result_selection': self.result_selection,
-            'period_length': self.period_length,
-            'journal_ids': [a.id for a in self.env['account.journal'].search([])],
-            'date_from': self.date_from,
+            # 'target_move': self.target_move,
+            # 'result_selection': self.result_selection,
+            # 'period_length': self.period_length,
+            # 'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+            # 'date_from': self.date_from,
             # 'partner_ids': self.partner_ids.name,
         })
         # print("data[form]/////", data_1['form'])
-        used_context.update(
-            {
-                'state': self.target_move,
-                'strict_range': True,
-                'journal_ids': [a.id for a in self.env['account.journal'].search([])],
-                'date_from': self.date_from
+        # used_context.update(
+            # {
+                # 'state': self.target_move,
+                # 'strict_range': True,
+                # 'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+                # 'date_from': self.date_from
 
-            }
-        )
+            # }
+        # )
         # print("used context", used_context)
-        data_1['form']['used_context'] = used_context
+        # data_1['form']['used_context'] = used_context
         # print("used context assigned to data[form]", data_1['form']['used_context'])
         data_1['form'].update(res_1)
         # print("data which is passed to report", data_1)
 
-        final_dict['result_selection'] = data_1
+        final_dict['info'] = data_1
         print("finallllllllllllllllllllllllllllllllll",final_dict)
+        print("infoooooooooooooooooooooo",final_dict['info']['form']['4']['name'])
+        print("infoo3333333333333333333",final_dict['info']['form']['3']['name'])
         if self._context.get('report_type') != 'excel':
             return self.env.ref('bi_partner_ledger_report.bi_report_partnerledger_action').with_context(
                 used_context).report_action(self, data=final_dict)

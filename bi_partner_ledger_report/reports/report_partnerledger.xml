@@ -47,7 +47,7 @@
                 </div>
                 <t t-foreach="docs" t-as="o">
                     <div class="page">
-                        <table t-if="o.name == extra['customer_ids']" class="table table-condensed">
+                        <table  class="table table-condensed">
                             <thead>
                                 <tr>
                                     <th>Date</th>
@@ -62,7 +62,7 @@
                             </thead>
 
                             <tbody>
-<!--                                <t t-if="o.name == extra['customer_ids']">-->
+                                <t t-if="o.name == extra['customer_ids']">
                                     <tr>
                                         <td colspan="4">
                                             <strong style="background:white;color:black" t-esc="o.ref"/>
@@ -114,114 +114,115 @@
                                             </t>
                                         </td>
                                     </tr>
-<!--                                </t>-->
+                                </t>
                             </tbody>
                         </table>
                         <br/>
                     </div>
 
 
-<!--                    <div class="page">-->
-<!--                        <center>-->
-<!--                            <h2>Aged Partner Balance</h2>-->
-<!--                        </center>-->
+                    <div class="page">
+                        <center>
+                            <h2>Aged Partner Balance</h2>
+                        </center>
 
 <!--                        <div class="row mt32 mb32">-->
-<!--                            <div style="width:25%;">-->
-<!--                                <strong>Start Date:</strong>-->
-<!--                                <p t-esc="extra['date_from']"/>-->
-<!--                            </div>-->
-<!--                            <div style="width:25%;">-->
-<!--                                <strong>Period Length (days)</strong>-->
-<!--                                <p t-esc="extra['period_length']"/>-->
-<!--                            </div>-->
+<!--&lt;!&ndash;                            <div style="width:25%;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <strong>Start Date:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <p t-esc="extra['date_from']"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div style="width:25%;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <strong>Period Length (days)</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <p t-esc="extra['period_length']"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
 <!--                            &lt;!&ndash;                        <div style="width:25%;">&ndash;&gt;-->
 <!--                            &lt;!&ndash;                            <strong>Customer</strong>&ndash;&gt;-->
 <!--                            &lt;!&ndash;                            <p t-esc="data['partner_ids']"/>&ndash;&gt;-->
 <!--                            &lt;!&ndash;                        </div>&ndash;&gt;-->
 <!--                            <div style="width:25%;">-->
-<!--                                <strong>Partner's:</strong>-->
-<!--                                <p>-->
-<!--                                    <span t-if="extra['result_selection'] == 'customer'">Receivable Accounts</span>-->
-<!--                                    <span t-if="extra['result_selection'] == 'supplier'">Payable Accounts</span>-->
-<!--                                    <span t-if="extra['result_selection'] == 'customer_supplier'">Receivable and Payable-->
-<!--                                        Accounts-->
-<!--                                    </span>-->
-<!--                                </p>-->
+<!--&lt;!&ndash;                                <strong>Partner's:</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-if="extra['result_selection'] == 'customer'">Receivable Accounts</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-if="extra['result_selection'] == 'supplier'">Payable Accounts</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-if="extra['result_selection'] == 'customer_supplier'">Receivable and Payable&ndash;&gt;-->
+<!--&lt;!&ndash;                                        Accounts&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </p>&ndash;&gt;-->
 <!--                            </div>-->
 <!--                            <div style="width:25%;">-->
 <!--                                <strong>Target Moves:</strong>-->
-<!--                                <p>-->
-<!--                                    <span t-if="extra['target_move'] == 'all'">All Entries</span>-->
-<!--                                    <span t-if="extra['target_move'] == 'posted'">All Posted Entries</span>-->
-<!--                                </p>-->
+<!--&lt;!&ndash;                                <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-if="extra['target_move'] == 'all'">All Entries</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <span t-if="extra['target_move'] == 'posted'">All Posted Entries</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </p>&ndash;&gt;-->
 <!--                            </div>-->
 <!--                        </div>-->
 
-<!--                        <table class="table table-condensed">-->
-<!--                            <thead>-->
-<!--                                <tr>-->
-<!--                                    <th>Partners</th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span>Not due</span>-->
-<!--                                    </th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span t-esc="data_1['4']['name']"/>-->
-<!--                                    </th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span t-esc="data_1['3']['name']"/>-->
-<!--                                    </th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span t-esc="data_1['2']['name']"/>-->
-<!--                                    </th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span t-esc="data_1['1']['name']"/>-->
-<!--                                    </th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span t-esc="data_1['0']['name']"/>-->
-<!--                                    </th>-->
-<!--                                    <th class="text-right">Total</th>-->
-<!--                                </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody>-->
-<!--                                <tr t-foreach="get_partner_lines" t-as="partner">-->
-<!--                                    <t t-if="partner['name'] == extra['customer_ids']">-->
-<!--                                        <td>-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['name']"/>-->
-<!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['direction']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['4']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['3']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['2']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['1']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['0']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                        <td style="background:white" class="text-right">-->
-<!--                                            <span t-esc="partner['total']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
-<!--                                    </t>-->
-<!--                                </tr>-->
-<!--                            </tbody>-->
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Partners</th>
+                                    <th class="text-right">
+                                        <span>Not due</span>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="extra['info']['form']['4']['name']"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="extra['info']['form']['3']['name']"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="extra['info']['form']['2']['name']"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="extra['info']['form']['1']['name']"/>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="extra['info']['form']['0']['name']"/>
+                                    </th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
 <!--                        </table>-->
-<!--                    </div>-->
+                            <tbody>
+                                <tr t-foreach="get_partner_lines" t-as="partner">
+                                    <t t-if="partner['name'] == extra['customer_ids']">
+                                        <td>
+                                            <span style="background:white;color:black" t-esc="partner['name']"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="partner['direction']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="partner['4']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="partner['3']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="partner['2']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="partner['1']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="partner['0']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                        <td style="background:white" class="text-right">
+                                            <span t-esc="partner['total']"
+                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </t>
             </t>
