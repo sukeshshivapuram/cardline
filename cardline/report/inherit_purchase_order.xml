@@ -46,12 +46,12 @@
                             <strong style="color:#27B3CB;font-size:17px;">PO Date
                                 <span style="padding-left:43px;"></span>:
                             </strong>
-                            <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_approve), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                            <span class="m-0" style="text-align:center" t-field="o.date_approve" t-options='{"widget": "date"}'/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">Due Date
                                 <span style="padding-left:36px;"></span>:
                             </strong>
-                                <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.due_date), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                                <span class="m-0" style="text-align:center" t-field="o.due_date" t-options='{"widget": "date"}'/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">Reference
                                 <span style="padding-left:30px;"></span>:
