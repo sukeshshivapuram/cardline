@@ -136,23 +136,20 @@ class InvoiceFormOrderLinesInherit(models.Model):
             list.taxable_amount = list.quantity * list.price_unit
 
 
-    # def add_tax_amount(self):
-    #     for rec in self:
-    #         print(rec)
-    #         # price_sub1 = rec.taxable_amount * rec.discount / 100
-    #         price_sub2 = rec.price_subtotal + rec.l10n_ae_vat_amount
-    #         # print(rec.taxable_amount,rec.price_subtotal,"total_tax_sub")
-    #         rec.price_subtotal = price_sub2
-    #         # print(price_sub1,'price sub1')
-    #         print(price_sub2,'price sub2')
-    #         print(rec.price_subtotal,"price_subtotal")
-    #     return rec.price_subtotal
+    def add_tax_amount(self):
+        for rec in self:
+            print(rec)
+            price_sub2 = rec.price_subtotal + rec.l10n_ae_vat_amount
+            rec.price_subtotal = price_sub2
+            print(price_sub2,'price sub2')
+            print(rec.price_subtotal,"price_subtotal")
+        return rec.price_subtotal
 
 class PurchaseOrderInherit(models.Model):
     _inherit = 'purchase.order'
 
 
-    due_date = fields.Datetime(string="Due Date")
+    due_date = fields.Date(string="Due Date")
 
 
 
