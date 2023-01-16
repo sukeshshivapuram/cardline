@@ -63,9 +63,11 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         used_context = {'lang': 'en_US', 'strict_range': True, 'date_from': self.date_from,
                         'journal_ids': [a.id for a in self.journal_ids], 'date_to': self.date_to,
                         'state': self.target_move, 'reconciled': self.reconciled}
+        print(used_context,"used_context")
         query_get_data = self.env['account.move.line'].with_context(used_context)._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
+        print(query_get_data,"query_get_data")
         data['computed']['move_state'] = ['draft', 'posted']
         if self.target_move == 'posted':
             data['computed']['move_state'] = ['posted']
@@ -85,6 +87,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         data['computed']['account_ids'] = [a for (a,) in self.env.cr.fetchall()]
         params = [tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + query_get_data[2]
         reconcile_clause = "" if self.reconciled else ' AND "account_move_line".full_reconcile_id IS NULL '
+        print(reconcile_clause,"AAAAAAAAAAAAAAAAAAAAAAAAAA reconcile_clause")
         query = """
                     SELECT DISTINCT "account_move_line".partner_id
                     FROM """ + query_get_data[0] + """, account_account AS account, account_move AS am
@@ -124,7 +127,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         start_1 = self.date_from
         data_1 = {}
         res_1 = {}
-        used_context = {}
+        # used_context = {}
         for i in range(5)[::-1]:
             stop = start_1 - relativedelta(days=self.period_length - 1)
             res_1[str(i)] = {
@@ -146,13 +149,13 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         })
         # print("data[form]/////", data_1['form'])
         # used_context.update(
-            # {
-                # 'state': self.target_move,
-                # 'strict_range': True,
-                # 'journal_ids': [a.id for a in self.env['account.journal'].search([])],
-                # 'date_from': self.date_from
-
-            # }
+        #     {
+        #         'state': self.target_move,
+        #         'strict_range': True,
+        #         'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+        #         'date_from': self.date_from
+        #
+        #     }
         # )
         # print("used context", used_context)
         # data_1['form']['used_context'] = used_context

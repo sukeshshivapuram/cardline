@@ -19,6 +19,7 @@ class BiReportPartnerLedger(models.AbstractModel):
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
         reconcile_clause = "" if self._context['reconciled'] else ' AND "account_move_line".full_reconcile_id IS NULL '
+        print(reconcile_clause,"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK")
         params = [partner.id, tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + \
                  query_get_data[2]
         query = """
@@ -52,18 +53,28 @@ class BiReportPartnerLedger(models.AbstractModel):
         return full_account
 
     def _sum_partner(self, data, partner, field):
+        print(self._context)
+        print(data,"dataaaaa")
+        print(partner,"partnerrrrr")
+        print(field,"fielddddddddd")
         if field not in ['debit', 'credit', 'debit - credit']:
             return
         result = 0.0
+        print(self._context.get('used_context')," print(self._context.get('used_context'))")
+        # print(self._context['reconciled'], "self._context['reconciled']////////// in else")
         if self._context.get('used_context'):
             query_get_data = self.env['account.move.line'].with_context(self._context.get('used_context'))._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
+            print(query_get_data, "query_get_data in if")
         else:
             query_get_data = self.env['account.move.line']._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
+            print(query_get_data,"query_get_data in else")
+            # print(self._context['reconciled'],"self._context['reconciled']////////// in else")
         reconcile_clause = "" if self._context['reconciled'] else ' AND "account_move_line".full_reconcile_id IS NULL '
+        print("reconcile_clause\\\\\\\\\\\\\\\\\\",reconcile_clause)
 
         params = [partner.id, tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + \
                  query_get_data[2]
