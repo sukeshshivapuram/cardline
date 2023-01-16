@@ -46,7 +46,7 @@
                             <strong style="color:#27B3CB;font-size:17px;">PO Date
                                 <span style="padding-left:43px;"></span>:
                             </strong>
-                            <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_approve.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                            <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_approve), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">Due Date
                                 <span style="padding-left:36px;"></span>:
