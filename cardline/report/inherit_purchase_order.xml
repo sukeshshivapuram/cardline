@@ -51,7 +51,7 @@
                             <strong style="color:#27B3CB;font-size:17px;">Due Date
                                 <span style="padding-left:36px;"></span>:
                             </strong>
-                                <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.date_planned.date()), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                                <t style="font-size:16px;" t-esc="datetime.datetime.strptime(str(o.due_date), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                             <br></br>
                             <strong style="color:#27B3CB;font-size:17px;">Reference
                                 <span style="padding-left:30px;"></span>:
@@ -151,34 +151,15 @@
 
             </xpath>
 
-            <xpath expr="//t/div/div[@id='total']" position="after">
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <tr>
+            <xpath expr="//t/div/p[@t-field='o.notes']" position="after">
+                <div style="position:fixed;top:1000px;">
+<!--                    <div style="margin-top:10px;margin-bottom:10px">-->
                     <p style="font-size:15px;text-align:center;"><span/>This document is computer generated and does not
                         require a signature or the company stamp in order to be considered valid.
                     </p>
-                </tr>
+
+                </div>
+<!--                </div>-->
                 <!--                    </div>-->
 
 
