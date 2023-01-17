@@ -225,8 +225,12 @@ class BiReportAgedPartnerBalance(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
+        print("self:::::::::::::::::",self)
+        print("docids:::::::::::::::::",docids)
+        print("data:::::::::::::::::",data)
         total = []
         model = self.env.context.get('active_model')
+        print("model:::::::::::::::::::",)
         docs = self.env['bi.account.aged.partner.balance'].browse(self.env.context.get('active_id'))
 
         target_move = data['form'].get('target_move', 'all')

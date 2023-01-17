@@ -127,7 +127,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         start_1 = self.date_from
         data_1 = {}
         res_1 = {}
-        # used_context = {}
+        used_context_1 = {}
         for i in range(5)[::-1]:
             stop = start_1 - relativedelta(days=self.period_length - 1)
             res_1[str(i)] = {
@@ -140,25 +140,25 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             # print("res str[i]///////////////", res_1[str(i)])
             start = stop - relativedelta(days=1)
         data_1['form'] = ({
-            # 'target_move': self.target_move,
-            # 'result_selection': self.result_selection,
-            # 'period_length': self.period_length,
-            # 'journal_ids': [a.id for a in self.env['account.journal'].search([])],
-            # 'date_from': self.date_from,
+            'target_move': self.target_move,
+            'result_selection': self.result_selection,
+            'period_length': self.period_length,
+            'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+            'date_from': self.date_from,
             # 'partner_ids': self.partner_ids.name,
         })
         # print("data[form]/////", data_1['form'])
-        # used_context.update(
-        #     {
-        #         'state': self.target_move,
-        #         'strict_range': True,
-        #         'journal_ids': [a.id for a in self.env['account.journal'].search([])],
-        #         'date_from': self.date_from
-        #
-        #     }
-        # )
+        used_context_1.update(
+            {
+                'state': self.target_move,
+                'strict_range': True,
+                'journal_ids': [a.id for a in self.env['account.journal'].search([])],
+                'date_from': self.date_from
+
+            }
+        )
         # print("used context", used_context)
-        # data_1['form']['used_context'] = used_context
+        data_1['form']['used_context_1'] = used_context_1
         # print("used context assigned to data[form]", data_1['form']['used_context'])
         data_1['form'].update(res_1)
         # print("data which is passed to report", data_1)
