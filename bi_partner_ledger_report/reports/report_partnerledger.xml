@@ -121,7 +121,7 @@
                         </table>
                         <br/>
                     </div>
-                </t>
+<!--                </t>-->
 
                     <t t-foreach="get_partner_lines" t-as="partner">
                     <div class="page">
@@ -227,6 +227,7 @@
                         </table>
 
                     </div>
+                    </t>
                     </t>
                 </t>
             </t>
