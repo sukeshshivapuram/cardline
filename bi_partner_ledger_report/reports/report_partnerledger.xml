@@ -46,6 +46,7 @@
 
                 </div>
                 <t t-foreach="docs" t-as="o">
+                    <t t-if="o.name == extra['customer_ids']">
                     <div class="page">
                         <table  class="table table-condensed">
                             <thead>
@@ -62,7 +63,7 @@
                             </thead>
 
                             <tbody>
-                                <t t-if="o.name == extra['customer_ids']">
+<!--                                <t t-if="o.name == extra['customer_ids']">-->
                                     <tr>
                                         <td colspan="4">
                                             <strong style="background:white;color:black" t-esc="o.ref"/>
@@ -114,14 +115,15 @@
                                             </t>
                                         </td>
                                     </tr>
-                                </t>
+<!--                                </t>-->
 
                             </tbody>
                         </table>
                         <br/>
                     </div>
+                </t>
 
-
+                    <t t-foreach="get_partner_lines" t-as="partner">
                     <div class="page">
                         <center>
                             <h2>Aged Partner Balance</h2>
@@ -158,8 +160,8 @@
 <!--&lt;!&ndash;                                </p>&ndash;&gt;-->
 <!--                            </div>-->
 <!--                        </div>-->
-
-                        <table class="table table-condensed">
+<!--                        <t t-foreach="get_partner_lines" t-as="partner">-->
+                        <table class="table table-condensed" t-if="partner['name'] == extra['customer_ids']">
                             <thead>
                                 <tr>
                                     <th>Partners</th>
@@ -187,7 +189,7 @@
 <!--                        </table>-->
                             <tbody>
                                 <tr t-foreach="get_partner_lines" t-as="partner">
-                                    <t t-if="partner['name'] == extra['customer_ids']">
+<!--                                    <t t-if="partner['name'] == extra['customer_ids']">-->
                                         <td>
                                             <span style="background:white;color:black" t-esc="partner['name']"/>
                                         </td>
@@ -219,12 +221,13 @@
                                             <span t-esc="partner['total']"
                                                   t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
-                                    </t>
+<!--                                    </t>-->
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
 
+                    </div>
+                    </t>
                 </t>
             </t>
     </t>
