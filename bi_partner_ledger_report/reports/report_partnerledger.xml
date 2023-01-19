@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+<!--    <template id="bi_report_aged_partner">-->
+<!--        <t t-call="web.external_layout">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-esc="doc"/>-->
+<!--            <t t-foreach="docs" t-as="doc">-->
+<!--                <t t-esc="doc"/>-->
+<!--                <t t-call="bi_partner_ledger_report.bi_report_partnerledger"/>-->
+<!--                <t t-call="bi_partner_ledger_report.bi_report_agedpartnerbalance"/>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
     <template id="bi_report_partnerledger">
         <t t-call="web.external_layout">
         <t t-call="web.html_container">
@@ -22,10 +36,10 @@
                             <strong>Date to :</strong>
                             <span t-esc="extra['date_to']"/>
                         </t>
-                        <t t-if="extra['date_to']">
-                            <strong>Period Length :</strong>
-                            <span t-esc="extra['period_length']"/>
-                        </t>
+<!--                        <t t-if="extra['date_to']">-->
+<!--                            <strong>Period Length :</strong>-->
+<!--                            <span t-esc="extra['period_length']"/>-->
+<!--                        </t>-->
 
                     </div>
                     <div style="width:33.33%;">
@@ -123,45 +137,45 @@
                     </div>
 <!--                </t>-->
 
-                    <t t-foreach="get_partner_lines" t-as="partner">
+<!--                    <t t-foreach="get_partner_lines" t-as="partner">-->
                     <div class="page">
                         <center>
                             <h2>Aged Partner Balance</h2>
                         </center>
 
 <!--                        <div class="row mt32 mb32">-->
-<!--&lt;!&ndash;                            <div style="width:25%;">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <strong>Start Date:</strong>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <p t-esc="extra['date_from']"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <div style="width:25%;">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <strong>Period Length (days)</strong>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <p t-esc="extra['period_length']"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                        <div style="width:25%;">&ndash;&gt;-->
-<!--                            &lt;!&ndash;                            <strong>Customer</strong>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                            <p t-esc="data['partner_ids']"/>&ndash;&gt;-->
-<!--                            &lt;!&ndash;                        </div>&ndash;&gt;-->
 <!--                            <div style="width:25%;">-->
-<!--&lt;!&ndash;                                <strong>Partner's:</strong>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <span t-if="extra['result_selection'] == 'customer'">Receivable Accounts</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <span t-if="extra['result_selection'] == 'supplier'">Payable Accounts</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <span t-if="extra['result_selection'] == 'customer_supplier'">Receivable and Payable&ndash;&gt;-->
-<!--&lt;!&ndash;                                        Accounts&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </p>&ndash;&gt;-->
+<!--                                <strong>Start Date:</strong>-->
+<!--                                <p t-esc="extra['date_from']"/>-->
+<!--                            </div>-->
+<!--                            <div style="width:25%;">-->
+<!--                                <strong>Period Length (days)</strong>-->
+<!--                                <p t-esc="extra['period_length']"/>-->
+<!--                            </div>-->
+                            <!--                        <div style="width:25%;">-->
+                            <!--                            <strong>Customer</strong>-->
+                            <!--                            <p t-esc="data['partner_ids']"/>-->
+                            <!--                        </div>-->
+<!--                            <div style="width:25%;">-->
+<!--                                <strong>Partner's:</strong>-->
+<!--                                <p>-->
+<!--                                    <span t-if="extra['result_selection'] == 'customer'">Receivable Accounts</span>-->
+<!--                                    <span t-if="extra['result_selection'] == 'supplier'">Payable Accounts</span>-->
+<!--                                    <span t-if="extra['result_selection'] == 'customer_supplier'">Receivable and Payable-->
+<!--                                        Accounts-->
+<!--                                    </span>-->
+<!--                                </p>-->
 <!--                            </div>-->
 <!--                            <div style="width:25%;">-->
 <!--                                <strong>Target Moves:</strong>-->
-<!--&lt;!&ndash;                                <p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <span t-if="extra['target_move'] == 'all'">All Entries</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <span t-if="extra['target_move'] == 'posted'">All Posted Entries</span>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </p>&ndash;&gt;-->
+<!--                                <p>-->
+<!--                                    <span t-if="extra['target_move'] == 'all'">All Entries</span>-->
+<!--                                    <span t-if="extra['target_move'] == 'posted'">All Posted Entries</span>-->
+<!--                                </p>-->
 <!--                            </div>-->
 <!--                        </div>-->
-<!--                        <t t-foreach="get_partner_lines" t-as="partner">-->
-                        <table class="table table-condensed" t-if="partner['name'] == extra['customer_ids']">
+
+                        <table class="table table-condensed">
                             <thead>
                                 <tr>
                                     <th>Partners</th>
@@ -189,7 +203,7 @@
 <!--                        </table>-->
                             <tbody>
                                 <tr t-foreach="get_partner_lines" t-as="partner">
-<!--                                    <t t-if="partner['name'] == extra['customer_ids']">-->
+                                    <t t-if="partner['name'] == extra['customer_ids']">
                                         <td>
                                             <span style="background:white;color:black" t-esc="partner['name']"/>
                                         </td>
@@ -221,7 +235,7 @@
                                             <span t-esc="partner['total']"
                                                   t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
-<!--                                    </t>-->
+                                    </t>
                                 </tr>
                             </tbody>
                         </table>
@@ -231,6 +245,6 @@
                     </t>
                 </t>
             </t>
-    </t>
+<!--    </t>-->
     </template>
 </odoo>

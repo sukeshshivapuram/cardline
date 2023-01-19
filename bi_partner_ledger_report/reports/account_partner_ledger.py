@@ -9,10 +9,12 @@ class BiReportPartnerLedger(models.AbstractModel):
     _description="Report Partner Ledger"
 
     def _lines(self, data, partner):
+        print("in lines function (partner legder)||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
         print("dataaaaaaaaaaaaaaaaaaaaaa^^^^^",data)
         print("partnerrrrrrrrrrrrrraaaaaaaaaaaaaaaa&&&&&&&&a",partner)
         full_account = []
         currency = self.env['res.currency']
+        print("currency",currency)
         if self._context.get('used_context'):
             query_get_data = self.env['account.move.line'].with_context(self._context.get('used_context'))._where_calc([
             ('company_id', '=', self.env.company.id)
@@ -38,6 +40,7 @@ class BiReportPartnerLedger(models.AbstractModel):
                 ORDER BY "account_move_line".date"""
         self.env.cr.execute(query, tuple(params))
         res = self.env.cr.dictfetchall()
+        print(res,"resssssssssssssssssssssssssssssss")
         sum = 0.0
         lang_code = self.env.context.get('lang') or 'en_US'
         lang = self.env['res.lang']
@@ -56,6 +59,7 @@ class BiReportPartnerLedger(models.AbstractModel):
         return full_account
 
     def _sum_partner(self, data, partner, field):
+        print("In sum partner (partner legder)||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
         print(self._context)
         print(data,"dataaaaa")
         print(partner,"partnerrrrr")
@@ -81,6 +85,7 @@ class BiReportPartnerLedger(models.AbstractModel):
 
         params = [partner.id, tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + \
                  query_get_data[2]
+        print("paramsssss",params)
         query = """SELECT sum(""" + field + """)
                 FROM """ + query_get_data[0] + """, account_move AS m
                 WHERE "account_move_line".partner_id = %s
@@ -91,19 +96,59 @@ class BiReportPartnerLedger(models.AbstractModel):
         self.env.cr.execute(query, tuple(params))
 
         contemp = self.env.cr.fetchone()
+        print(contemp,'----------------------------------------------')
         if contemp is not None:
             result = contemp[0] or 0.0
-
+        print("resulttttttt",result)
         return result
 
 
     @api.model
     def _get_report_values(self, docids, data=None):
+        print("IN get report values (partner ledger)|||||||||||||||||||||||||||||")
+        print(self,"sssssssseeeeeeeeeeelllllllllllllllllllfffffffffff")
+        print(docids,"dddddddddddoooooooooociiiiiiiiiidsss")
+        print(data,"dataaaaaaaaaaaa")
         docs = data.get('docs')
+        print(docs,"ddddocs")
         temp = []
         for a in docs:
             temp.append((self.env['res.partner'].browse(int(a))))
+            print((self.env['res.partner'].browse(int(a))), "self.env['res.partner']//////////////")
+        print(temp,"tttttttttempppppppppppppppp")
+        print((self.env['res.partner'].browse(int(a))),"self.env['res.partner']//////////////")
+        # print("?????????????????????????????")
+        total = []
+        model = self.env.context.get('active_model')
+        print("model:::::::::::::::::::",model)
+        docs = self.env['bi.account.aged.partner.balance'].browse(self.env.context.get('active_id'))
+        print("doooocsss",docs)
+        target_move = data.get('target_move', 'all')
+        print("target valueeeee",target_move)
+        date_from = data.get('date_from', time.strftime('%Y-%m-%d'))
+
+        if ['result_selection'] == 'customer':
+            account_type = ['asset_receivable']
+        elif ['result_selection'] == 'supplier':
+            account_type = ['liability_payable']
+        else:
+            account_type = ['liability_payable', 'asset_receivable']
+        movelines, total, dummy = self._get_partner_move_lines(account_type, date_from, target_move,
+                                                                   data['period_length'])
+        print(self.ids,"self idsss")
+        print(model,"model::::::::::::::")
+        print(docs,"docs")
+        print(movelines,"movelines")
+        print(total,"total")
+
         abc = {
+            # 'doc_ids': self.ids,
+            # 'doc_model': model,
+            # 'data': data,
+            # 'docs': docs,
+            # 'time': time,
+            'get_partner_lines': movelines,
+            'get_direction': total,
             'date_from': data.get('date_from'),
             'doc_ids': data.get('partner_ids'),
             'doc_model': self.env['res.partner'],
@@ -114,15 +159,25 @@ class BiReportPartnerLedger(models.AbstractModel):
             'extra': data,
             'sum_partner': self._sum_partner,
         }
+        print("data.get('partner_ids')//",data.get('partner_ids'))
+        print("data.get('data')//",data.get('data'))
+        print("abc dict",abc)
+        print("?????????????????????????????")
         return abc
 
     def _get_partner_move_lines(self, account_type, date_from, target_move, period_length):
+        print("self?????????????????????????????????",self)
+        print("in get partner move lines")
+        print("accountype in get psrtnermove lines",account_type)
         periods = {}
         if self._context.get('report_type') == 'excel':
             start = date_from
+            print("start in if",start)
         else:
             start = datetime.strptime(date_from, "%Y-%m-%d")
+            print("start in else", start)
         for i in range(5)[::-1]:
+            print("IN  for")
             stop = start - relativedelta(days=period_length)
             period_name = str((5 - (i + 1)) * period_length + 1) + '-' + str((5 - i) * period_length)
             period_stop = (start - relativedelta(days=1)).strftime('%Y-%m-%d')
@@ -138,17 +193,23 @@ class BiReportPartnerLedger(models.AbstractModel):
         res = []
         total = []
         cr = self.env.cr
+        print(cr,"cccccccccccccrrrrrrrrrrr")
         company_ids = self.env.context.get('company_ids', (self.env.user.company_id.id,))
+        print("cpmpany ids",company_ids)
         move_state = ['draft', 'posted']
         if target_move == 'posted':
+            print("IN IF")
             move_state = ['posted']
         arg_list = (tuple(move_state), tuple(account_type))
-
+        print("arg_list",arg_list)
         reconciliation_clause = '(l.reconciled IS FALSE)'
         cr.execute('SELECT debit_move_id, credit_move_id FROM account_partial_reconcile where create_date > %s',
                    (date_from,))
+        print("reconciliation_clause",reconciliation_clause)
+        print("cr.fetchalll",cr.fetchall())
         reconciled_after_date = []
         for row in cr.fetchall():
+            print("in second for")
             reconciled_after_date += [row[0], row[1]]
         if reconciled_after_date:
             reconciliation_clause = '(l.reconciled IS FALSE OR l.id IN %s)'
@@ -327,49 +388,47 @@ class BiReportPartnerLedger(models.AbstractModel):
 
             if at_least_one_amount or (self._context.get('include_nullified_amount') and lines[partner['partner_id']]):
                 res.append(values)
-
+        print(res,"res")
+        print(total,"total")
+        print(lines,"lines")
         return res, total, lines
 
-    @api.model
-    def _get_report_values_aged(self, docids, data=None):
-        print(self,"self////////")
-        print(docids,"docids////////")
-        print(data,"data////////")
-        print(data['docs'],"data[docs]/////////////////")
-        total = []
-        model = self.env.context.get('active_model')
-        print(model,"model'''''''''''''''''''")
-        docs = self.env['bi.account.aged.partner.balance'].browse(self.env.context.get('active_id'))
-        print(docs,"docs?????????????")
-        target_move = data.get('target_move', 'all')
-        print(target_move,"target move"""""""""""""""'')
-        date_from = data.get('date_from', time.strftime('%Y-%m-%d'))
-        print("date from??????????????????????",date_from)
-        print("data result selection",data['result_selection'])
-        if ['result_selection'] == 'customer':
-            account_type = ['asset_receivable']
-        elif ['result_selection'] == 'supplier':
-            account_type = ['liability_payable']
-        else:
-            account_type = ['liability_payable', 'asset_receivable']
-        movelines, total, dummy = self._get_partner_move_lines(account_type, date_from, target_move,
-                                                               data['period_length'])
-        print(self.ids,"self ids###############")
-        print(model,"model   ###############")
-        print(data,"data   ###############")
-        print(docs,"docs  s###############")
-        print(time,"time   ###############")
-        print(movelines,"movelines   s###############")
-        print(total,"total   ###############")
-        return {
-            'doc_ids': self.ids,
-            'doc_model': model,
-            'data': data,
-            'docs': docs,
-            'time': time,
-            'get_partner_lines': movelines,
-            'get_direction': total,
-        }
+    # @api.model
+    # def _get_report_values(self, docids, data=None):
+    #     print("self:::::::::::::::::", self)
+    #     print("docids:::::::::::::::::", docids)
+    #     print("data:::::::::::::::::", data)
+    #     total = []
+    #     model = self.env.context.get('active_model')
+    #     print("model:::::::::::::::::::",model)
+    #     docs = self.env['bi.account.aged.partner.balance'].browse(self.env.context.get('active_id'))
+    #     print("doooocsss",docs)
+    #     target_move = data.get('target_move', 'all')
+    #     print("target valueeeee",target_move)
+    #     date_from = data.get('date_from', time.strftime('%Y-%m-%d'))
+    #
+    #     if ['result_selection'] == 'customer':
+    #         account_type = ['asset_receivable']
+    #     elif ['result_selection'] == 'supplier':
+    #         account_type = ['liability_payable']
+    #     else:
+    #         account_type = ['liability_payable', 'asset_receivable']
+    #     movelines, total, dummy = self._get_partner_move_lines(account_type, date_from, target_move,
+    #                                                            data['period_length'])
+    #     print(self.ids,"self idsss")
+    #     print(model,"model::::::::::::::")
+    #     print(docs,"docs")
+    #     print(movelines,"movelines")
+    #     print(total,"total")
+    #     return {
+    #         'doc_ids': self.ids,
+    #         'doc_model': model,
+    #         'data': data,
+    #         'docs': docs,
+    #         'time': time,
+    #         'get_partner_lines': movelines,
+    #         'get_direction': total,
+    #     }
 
     # def remove_character(self,income):
     #     print("hi")

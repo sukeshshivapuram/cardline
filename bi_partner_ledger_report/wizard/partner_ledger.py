@@ -67,7 +67,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         query_get_data = self.env['account.move.line'].with_context(used_context)._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
-        print(query_get_data,"query_get_data")
+        # print(query_get_data,"query_get_data")
         data['computed']['move_state'] = ['draft', 'posted']
         if self.target_move == 'posted':
             data['computed']['move_state'] = ['posted']
@@ -87,7 +87,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         data['computed']['account_ids'] = [a for (a,) in self.env.cr.fetchall()]
         params = [tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + query_get_data[2]
         reconcile_clause = "" if self.reconciled else ' AND "account_move_line".full_reconcile_id IS NULL '
-        print(reconcile_clause,"AAAAAAAAAAAAAAAAAAAAAAAAAA reconcile_clause")
+        # print(reconcile_clause,"AAAAAAAAAAAAAAAAAAAAAAAAAA reconcile_clause")
         query = """
                     SELECT DISTINCT "account_move_line".partner_id
                     FROM """ + query_get_data[0] + """, account_account AS account, account_move AS am
@@ -116,7 +116,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             'period_length': self.period_length,
             'result_selection': self.result_selection,
         }
-        print("Data dict of Parner ledger Report",final_dict)
+        # print("Data dict of Parner ledger Report",final_dict)
 
 
         if self.period_length <= 0:
@@ -137,7 +137,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
                 'stop': start_1.strftime('%Y-%m-%d'),
                 'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
             }
-            # print("res str[i]///////////////", res_1[str(i)])
+            print("res str[i]///////////////", res_1[str(i)])
             start = stop - relativedelta(days=1)
         data_1['form'] = ({
             'target_move': self.target_move,
@@ -147,7 +147,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             'date_from': self.date_from,
             # 'partner_ids': self.partner_ids.name,
         })
-        # print("data[form]/////", data_1['form'])
+        print("data[form]/////", data_1['form'])
         used_context_1.update(
             {
                 'state': self.target_move,
@@ -159,9 +159,9 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         )
         # print("used context", used_context)
         data_1['form']['used_context_1'] = used_context_1
-        # print("used context assigned to data[form]", data_1['form']['used_context'])
+        print("used context assigned to data[form]", data_1['form']['used_context_1'])
         data_1['form'].update(res_1)
-        # print("data which is passed to report", data_1)
+        print("data which is passed to report", data_1)
 
         final_dict['info'] = data_1
         print("finallllllllllllllllllllllllllllllllll",final_dict)
