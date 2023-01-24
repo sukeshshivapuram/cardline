@@ -136,5 +136,21 @@ class InvoiceFormOrderLinesInherit(models.Model):
             list.taxable_amount = list.quantity * list.price_unit
 
 
+    def add_tax_amount(self):
+        for rec in self:
+            print(rec)
+            price_sub2 = rec.price_subtotal + rec.l10n_ae_vat_amount
+            rec.price_subtotal = price_sub2
+            print(price_sub2,'price sub2')
+            print(rec.price_subtotal,"price_subtotal")
+        return rec.price_subtotal
+
+class PurchaseOrderInherit(models.Model):
+    _inherit = 'purchase.order'
+
+
+    due_date = fields.Date(string="Due Date")
+
+
 
 

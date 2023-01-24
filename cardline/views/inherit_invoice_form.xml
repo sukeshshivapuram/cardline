@@ -10,8 +10,11 @@
                     <field name="uom" invisible="1"/>
                 </xpath>
                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='price_unit']" position="after">
-                    <field name="taxable_amount"/>
+                    <field name="taxable_amount" readonly="0"/>
                 </xpath>
+<!--                <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='l10n_ae_vat_amount']" position="attribute">-->
+<!--                    <attribute name="l10n_ae_vat_amount" readonly="0"/>-->
+<!--                </xpath>-->
                 <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="replace">
                     <field name="discount" string="Discount" optional="hide"/>
                 </xpath>
@@ -30,5 +33,16 @@
 <!--        </record>-->
 
 
+
+           <record id="inherit_purchase_order_form_model" model="ir.ui.view">
+            <field name="name">inherit.purchase.order.form.model</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group/field[@name='currency_id']" position="after">
+                    <field name="due_date"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
