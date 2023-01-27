@@ -74,6 +74,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
                 'stop': start.strftime('%Y-%m-%d'),
                 'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
             }
+            print("res str[i]///////////////",res[str(i)])
             start = stop - relativedelta(days=1)
         data['form'] = ({
             'target_move': self.target_move,
@@ -83,6 +84,7 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
             'date_from': self.date_from,
             'partner_ids': self.partner_ids.name,
         })
+        print("data[form]/////",data['form'])
         used_context.update(
             {
                 'state': self.target_move,
@@ -92,8 +94,11 @@ class BiAccountAgedPartnerBalance(models.TransientModel):
 
             }
         )
+        print("used context",used_context)
         data['form']['used_context'] = used_context
+        print("used context assigned to data[form]", data['form']['used_context'])
         data['form'].update(res)
+        print("data which is passed to report",data)
         if not self._context.get('report_type') == 'excel':
             return self.env.ref('bi_partner_ledger_report.action_aged_partner_balance_report').with_context(
                 landscape=True).report_action(self, data=data)

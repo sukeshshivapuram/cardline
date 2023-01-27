@@ -16,6 +16,8 @@
                 <field name="date_from"/>
                 <field name="date_to"/>
                 <field name="customer_ids"/>
+                <field name="period_length"/>
+                <field name="statement_no"/>
             </group>
             <group>
                 <field name="journal_ids" widget="many2many_tags" options="{'no_create': True}"/>
