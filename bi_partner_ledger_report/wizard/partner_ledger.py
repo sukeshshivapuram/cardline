@@ -29,6 +29,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
                                          ], string="Partner's", required=True, default='customer')
     customer_ids = fields.Many2one('res.partner', string='Customer')
     period_length = fields.Integer(string='Period Length (days)', required=True, default=30)
+    statement_no = fields.Char(string='Statement Number')
 
 
     def excel_header(self,worksheet):
@@ -103,6 +104,8 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         partners = obj_partner.browse(partner_ids)
         partners = sorted(partners, key=lambda x: (x.ref or '', x.name or ''))
         docs = partners
+        curr = self.env['res.currency']
+        print(curr,"currency result////////////////////")
         final_docs = [a.id for a in docs]
         final_dict = {
             'data': data,
@@ -115,6 +118,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             'customer_ids': self.customer_ids.name,
             'period_length': self.period_length,
             'result_selection': self.result_selection,
+            'statement_no':self.statement_no,
         }
         # print("Data dict of Parner ledger Report",final_dict)
 
@@ -129,10 +133,13 @@ class Accounting_reportPartner_ledger(models.TransientModel):
         res_1 = {}
         used_context_1 = {}
         for i in range(5)[::-1]:
+            print("i",i)
             stop = start_1 - relativedelta(days=self.period_length - 1)
+            print("stop",stop)
+            print("self period length",self.period_length)
             res_1[str(i)] = {
                 'name': (i != 0 and (
-                        str((5 - (i + 1)) * self.period_length) + '-' + str((5 - i) * self.period_length)) or (
+                        str(((5 - (i + 1)) * self.period_length)+1) + '-' + str((5 - i) * self.period_length)) or (
                                  '+' + str(4 * self.period_length))),
                 'stop': start_1.strftime('%Y-%m-%d'),
                 'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
@@ -165,7 +172,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
 
         final_dict['info'] = data_1
         print("finallllllllllllllllllllllllllllllllll",final_dict)
-        print("infoooooooooooooooooooooo",final_dict['info']['form']['4']['name'])
+        # print("infoooooooooooooooooooooo",final_dict['info']['form']['4']['name'])
         print("infoo3333333333333333333",final_dict['info']['form']['3']['name'])
         if self._context.get('report_type') != 'excel':
             return self.env.ref('bi_partner_ledger_report.bi_report_partnerledger_action').with_context(

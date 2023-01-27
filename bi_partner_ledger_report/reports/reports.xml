@@ -18,14 +18,13 @@
 <!--            </function>-->
         </record>
 
-<!--        <record id="action_aged_partner_balance_report" model="ir.actions.report">-->
-<!--            <field name="name">Aged Partner Balance</field>-->
-<!--            <field name="model">bi.account.aged.partner.balance</field>-->
-<!--            <field name="report_type">qweb-pdf</field>-->
-<!--            <field name="report_name">bi_partner_ledger_report.bi_report_agedpartnerbalance</field>-->
-<!--            <field name="report_file">bi_partner_ledger_report.bi_report_agedpartnerbalance</field>-->
-<!--        </record>-->
-
+        <record id="action_aged_partner_balance_report" model="ir.actions.report">
+            <field name="name">Aged Partner Balance</field>
+            <field name="model">bi.account.aged.partner.balance</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bi_partner_ledger_report.bi_report_agedpartnerbalance</field>
+            <field name="report_file">bi_partner_ledger_report.bi_report_agedpartnerbalance</field>
+        </record>
 
     </data>
 </odoo>

@@ -16,19 +16,24 @@ class BiReportPartnerLedger(models.AbstractModel):
         currency = self.env['res.currency']
         print("currency",currency)
         if self._context.get('used_context'):
+            print("if            self._context.get('used_context')",self._context.get('used_context'))
             query_get_data = self.env['account.move.line'].with_context(self._context.get('used_context'))._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
+            print("query_get_data",query_get_data)
         else:
+            print("else          self._context.get('used_context')", self._context.get('used_context'))
             query_get_data = self.env['account.move.line']._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
+            print("query_get_data", query_get_data)
         reconcile_clause = "" if self._context['reconciled'] else ' AND "account_move_line".full_reconcile_id IS NULL '
         print(reconcile_clause,"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK")
         params = [partner.id, tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + \
                  query_get_data[2]
+        print("paramas  ",params)
         query = """
-            SELECT "account_move_line".id, "account_move_line".date, j.code, acc.code as a_code, acc.name as a_name, "account_move_line".ref, m.name as move_name, "account_move_line".name, "account_move_line".debit, "account_move_line".credit, "account_move_line".amount_currency,"account_move_line".currency_id, c.symbol AS currency_code
+            SELECT "account_move_line".id, "account_move_line".date, j.code, acc.code as a_code, acc.name as a_name, "account_move_line".ref, m.name as move_name, "account_move_line".name, "account_move_line".debit, "account_move_line".credit, "account_move_line".amount_currency,"account_move_line".currency_id,"account_move_line".date_maturity, c.symbol AS currency_code
             FROM """ + query_get_data[0] + """
             LEFT JOIN account_journal j ON ("account_move_line".journal_id = j.id)
             LEFT JOIN account_account acc ON ("account_move_line".account_id = acc.id)
@@ -56,6 +61,7 @@ class BiReportPartnerLedger(models.AbstractModel):
             r['progress'] = sum
             r['currency_id'] = currency.browse(r.get('currency_id'))
             full_account.append(r)
+        print("full account",full_account)
         return full_account
 
     def _sum_partner(self, data, partner, field):
@@ -67,7 +73,7 @@ class BiReportPartnerLedger(models.AbstractModel):
         if field not in ['debit', 'credit', 'debit - credit']:
             return
         result = 0.0
-        print(self._context.get('used_context')," print(self._context.get('used_context'))")
+        print(self._context.get('used_context'), " print(self._context.get('used_context'))")
         # print(self._context['reconciled'], "self._context['reconciled']////////// in else")
         if self._context.get('used_context'):
             query_get_data = self.env['account.move.line'].with_context(self._context.get('used_context'))._where_calc([
