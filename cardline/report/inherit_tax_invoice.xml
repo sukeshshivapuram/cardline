@@ -99,7 +99,6 @@
 
                     </tr>
                     <t t-set="total_dis" t-value="o.discount_calculate()"/>
-<!--                    <tr t-if="total_dis > 0" style="width:10%;vertical-align:center;">-->
                     <tr t-if="total_dis > 0" style="width:10%;vertical-align:center;">
                         <td style="text-align:left;width: 20px;color:#27B3CB;">
                             <strong style="padding-left:10px" class="mt-4">Discount</strong>
@@ -274,7 +273,7 @@
                                 t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}" style="color:#27B3CB;">
                                 <span>Disc.%</span>
                             </th>
-                            <th name="th_taxes" style="width:80px;color:#27B3CB;"
+                            <th name="th_taxes" style="width:85px;color:#27B3CB;"
                                 t-attf-class="text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                 <span>TAX %</span>
                             </th>
@@ -285,6 +284,7 @@
                             <th name="th_subtotal" class="text-center" style="color:#27B3CB;">
                                 <span groups="account.group_show_line_subtotals_tax_excluded">TOTAL</span>
                                 <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+<!--                                <span>TOTAL</span>-->
                             </th>
                         </tr>
                     </thead>
@@ -323,7 +323,7 @@
                                         <span class="text-nowrap" t-field="line.discount"/>
                                         <span>%</span>
                                     </td>
-                                    <td style="color:black;width:70px;"
+                                    <td style="color:black;width:80px;"
                                         t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
                                         <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))"
                                               id="line_tax_ids"/>
@@ -332,10 +332,11 @@
                                         <span t-field="line.l10n_ae_vat_amount"/>
                                     </td>
                                     <td style="background:white;color:black;" class="text-end o_price_total">
-                                        <span class="text-nowrap" t-field="line.price_subtotal"
+                                        <span class="text-nowrap" t-esc="line.price_subtotal + line.l10n_ae_vat_amount"
                                               groups="account.group_show_line_subtotals_tax_excluded"/>
-                                        <span class="text-nowrap" t-field="line.price_total"
-                                              groups="account.group_show_line_subtotals_tax_included"/>
+                                        <span class="text-nowrap" t-esc="line.price_total + line.l10n_ae_vat_amount"
+                                              groups="account.group_show_line_subtotals_tax_included"/><span style="padding-left:3px" t-esc="o.currency_id.symbol"/>
+<!--                                        <span t-esc="line.add_tax_amount()"/>-->
                                     </td>
                                 </t>
                                 <t t-if="line.display_type == 'line_section'">
