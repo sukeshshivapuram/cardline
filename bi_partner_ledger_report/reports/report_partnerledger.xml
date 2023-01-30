@@ -8,14 +8,18 @@
             <t t-set="data_report_margin_top" t-value="12"/>
             <t t-set="data_report_header_spacing" t-value="9"/>
             <t t-set="data_report_dpi" t-value="110"/>
-            <center><h2 style="color:#27B3CB;font-size:30px;">STATEMENT OF ACCOUNTS</h2></center>
+<!--            <center><strong style="color:#27B3CB;font-size:20px;">STATEMENT OF ACCOUNTS</strong></center>-->
+            <h2 style="text-align:center;font-size:30px" class="mt-4">
+                <strong style="color:#27B3CB;font-size:30px;">STATEMENT OF ACCOUNTS</strong>
+<!--                <span style="color:#27B3CB;;position: relative;bottom: 15px;" t-field="doc.name"/>-->
+            </h2>
             <t t-foreach="docs" t-as="o">
                     <t t-if="o.name == extra['customer_ids']">
                         <div class="page">
                             <table t-if="o.name=='credit'" class="table table-condensed">
                                 <thead>
                                     <tr>
-                                        <th>Date</th>
+                                        <th style="font-weight:normal;">Date</th>
                                         <th>Transaction</th>
                                         <th>Due Date</th>
                                         <!--                                    <th>Document Number</th>-->
@@ -91,18 +95,25 @@
 <!--                    </t>-->
 <!--            </t>-->
             <div id="partner_header">
-                    <div style="width:33.33%;">
-                        <strong style="color:#27B3CB;position:relative;bottom:-30px;">Bill To:</strong>
-                        <p style="color:black;position:relative;bottom:-30px;" t-esc="extra['customer_ids']"/>
+                    <div style="width:33.33%;position:relative;bottom:-45px;">
+                        <strong style="color:#27B3CB;position:relative;bottom:5px;">Bill To:</strong><br/>
+                        <t style="color:black;" t-esc="extra['customer_ids']"/><br/>
+                        <t style="color:#0C0C0C;" t-esc="o.street"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.street2"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.city"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.state_id.name"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.zip"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.country_id.name"/><br/>
+
                     </div>
-                    <div style="position:relative;bottom:30px;padding-left:250px">
+                    <div style="position:relative;bottom:85px;padding-left:280px">
                         <t>
                             <strong style="color:#27B3CB;">Date :</strong><span style="padding-left:85px;"></span>:
-                            <span style="color:black" t-esc="datetime.datetime.now().strftime('%m-%d-%Y')"/>
+                            <span style="color:black" t-esc="datetime.datetime.now().strftime('%d-%m-%Y')"/>
                             <br/>
                         </t>
                         <t>
-                            <strong style="color:#27B3CB;">Statement No.# </strong><span style="padding-left:15px;"></span>:
+                            <strong style="color:#27B3CB;">Statement No.</strong><span style="padding-left:25px;"></span>:
                             <span style="color:black" t-esc="extra['statement_no']"/>
                         </t><br/>
                         <t>
@@ -110,10 +121,10 @@
                             <span style="color:black">AED</span>
                         </t>
                     </div>
-                    <div style="position:relative;bottom:130px;padding-left:600px">
+                    <div style="position:relative;bottom:185px;padding-left:610px">
                         <u style="color:#27B3CB;"><strong style="color:#27B3CB;font-size:15px;padding:left:50%">Account Summary</strong></u><br/>
                     </div>
-                    <div style="position:relative;bottom:120px;padding-left:550px">
+                    <div style="position:relative;bottom:175px;padding-left:560px">
                         <t>
                             <strong style="color:#27B3CB;padding-left:10px">Credit</strong><span style="padding-left:99px;"></span>:
                             <span style=";color:black" t-esc="sum_partner(data, o, 'credit')"
@@ -137,13 +148,13 @@
                 </div>
 <!--                <t t-foreach="docs" t-as="o">-->
                     <t t-if="o.name == extra['customer_ids']">
-                    <div style = "position:relative;bottom:50px;">
+                    <div style = "position:relative;bottom:70px;">
                         <table class="table table-condensed">
                             <thead>
-                                <tr style="font-size:12px">
-                                    <th style="width:20%">Date</th>
-                                    <th>Transaction</th>
-                                    <th>Due Date</th>
+                                <tr style="font-size:14px">
+                                    <b><th style="width:15%">Date</th></b>
+                                    <b><th>Transaction</th></b>
+                                    <th style="width:15%">Due Date</th>
 <!--                                    <th>Document Number</th>-->
                                     <th>Debit</th>
                                     <th>Credit</th>
@@ -173,16 +184,18 @@
 <!--                                                    t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
 <!--                                        </td>-->
 <!--                                    </tr>-->
-                                    <tr t-foreach="lines(data, o)" t-as="line">
+                                    <tr style="font-size:12px;text-align:center" t-foreach="lines(data, o)" t-as="line">
                                         <td>
-                                            <span style="background:white;color:black" t-esc="line['date']"/>
+<!--                                            <span style="background:white;color:black" t-esc="line['date']"/>-->
+                                            <span style="background:white;color:black;text-align:center" t-esc="datetime.datetime.strptime(str(line['date']), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
                                         </td>
                                         <td>
-                                            <span style="background:white;color:black" t-esc="line['name']"/>
+                                            <span style="background:white;color:black;text-align:center" t-esc="line['name']"/>
                                         </td>
                                         <td>
 <!--                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>-->
-                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date"}'/>
+                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+<!--                                            <span style="color:black" t-esc="datetime.datetime.strptime(str(line['date_maturity']), '%m-%d-%Y').strftime('%d/%m/%Y')"/>-->
                                         </td>
 <!--                                        <td>-->
 <!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
@@ -254,7 +267,7 @@
 
                         <table class="table table-condensed">
                             <thead>
-                                <tr style="font-size:11px">
+                                <tr style="font-size:12px">
 <!--                                    <th>Partners</th>-->
 <!--                                    <th class="text-right">-->
 <!--                                        <span>Not due</span>-->
@@ -280,7 +293,7 @@
                             </thead>
 <!--                        </table>-->
                             <tbody>
-                                <tr t-foreach="get_partner_lines" t-as="partner">
+                                <tr style="font-size:12px;text-align:center" t-foreach="get_partner_lines" t-as="partner">
                                     <t t-if="partner['name'] == extra['customer_ids']">
 <!--                                        <td>-->
 <!--                                            <span style="background:white;color:black" t-esc="partner['name']"/>-->
@@ -291,23 +304,23 @@
 <!--                                        </td>-->
                                         <td class="text-right">
                                             <span style="background:white;color:black;text-align:left" t-esc="partner['4']"
-                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                 />
                                         </td>
                                         <td class="text-right">
                                             <span style="background:white;color:black" t-esc="partner['3']"
-                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                  />
                                         </td>
                                         <td class="text-right">
                                             <span style="background:white;color:black" t-esc="partner['2']"
-                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                 />
                                         </td>
                                         <td class="text-right">
                                             <span style="background:white;color:black" t-esc="partner['1']"
-                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                  />
                                         </td>
                                         <td class="text-right">
                                             <span style="background:white;color:black" t-esc="partner['0']"
-                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                  />
                                         </td>
 <!--                                        <td style="background:white" class="text-right">-->
 <!--                                            <span t-esc="partner['total']"-->
@@ -315,7 +328,7 @@
 <!--                                        </td>-->
                                         <td style="background:white" class="text-right">
                                             <span style="color:black" t-esc="partner['total']"
-                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                 />
                                         </td>
                                     </t>
                                 </tr>
@@ -324,7 +337,7 @@
                     </div>
                         <br/>
                         <br/>
-                     <div style="position:relative;bottom:-155px;">
+                     <div style="position:relative;bottom:-155px;;">
                          <br/>
                          <p style="text-align:center;color:black">Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
                          <br/>

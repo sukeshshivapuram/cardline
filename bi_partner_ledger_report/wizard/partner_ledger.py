@@ -119,6 +119,7 @@ class Accounting_reportPartner_ledger(models.TransientModel):
             'period_length': self.period_length,
             'result_selection': self.result_selection,
             'statement_no':self.statement_no,
+
         }
         # print("Data dict of Parner ledger Report",final_dict)
 
