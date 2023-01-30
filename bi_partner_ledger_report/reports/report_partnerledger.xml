@@ -91,11 +91,18 @@
 <!--                    </t>-->
 <!--            </t>-->
             <div id="partner_header">
-                    <div style="width:33.33%;">
-                        <strong style="color:#27B3CB;position:relative;bottom:-30px;">Bill To:</strong>
-                        <p style="color:black;position:relative;bottom:-30px;" t-esc="extra['customer_ids']"/>
+                    <div style="width:33.33%;position:relative;bottom:-30px;">
+                        <strong style="color:#27B3CB;position:relative;bottom:5px;">Bill To:</strong><br/>
+                        <t style="color:black;position:relative;bottom:10px;" t-esc="extra['customer_ids']"/><br/>
+                        <t style="color:#0C0C0C;position:relative;bottom:7px;" t-esc="o.street"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.street2"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.city"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.state_id.name"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.zip"/><br/>
+                        <t style="color:#0C0C0C" t-esc="o.vat"/><br/>
+
                     </div>
-                    <div style="position:relative;bottom:30px;padding-left:250px">
+                    <div style="position:relative;bottom:100px;padding-left:250px">
                         <t>
                             <strong style="color:#27B3CB;">Date :</strong><span style="padding-left:85px;"></span>:
                             <span style="color:black" t-esc="datetime.datetime.now().strftime('%m-%d-%Y')"/>
@@ -110,10 +117,10 @@
                             <span style="color:black">AED</span>
                         </t>
                     </div>
-                    <div style="position:relative;bottom:130px;padding-left:600px">
+                    <div style="position:relative;bottom:200px;padding-left:600px">
                         <u style="color:#27B3CB;"><strong style="color:#27B3CB;font-size:15px;padding:left:50%">Account Summary</strong></u><br/>
                     </div>
-                    <div style="position:relative;bottom:120px;padding-left:550px">
+                    <div style="position:relative;bottom:190px;padding-left:550px">
                         <t>
                             <strong style="color:#27B3CB;padding-left:10px">Credit</strong><span style="padding-left:99px;"></span>:
                             <span style=";color:black" t-esc="sum_partner(data, o, 'credit')"
@@ -324,7 +331,7 @@
                     </div>
                         <br/>
                         <br/>
-                     <div style="position:relative;bottom:-155px;">
+                     <div style="position:relative;bottom:-155px;;">
                          <br/>
                          <p style="text-align:center;color:black">Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
                          <br/>
