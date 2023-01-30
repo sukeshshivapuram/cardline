@@ -194,8 +194,8 @@
                                         </td>
                                         <td>
 <!--                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>-->
-<!--                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date"}'/>-->
-                                            <span style="color:black" t-esc="datetime.datetime.strptime(str(line['date_maturity']), '%m-%d-%Y').strftime('%d/%m/%Y')"/>
+                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+<!--                                            <span style="color:black" t-esc="datetime.datetime.strptime(str(line['date_maturity']), '%m-%d-%Y').strftime('%d/%m/%Y')"/>-->
                                         </td>
 <!--                                        <td>-->
 <!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
