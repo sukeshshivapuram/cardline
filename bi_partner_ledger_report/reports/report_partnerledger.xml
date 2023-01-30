@@ -92,10 +92,10 @@
 <!--            </t>-->
             <div id="partner_header">
                     <div style="width:33.33%;">
-                        <strong style="color:#27B3CB;position:relative;bottom:-20px;">Bill To:</strong>
-                        <p style="color:black;position:relative;bottom:-20px;" t-esc="extra['customer_ids']"/>
+                        <strong style="color:#27B3CB;position:relative;bottom:-30px;">Bill To:</strong>
+                        <p style="color:black;position:relative;bottom:-30px;" t-esc="extra['customer_ids']"/>
                     </div>
-                    <div style="position:relative;bottom:40px;padding-left:250px">
+                    <div style="position:relative;bottom:30px;padding-left:250px">
                         <t>
                             <strong style="color:#27B3CB;">Date :</strong><span style="padding-left:85px;"></span>:
                             <span style="color:black" t-esc="datetime.datetime.now().strftime('%m-%d-%Y')"/>
