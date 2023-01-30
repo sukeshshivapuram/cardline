@@ -92,40 +92,42 @@
 <!--            </t>-->
             <div id="partner_header">
                     <div style="width:33.33%;">
-                        <strong>Bill To:</strong>
-                        <p t-esc="extra['customer_ids']"/>
+                        <strong style="color:#27B3CB;position:relative;bottom:-20px;">Bill To:</strong>
+                        <p style="color:black;position:relative;bottom:-20px;" t-esc="extra['customer_ids']"/>
                     </div>
-                    <div style="position:relative;bottom:60px;padding-left:250px">
+                    <div style="position:relative;bottom:40px;padding-left:250px">
                         <t>
-                            <strong>Date :</strong>
-                            <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/>
+                            <strong style="color:#27B3CB;">Date :</strong><span style="padding-left:85px;"></span>:
+                            <span style="color:black" t-esc="datetime.datetime.now().strftime('%m-%d-%Y')"/>
                             <br/>
                         </t>
                         <t>
-                            <strong>Statement No.# :</strong>
-                            <span t-esc="extra['statement_no']"/>
+                            <strong style="color:#27B3CB;">Statement No.# </strong><span style="padding-left:15px;"></span>:
+                            <span style="color:black" t-esc="extra['statement_no']"/>
                         </t><br/>
                         <t>
-                            <strong>Currency :</strong>
-                            <span>AED</span>
+                            <strong style="color:#27B3CB;">Currency</strong><span style="padding-left:62px;"></span>:
+                            <span style="color:black">AED</span>
                         </t>
                     </div>
-                    <div style="position:relative;bottom:130px;padding-left:550px">
-                        <strong style="font-size:15px">Account Summary</strong><br/>
+                    <div style="position:relative;bottom:130px;padding-left:600px">
+                        <u style="color:#27B3CB;"><strong style="color:#27B3CB;font-size:15px;padding:left:50%">Account Summary</strong></u><br/>
+                    </div>
+                    <div style="position:relative;bottom:120px;padding-left:550px">
                         <t>
-                            <strong>Credit:</strong>
+                            <strong style="color:#27B3CB;padding-left:10px">Credit</strong><span style="padding-left:99px;"></span>:
                             <span style=";color:black" t-esc="sum_partner(data, o, 'credit')"
                                     /><![CDATA[&nbsp;]]><span style="color:black">AED</span>
                             <br/>
                         </t>
                         <t>
-                            <strong>Debit:</strong>
+                            <strong style="color:#27B3CB;padding-left:10px">Debit</strong><span style="padding-left:104px;"></span>:
                             <span style="color:black" t-esc="sum_partner(data, o, 'debit')"
                                     /><![CDATA[&nbsp;]]><span style="color:black">AED</span>
                             <br/>
                         </t>
                         <t>
-                            <strong>Total Balance Due:</strong>
+                            <strong style="color:#27B3CB;padding-left:10px">Total Balance Due</strong><span style="padding-left:18px;"></span>:
                             <span  style="color:black" t-esc="sum_partner(data, o, 'debit - credit')"
                                     /><![CDATA[&nbsp;]]><span style="color:black">AED</span>
                             <br/>
@@ -138,7 +140,7 @@
                     <div style = "position:relative;bottom:50px;">
                         <table class="table table-condensed">
                             <thead>
-                                <tr>
+                                <tr style="font-size:12px">
                                     <th>Date</th>
                                     <th>Transaction</th>
                                     <th>Due Date</th>
@@ -179,7 +181,8 @@
                                             <span style="background:white;color:black" t-esc="line['name']"/>
                                         </td>
                                         <td>
-                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>
+<!--                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>-->
+                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date"}'/>
                                         </td>
 <!--                                        <td>-->
 <!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
@@ -212,7 +215,7 @@
 <!--                </t>-->
 
 <!--                    <t t-foreach="get_partner_lines" t-as="partner">-->
-                    <div class="page">
+                    <div style="position:relative;bottom:50px;" class="page">
 <!--                        <center>-->
 <!--                            <h2 style="color:#27B3CB;font-size:30px;">CUSTOMER AGEING</h2>-->
 <!--                        </center>-->
@@ -251,25 +254,25 @@
 
                         <table class="table table-condensed">
                             <thead>
-                                <tr>
+                                <tr style="font-size:11px">
 <!--                                    <th>Partners</th>-->
 <!--                                    <th class="text-right">-->
 <!--                                        <span>Not due</span>-->
 <!--                                    </th>-->
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['4']['name']"/><br/><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['4']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['3']['name']"/><br/><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['3']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['2']['name']"/><br/><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['2']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['1']['name']"/><br/><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['1']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['0']['name']"/><br/><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['0']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
                                     </th>
 <!--                                    <th class="text-right">Total OS</th>-->
                                     <th class="text-right">Amount Due</th>
@@ -319,6 +322,15 @@
                             </tbody>
                         </table>
                     </div>
+                        <br/>
+                        <br/>
+                     <div style="position:relative;bottom:-50px;;">
+                         <br/>
+                         <p style="text-align:center;color:black">Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
+                         <br/>
+                         <strong><p style="text-align:center;color:black;font-size:20px">Thank you for your business!</p></strong>
+                         <p style="text-align:center;color:black">Should you have any enquiries concerning this statement ,please don't hesitate to contact us</p>
+                     </div>
                     </t>
                     </t>
                 </t>
