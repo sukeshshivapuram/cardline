@@ -141,7 +141,7 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr style="font-size:12px">
-                                    <th>Date</th>
+                                    <th style="width:30%">Date</th>
                                     <th>Transaction</th>
                                     <th>Due Date</th>
 <!--                                    <th>Document Number</th>-->
