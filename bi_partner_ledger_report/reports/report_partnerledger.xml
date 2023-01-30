@@ -141,7 +141,7 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr style="font-size:12px">
-                                    <th style="width:30%">Date</th>
+                                    <th style="width:20%">Date</th>
                                     <th>Transaction</th>
                                     <th>Due Date</th>
 <!--                                    <th>Document Number</th>-->
@@ -290,7 +290,7 @@
 <!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
 <!--                                        </td>-->
                                         <td class="text-right">
-                                            <span style="background:white;color:black" t-esc="partner['4']"
+                                            <span style="background:white;color:black;text-align:left" t-esc="partner['4']"
                                                   t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
                                         <td class="text-right">
@@ -324,7 +324,7 @@
                     </div>
                         <br/>
                         <br/>
-                     <div style="position:relative;bottom:-50px;;">
+                     <div style="position:relative;bottom:-85px;">
                          <br/>
                          <p style="text-align:center;color:black">Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
                          <br/>
