@@ -20,7 +20,7 @@ class TaxInvoiceReportInherit(models.Model):
             for line in rec.invoice_line_ids:
                 total = total + (line.quantity * line.price_unit)
                 print(total)
-        return total
+        return round(total)
 
     # def set_amt_in_worlds(self):
     #     amount, currency = self.amount_total, self.currency_id.name
