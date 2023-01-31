@@ -95,21 +95,21 @@
 <!--                    </t>-->
 <!--            </t>-->
             <div id="partner_header">
-                    <div style="width:33.33%;position:relative;bottom:-45px;">
+                    <div style="width:33.33%;position:relative;bottom:-15px;">
                         <strong style="color:#27B3CB;position:relative;bottom:5px;">Bill To:</strong><br/>
                         <t style="color:black;" t-esc="extra['customer_ids']"/><br/>
                         <t style="color:#0C0C0C;" t-esc="o.street"/><br/>
                         <t style="color:#0C0C0C" t-esc="o.street2"/><br/>
                         <t style="color:#0C0C0C" t-esc="o.city"/><br/>
-                        <t style="color:#0C0C0C" t-esc="o.state_id.name"/><br/>
-                        <t style="color:#0C0C0C" t-esc="o.zip"/><br/>
+<!--                        <t style="color:#0C0C0C" t-esc="o.state_id.name"/><br/>-->
+<!--                        <t style="color:#0C0C0C" t-esc="o.zip"/><br/>-->
                         <t style="color:#0C0C0C" t-esc="o.country_id.name"/><br/>
 
                     </div>
                     <div style="position:relative;bottom:85px;padding-left:280px">
                         <t>
                             <strong style="color:#27B3CB;">Date :</strong><span style="padding-left:85px;"></span>:
-                            <span style="color:black" t-esc="datetime.datetime.now().strftime('%d-%m-%Y')"/>
+                            <span style="color:black" t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/>
                             <br/>
                         </t>
                         <t>
@@ -148,7 +148,7 @@
                 </div>
 <!--                <t t-foreach="docs" t-as="o">-->
                     <t t-if="o.name == extra['customer_ids']">
-                    <div style = "position:relative;bottom:70px;">
+                    <div style = "position:relative;bottom:90px;">
                         <table class="table table-condensed">
                             <thead>
                                 <tr style="font-size:14px">
@@ -194,7 +194,7 @@
                                         </td>
                                         <td>
 <!--                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>-->
-                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
 <!--                                            <span style="color:black" t-esc="datetime.datetime.strptime(str(line['date_maturity']), '%m-%d-%Y').strftime('%d/%m/%Y')"/>-->
                                         </td>
 <!--                                        <td>-->
@@ -228,7 +228,7 @@
 <!--                </t>-->
 
 <!--                    <t t-foreach="get_partner_lines" t-as="partner">-->
-                    <div style="position:relative;bottom:50px;" class="page">
+                    <div style="position:relative;bottom:80px;" class="page">
 <!--                        <center>-->
 <!--                            <h2 style="color:#27B3CB;font-size:30px;">CUSTOMER AGEING</h2>-->
 <!--                        </center>-->
