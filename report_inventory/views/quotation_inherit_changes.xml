@@ -14,9 +14,9 @@
             <xpath expr="//form/sheet/notebook/page/group/group/field[@name='team_id']" position="after">
                 <field name="currency_sale"/>
             </xpath>
-<!--            <xpath expr="//form/sheet/notebook/page/field/form/group/group/field[@name='price_unit']" position="after">-->
-<!--                <field name="taxable_amount_sale"/>-->
-<!--            </xpath>-->
+            <xpath expr="//form/sheet/group/group/field[@name='validity_date']" position="after">
+                <field name="quotation_create_date" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
+            </xpath>
 
         </field>
     </record>

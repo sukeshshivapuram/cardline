@@ -12,7 +12,7 @@
                 <div t-if="doc.date_order" class="col-auto col-3 mw-100 mb-2" name="informations_date">
                     <strong style="color:#27B3CB;" t-if="doc.state in ['draft', 'sent']">Quotation Date:</strong>
                     <strong style="color:#27B3CB;" t-else="">Order Date:</strong>
-                    <p class="m-0" style="color:black" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                    <p class="m-0" style="color:black" t-field="doc.quotation_create_date" t-options='{"widget": "date"}'/>
                 </div>
                 <div t-if="doc.validity_date and doc.state in ['draft', 'sent']"
                      class="col-auto col-3 mw-100 mb-2"

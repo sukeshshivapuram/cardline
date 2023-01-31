@@ -10,6 +10,7 @@ class StockPicking(models.Model):
 
     customer_reference = fields.Char(string="Customer Reference")
     currency_sale = fields.Char(string="Currency",default='AED')
+    quotation_create_date = fields.Datetime(string="Quotation Date")
 
 
     def calculation_amount(self,result):
