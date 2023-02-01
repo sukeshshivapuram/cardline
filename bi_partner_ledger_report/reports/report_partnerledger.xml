@@ -269,23 +269,23 @@
                             <thead>
                                 <tr style="font-size:12px">
 <!--                                    <th>Partners</th>-->
-<!--                                    <th class="text-right">-->
-<!--                                        <span>Not due</span>-->
-<!--                                    </th>-->
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['4']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
+                                        <span>Not due</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['3']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['4']['name']"/><![CDATA[&nbsp;]]><span>DAYS</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['2']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['3']['name']"/><![CDATA[&nbsp;]]><span>DAYS</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['1']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['2']['name']"/><![CDATA[&nbsp;]]><span>DAYS</span>
                                     </th>
                                     <th class="text-right">
-                                        <span t-esc="extra['info']['form']['0']['name']"/><![CDATA[&nbsp;]]><span>DAYS PAST DUE</span>
+                                        <span t-esc="extra['info']['form']['1']['name']"/><![CDATA[&nbsp;]]><span>DAYS</span>
+                                    </th>
+                                    <th class="text-right">
+                                        <span t-esc="extra['info']['form']['0']['name']"/><![CDATA[&nbsp;]]><span>DAYS</span>
                                     </th>
 <!--                                    <th class="text-right">Total OS</th>-->
                                     <th class="text-right">Amount Due</th>
@@ -298,10 +298,10 @@
 <!--                                        <td>-->
 <!--                                            <span style="background:white;color:black" t-esc="partner['name']"/>-->
 <!--                                        </td>-->
-<!--                                        <td class="text-right">-->
-<!--                                            <span style="background:white;color:black" t-esc="partner['direction']"-->
-<!--                                                  t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
-<!--                                        </td>-->
+                                        <td class="text-right">
+                                            <span style="background:white;color:black" t-esc="'%.2f'% partner['direction']"
+                                                  />
+                                        </td>
                                         <td class="text-right">
                                             <span style="background:white;color:black;text-align:left" t-esc="'%.2f'% partner['4']"
                                                  />
