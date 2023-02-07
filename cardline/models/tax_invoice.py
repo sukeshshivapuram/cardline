@@ -150,6 +150,12 @@ class PurchaseOrderInherit(models.Model):
 
 
     due_date = fields.Date(string="Due Date")
+    
+    def button_approve(self, force=False):
+	    self = self.filtered(lambda order: order._approval_allowed())
+	    self.write({'state': 'purchase', 'date_approve': self.date_order})
+	    self.filtered(lambda p: p.company_id.po_lock == 'lock').write({'state': 'done'})
+	    return {}
 
 
 
