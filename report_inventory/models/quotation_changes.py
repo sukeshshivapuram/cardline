@@ -7,6 +7,7 @@ from num2words import num2words
 
 class StockPicking(models.Model):
     _inherit = 'sale.order'
+    
 
     customer_reference = fields.Char(string="Customer Reference")
     currency_sale = fields.Char(string="Currency",default='AED')
@@ -19,6 +20,8 @@ class StockPicking(models.Model):
         sliced_amount = final[:len(final) - 4]
         amount_return = sliced_amount +" "
         return amount_return
+        
+        
 
     def discount_calculate_quotation(self):
         discount = 0
