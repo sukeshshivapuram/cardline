@@ -53,38 +53,40 @@
                                                     t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                         </td>
                                     </tr>
-                                    <tr t-foreach="lines(data, o)" t-as="line">
-                                        <td>
-                                            <span style="background:white;color:black" t-esc="line['date']"/>
-                                        </td>
-                                        <td>
-                                            <span style="background:white;color:black" t-esc="line['name']"/>
-                                        </td>
-                                        <td>
-                                            <span style="background:white;color:black" t-esc="line['currency_code']"/>
-                                        </td>
-                                        <!--                                        <td>-->
-                                        <!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
-                                        <!--                                        </td>-->
-                                        <td class="text-right">
-                                            <span style="background:white;color:black" t-esc="line['debit']"
-                                            />
-                                        </td>
-                                        <td class="text-right">
-                                            <span style="background:white;color:black" t-esc="line['credit']"
-                                            />
-                                        </td>
-                                        <td style="background:white" class="text-right">
-                                            <span t-esc="line['progress']"
-                                            />
-                                        </td>
-                                        <td class="text-right" t-if="extra['amount_currency']">
-                                            <t t-if="line['currency_id']">
-                                                <span t-esc="line['amount_currency']"
-                                                      t-options="{'widget': 'monetary', 'display_currency': line['currency_id']}"/>
-                                            </t>
-                                        </td>
-                                    </tr>
+                                    <t t-foreach="lines(data, o)" t-as="line">
+                                        <tr t-if="line['date'] &gt;= extra['date_from'] &amp; line['date'] &lt;= extra['date_to']">
+                                            <td>
+                                                <span style="background:white;color:black" t-esc="line['date']"/>
+                                            </td>
+                                            <td>
+                                                <span style="background:white;color:black" t-esc="line['name']"/>
+                                            </td>
+                                            <td>
+                                                <span style="background:white;color:black" t-esc="line['currency_code']"/>
+                                            </td>
+                                            <!--                                        <td>-->
+                                            <!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
+                                            <!--                                        </td>-->
+                                            <td class="text-right">
+                                                <span style="background:white;color:black" t-esc="line['debit']"
+                                                />
+                                            </td>
+                                            <td class="text-right">
+                                                <span style="background:white;color:black" t-esc="line['credit']"
+                                                />
+                                            </td>
+                                            <td style="background:white" class="text-right">
+                                                <span t-esc="line['progress']"
+                                                />
+                                            </td>
+                                            <td class="text-right" t-if="extra['amount_currency']">
+                                                <t t-if="line['currency_id']">
+                                                    <span t-esc="line['amount_currency']"
+                                                          t-options="{'widget': 'monetary', 'display_currency': line['currency_id']}"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
                                     <!--                                </t>-->
 
                                 </tbody>
@@ -184,42 +186,44 @@
 <!--                                                    t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>-->
 <!--                                        </td>-->
 <!--                                    </tr>-->
-                                    <tr style="font-size:12px;text-align:center" t-foreach="lines(data, o)" t-as="line">
-                                        <td>
-<!--                                            <span style="background:white;color:black" t-esc="line['date']"/>-->
-                                            <span style="background:white;color:black;text-align:center" t-esc="datetime.datetime.strptime(str(line['date']), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
-                                        </td>
-                                        <td>
-                                            <span style="background:white;color:black;text-align:center" t-esc="line['name']"/>
-                                        </td>
-                                        <td>
-<!--                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>-->
-                                            <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
-<!--                                            <span style="color:black" t-esc="datetime.datetime.strptime(str(line['date_maturity']), '%m-%d-%Y').strftime('%d/%m/%Y')"/>-->
-                                        </td>
-<!--                                        <td>-->
-<!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
-<!--                                        </td>-->
-                                        <td class="text-right">
-                                            <span style="background:white;color:black" t-esc="'%.2f'% line['debit']"
-                                                  />
-                                        </td>
-                                        <td class="text-right">
-                                            <span style="background:white;color:black" t-esc="'%.2f'% line['credit']"
-                                                  />
-                                        </td>
-                                        <td style="background:white;color:black" class="text-right">
-                                            <span t-esc="'%.2f'% line['progress']"
-                                                  />
-                                        </td>
-                                        <td class="text-right" t-if="extra['amount_currency']">
-                                            <t t-if="line['currency_id']">
-                                                <span style="color:black" t-esc="line['amount_currency']"
-                                                      t-options="{'widget': 'monetary', 'display_currency': line['currency_id']}"/>
-                                            </t>
-                                        </td>
+                                    <t  t-foreach="lines(data, o)" t-as="line">
+                                        <tr style="font-size:12px;text-align:center" t-if="datetime.datetime.strptime(str(line['date']), '%Y-%m-%d') &gt;= datetime.datetime.strptime(str(extra['date_from']), '%Y-%m-%d') and datetime.datetime.strptime(str(line['date']), '%Y-%m-%d') &lt;= datetime.datetime.strptime(str(extra['date_to']), '%Y-%m-%d')">
+
+                                            <td>
+    <!--                                            <span style="background:white;color:black" t-esc="line['date']"/>-->
+                                                <span style="background:white;color:black;text-align:center" t-esc="datetime.datetime.strptime(str(line['date']), '%Y-%m-%d').strftime('%d/%m/%Y')"/>
+                                            </td>
+                                            <td>
+                                                <span style="background:white;color:black;text-align:center" t-esc="line['name']"/>
+                                            </td>
+                                            <td>
+    <!--                                            <span style="background:white;color:black" t-esc="line['date_maturity']"/>-->
+                                                <span class="m-0" style="background:white;color:black" t-esc="line['date_maturity']" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
+    <!--                                            <span style="color:black" t-esc="datetime.datetime.strptime(str(line['date_maturity']), '%m-%d-%Y').strftime('%d/%m/%Y')"/>-->
+                                            </td>
+    <!--                                        <td>-->
+    <!--                                            <span style="background:white;color:black" t-esc="line['move_name']"/>-->
+    <!--                                        </td>-->
+                                            <td class="text-right">
+                                                <span style="background:white;color:black" t-esc="'%.2f'% line['debit']"
+                                                      />
+                                            </td>
+                                            <td class="text-right">
+                                                <span style="background:white;color:black" t-esc="'%.2f'% line['credit']"
+                                                      />
+                                            </td>
+                                            <td style="background:white;color:black" class="text-right">
+                                                <span t-esc="'%.2f'% line['progress']"
+                                                      />
+                                            </td>
+                                            <td class="text-right" t-if="extra['amount_currency']">
+                                                <t t-if="line['currency_id']">
+                                                    <span style="color:black" t-esc="line['amount_currency']"
+                                                          t-options="{'widget': 'monetary', 'display_currency': line['currency_id']}"/>
+                                                </t>
+                                            </td>
                                     </tr>
-<!--                                </t>-->
+                                </t>
 
                             </tbody>
                         </table>
