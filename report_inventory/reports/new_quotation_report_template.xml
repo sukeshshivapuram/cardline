@@ -113,7 +113,7 @@
                                                  <span t-out="', '.join(map(lambda x: (x.description or x.name), line.tax_id))"/>
                                              </td>
                                              <td style="color:black;width:90px;background:white;padding-right:5px" name="td_amount" class="text-end">
-                                                <span style="color:black"  t-set="total_sum" t-esc="'%.2f'% doc.calculation_amount(line.price_subtotal)"/><span style="color:black" t-esc="doc.pricelist_id.currency_id.name"/>
+                                                <span style="color:black"  t-set="total_sum" t-esc="doc.calculation_amount('%.2f'% line.price_subtotal)"/><span style="color:black" t-esc="doc.pricelist_id.currency_id.name"/>
                                             </td>
                                      </t>
                                          <t t-elif="line.display_type == 'line_section'">
