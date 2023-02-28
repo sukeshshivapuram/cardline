@@ -9,29 +9,29 @@ class BiReportPartnerLedger(models.AbstractModel):
     _description="Report Partner Ledger"
 
     def _lines(self, data, partner):
-        print("in lines function (partner legder)||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
-        print("dataaaaaaaaaaaaaaaaaaaaaa^^^^^",data)
-        print("partnerrrrrrrrrrrrrraaaaaaaaaaaaaaaa&&&&&&&&a",partner)
+        # print("in lines function (partner legder)||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+        # print("dataaaaaaaaaaaaaaaaaaaaaa^^^^^",data)
+        # print("partnerrrrrrrrrrrrrraaaaaaaaaaaaaaaa&&&&&&&&a",partner)
         full_account = []
         currency = self.env['res.currency']
-        print("currency",currency)
+        # print("currency",currency)
         if self._context.get('used_context'):
-            print("if            self._context.get('used_context')",self._context.get('used_context'))
+            # print("if            self._context.get('used_context')",self._context.get('used_context'))
             query_get_data = self.env['account.move.line'].with_context(self._context.get('used_context'))._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
-            print("query_get_data",query_get_data)
+            # print("query_get_data",query_get_data)
         else:
-            print("else          self._context.get('used_context')", self._context.get('used_context'))
+            # print("else          self._context.get('used_context')", self._context.get('used_context'))
             query_get_data = self.env['account.move.line']._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
-            print("query_get_data", query_get_data)
+            # print("query_get_data", query_get_data)
         reconcile_clause = "" if self._context['reconciled'] else ' AND "account_move_line".full_reconcile_id IS NULL '
-        print(reconcile_clause,"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK")
+        # print(reconcile_clause,"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK")
         params = [partner.id, tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + \
                  query_get_data[2]
-        print("paramas  ",params)
+        # print("paramas  ",params)
         query = """
             SELECT "account_move_line".id, "account_move_line".date, j.code, acc.code as a_code, acc.name as a_name, "account_move_line".ref, m.name as move_name, "account_move_line".name, "account_move_line".debit, "account_move_line".credit, "account_move_line".amount_currency,"account_move_line".currency_id,"account_move_line".date_maturity,"account_move_line".partner_id, c.symbol AS currency_code
             FROM """ + query_get_data[0] + """
@@ -61,37 +61,37 @@ class BiReportPartnerLedger(models.AbstractModel):
             r['progress'] = sum
             r['currency_id'] = currency.browse(r.get('currency_id'))
             full_account.append(r)
-        print("full account",full_account)
+        # print("full account",full_account)
         return full_account
 
     def _sum_partner(self, data, partner, field):
-        print("In sum partner (partner legder)||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
-        print(self._context)
-        print(data,"dataaaaa")
-        print(partner,"partnerrrrr")
-        print(field,"fielddddddddd")
+        # print("In sum partner (partner legder)||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+        # print(self._context)
+        # print(data,"dataaaaa")
+        # print(partner,"partnerrrrr")
+        # print(field,"fielddddddddd")
         if field not in ['debit', 'credit', 'debit - credit']:
             return
         result = 0.0
-        print(self._context.get('used_context'), " print(self._context.get('used_context'))")
+        # print(self._context.get('used_context'), " print(self._context.get('used_context'))")
         # print(self._context['reconciled'], "self._context['reconciled']////////// in else")
         if self._context.get('used_context'):
             query_get_data = self.env['account.move.line'].with_context(self._context.get('used_context'))._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
-            print(query_get_data, "query_get_data in if")
+            # print(query_get_data, "query_get_data in if")
         else:
             query_get_data = self.env['account.move.line']._where_calc([
             ('company_id', '=', self.env.company.id)
         ]).get_sql()
-            print(query_get_data,"query_get_data in else")
+            # print(query_get_data,"query_get_data in else")
             # print(self._context['reconciled'],"self._context['reconciled']////////// in else")
         reconcile_clause = "" if self._context['reconciled'] else ' AND "account_move_line".full_reconcile_id IS NULL '
-        print("reconcile_clause\\\\\\\\\\\\\\\\\\",reconcile_clause)
+        # print("reconcile_clause\\\\\\\\\\\\\\\\\\",reconcile_clause)
 
         params = [partner.id, tuple(data['computed']['move_state']), tuple(data['computed']['account_ids'])] + \
                  query_get_data[2]
-        print("paramsssss",params)
+        # print("paramsssss",params)
         query = """SELECT sum(""" + field + """)
                 FROM """ + query_get_data[0] + """, account_move AS m
                 WHERE "account_move_line".partner_id = %s
@@ -102,10 +102,10 @@ class BiReportPartnerLedger(models.AbstractModel):
         self.env.cr.execute(query, tuple(params))
 
         contemp = self.env.cr.fetchone()
-        print(contemp,'----------------------------------------------')
+        # print(contemp,'----------------------------------------------')
         if contemp is not None:
             result = contemp[0] or 0.0
-        print("resulttttttt",result)
+        # print("resulttttttt",result)
         return result
 
 
@@ -132,6 +132,9 @@ class BiReportPartnerLedger(models.AbstractModel):
         target_move = data.get('target_move', 'all')
         print("target valueeeee",target_move)
         date_from = data.get('date_from', time.strftime('%Y-%m-%d'))
+        print(date_from,"LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+        date_to = data.get('date_to', time.strftime('%Y-%m-%d'))
+        print(date_to,"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO>>>>>>>>>>>>>>>>>>>>>>>>>")
 
         if ['result_selection'] == 'customer':
             account_type = ['asset_receivable']
@@ -139,7 +142,7 @@ class BiReportPartnerLedger(models.AbstractModel):
             account_type = ['liability_payable']
         else:
             account_type = ['liability_payable', 'asset_receivable']
-        movelines, total, dummy = self._get_partner_move_lines(account_type, date_from, target_move,
+        movelines, total, dummy = self._get_partner_move_lines(account_type, date_to,date_from, target_move,
                                                                    data['period_length'])
         print(self.ids,"self idsss")
         print(model,"model::::::::::::::")
@@ -156,6 +159,7 @@ class BiReportPartnerLedger(models.AbstractModel):
             'get_partner_lines': movelines,
             'get_direction': total,
             'date_from': data.get('date_from'),
+            'date_to':data.get('date_to'),
             'doc_ids': data.get('partner_ids'),
             'doc_model': self.env['res.partner'],
             'data': data.get('data'),
@@ -171,30 +175,36 @@ class BiReportPartnerLedger(models.AbstractModel):
         print("?????????????????????????????")
         return abc
 
-    def _get_partner_move_lines(self, account_type, date_from, target_move, period_length):
+    def _get_partner_move_lines(self, account_type,date_to, date_from, target_move, period_length):
         print("self?????????????????????????????????",self)
         print("in get partner move lines")
         print("accountype in get psrtnermove lines",account_type)
         periods = {}
         if self._context.get('report_type') == 'excel':
-            start = date_from
+            start = date_to
             print("start in if",start)
         else:
-            start = datetime.strptime(date_from, "%Y-%m-%d")
+            start = datetime.strptime(date_to, "%Y-%m-%d")
             print("start in else", start)
         for i in range(5)[::-1]:
             print("IN  for")
             stop = start - relativedelta(days=period_length)
+            print(stop,"stop")
             period_name = str((5 - (i + 1)) * period_length + 1) + '-' + str((5 - i) * period_length)
+            print(period_name,"period nameee")
             period_stop = (start - relativedelta(days=1)).strftime('%Y-%m-%d')
+            print(period_stop,"period  stoppppp")
             if i == 0:
                 period_name = '+' + str(4 * period_length)
+                print("period name in if i===0",period_name)
             periods[str(i)] = {
                 'name': period_name,
                 'stop': period_stop,
                 'start': (i != 0 and stop.strftime('%Y-%m-%d') or False),
             }
             start = stop
+            print(periods[str(i)],"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGg")
+            print(start,"starttttttttttttttttttttttttttttttttt")
 
         res = []
         total = []
@@ -210,17 +220,20 @@ class BiReportPartnerLedger(models.AbstractModel):
         print("arg_list",arg_list)
         reconciliation_clause = '(l.reconciled IS FALSE)'
         cr.execute('SELECT debit_move_id, credit_move_id FROM account_partial_reconcile where create_date > %s',
-                   (date_from,))
+                   (date_to,))
         print("reconciliation_clause",reconciliation_clause)
-        print("cr.fetchalll",cr.fetchall())
         reconciled_after_date = []
         for row in cr.fetchall():
+            print(row,"rowww")
             print("in second for")
             reconciled_after_date += [row[0], row[1]]
+        print("reconciled after dateee",reconciled_after_date)
         if reconciled_after_date:
             reconciliation_clause = '(l.reconciled IS FALSE OR l.id IN %s)'
+            print("reconciled clause in ++++++++++++++++++++",reconciliation_clause)
             arg_list += (tuple(reconciled_after_date),)
-        arg_list += (date_from, tuple(company_ids))
+        arg_list += (date_to, tuple(company_ids))
+        print("argggglistttttttt ++++++++++++++++++",arg_list)
         query = '''
             SELECT DISTINCT l.partner_id, UPPER(res_partner.name)
             FROM account_move_line AS l left join res_partner on l.partner_id = res_partner.id, account_account, account_move am
@@ -235,12 +248,16 @@ class BiReportPartnerLedger(models.AbstractModel):
         cr.execute(query, arg_list)
 
         partners = cr.dictfetchall()
+        print("psrtnersssss++++++++++++++++++",partners)
 
         for i in range(7):
+            print(i,"IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
             total.append(0)
 
         partner_ids = [partner['partner_id'] for partner in partners if partner['partner_id']]
+        print("partnerrrr idssss ++++++++++++++",partner_ids)
         lines = dict((partner['partner_id'] or False, []) for partner in partners)
+        print("linessssssss+++++++++++++++++++++++",lines)
         if not partner_ids:
             return [], [], {}
 
@@ -254,35 +271,49 @@ class BiReportPartnerLedger(models.AbstractModel):
                     AND ((l.partner_id IN %s) OR (l.partner_id IS NULL))
                 AND (l.date <= %s)
                 AND l.company_id IN %s'''
+        print("date from after query",date_to)
         cr.execute(query, (
-            tuple(move_state), tuple(account_type), date_from, tuple(partner_ids), date_from, tuple(company_ids)))
+            tuple(move_state), tuple(account_type), date_to, tuple(partner_ids), date_to, tuple(company_ids)))
         aml_ids = cr.fetchall()
+        print("aml idssss1111111111",aml_ids)
         aml_ids = aml_ids and [x[0] for x in aml_ids] or []
+        print(aml_ids,"amlll idssss22222222")
         for line in self.env['account.move.line'].browse(aml_ids):
+            print(line,"in lineeeeeee>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.")
             partner_id = line.partner_id.id or False
+            print(partner_id,"partner id>>>>>>>>>>>>>>>>>>>>>>>>>>>...")
             if partner_id not in undue_amounts:
+                print(partner_id)
+                print("in if after partner _id >>>>>>")
                 undue_amounts[partner_id] = 0.0
             line_amount = line.balance
+            print(line_amount,"lineeee amounttttttttn")
+            print(line.balance,"line balanceeeeeeee")
+            print(line.matched_debit_ids,"mateched debit idsssssss")
             if line.balance == 0:
                 continue
             for partial_line in line.matched_debit_ids:
-                if isinstance(date_from, str):
-                    _date_from = datetime.strptime(date_from, DEFAULT_SERVER_DATE_FORMAT)
+                print(partial_line,"parttial l;ineeee??????????????????//")
+                if isinstance(date_to, str):
+                    _date_to = datetime.strptime(date_to, DEFAULT_SERVER_DATE_FORMAT)
                 else:
-                    _date_from = date_from
+                    _date_to = date_to
 
+                print(partial_line.max_date,"maxxx dateeeee")
                 if isinstance(partial_line.max_date, str):
-                    if partial_line.max_date <= date_from:
+                    if partial_line.max_date <= date_to:
                         line_amount += partial_line.amount
                 else:
-                    if isinstance(date_from, date):
-                        if partial_line.max_date <= _date_from:
+                    if isinstance(date_to, date):
+                        if partial_line.max_date <= _date_to:
                             line_amount += partial_line.amount
                     else:
-                        if partial_line.max_date <= _date_from.date():
+                        if partial_line.max_date <= _date_to.date():
                             line_amount += partial_line.amount
 
             for partial_line in line.matched_credit_ids:
+                print(partial_line,"partial lineekkkkkkkkkkkkkkk")
+                print(partial_line.amount,"partial line amountttttt")
                 line_amount -= partial_line.amount
             if not self.env.user.company_id.currency_id.is_zero(line_amount):
                 undue_amounts[partner_id] += line_amount
@@ -306,7 +337,7 @@ class BiReportPartnerLedger(models.AbstractModel):
             else:
                 dates_query += ' <= %s)'
                 args_list += (periods[str(i)]['stop'],)
-            args_list += (date_from, tuple(company_ids))
+            args_list += (date_to, tuple(company_ids))
 
             query = '''SELECT l.id
                     FROM account_move_line AS l, account_account, account_move am
@@ -329,20 +360,20 @@ class BiReportPartnerLedger(models.AbstractModel):
                 if line.balance == 0:
                     continue
                 for partial_line in line.matched_debit_ids:
-                    if isinstance(date_from, str):
-                        _date_from = datetime.strptime(date_from, DEFAULT_SERVER_DATE_FORMAT)
+                    if isinstance(date_to, str):
+                        _date_to = datetime.strptime(date_to, DEFAULT_SERVER_DATE_FORMAT)
                     else:
-                        _date_from = date_from
+                        _date_to = date_to
 
                     if isinstance(partial_line.max_date, str):
-                        if partial_line.max_date <= date_from:
+                        if partial_line.max_date <= date_to:
                             line_amount += partial_line.amount
                     else:
-                        if isinstance(date_from, date):
-                            if partial_line.max_date <= _date_from:
+                        if isinstance(date_to, date):
+                            if partial_line.max_date <= _date_to:
                                 line_amount += partial_line.amount
                         else:
-                            if partial_line.max_date <= _date_from.date():
+                            if partial_line.max_date <= _date_to.date():
                                 line_amount += partial_line.amount
                 for partial_line in line.matched_credit_ids:
                     line_amount -= partial_line.amount
