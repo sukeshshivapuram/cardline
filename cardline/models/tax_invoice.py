@@ -145,17 +145,7 @@ class InvoiceFormOrderLinesInherit(models.Model):
             print(rec.price_subtotal,"price_subtotal")
         return rec.price_subtotal
 
-class PurchaseOrderInherit(models.Model):
-    _inherit = 'purchase.order'
 
-
-    due_date = fields.Date(string="Due Date")
-    
-    def button_approve(self, force=False):
-	    self = self.filtered(lambda order: order._approval_allowed())
-	    self.write({'state': 'purchase', 'date_approve': self.date_order})
-	    self.filtered(lambda p: p.company_id.po_lock == 'lock').write({'state': 'done'})
-	    return {}
 
 
 
