@@ -339,14 +339,11 @@
                             </tbody>
                         </table>
                     </div>
-                        <br/>
-                        <br/>
-                     <div style="position:fixed;top:910px;text-align:center;padding-left:110px">
+                     <div class="text-center last-page" style="color:black; page-break-inside:avoid;">
+                         <p>Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
                          <br/>
-                         <p style="text-align:center;color:black">Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
-                         <br/>
-                         <strong><p style="text-align:center;color:black;font-size:20px">Thank you for your business!</p></strong>
-                         <p style="text-align:center;color:black">Should you have any enquiries concerning this statement ,please don't hesitate to contact us</p>
+                         <strong><p>Thank you for your business!</p></strong>
+                         <p>Should you have any enquiries concerning this statement ,please don't hesitate to contact us</p>
                      </div>
                     </t>
                     </t>
