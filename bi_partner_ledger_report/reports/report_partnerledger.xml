@@ -9,7 +9,7 @@
             <t t-set="data_report_header_spacing" t-value="9"/>
             <t t-set="data_report_dpi" t-value="110"/>
 <!--            <center><strong style="color:#27B3CB;font-size:20px;">STATEMENT OF ACCOUNTS</strong></center>-->
-            <h2 style="text-align:center;font-size:30px" class="mt-4">
+            <h2 style="text-align:center;font-size:30px">
                 <strong style="color:#27B3CB;font-size:30px;">STATEMENT OF ACCOUNTS</strong>
 <!--                <span style="color:#27B3CB;;position: relative;bottom: 15px;" t-field="doc.name"/>-->
             </h2>
@@ -150,7 +150,7 @@
                 </div>
 <!--                <t t-foreach="docs" t-as="o">-->
                     <t t-if="o.name == extra['customer_ids']">
-                    <div style = "position:relative;bottom:90px;">
+                    <div style = "position:relative;bottom:30px;">
                         <table class="table table-condensed">
                             <thead>
                                 <tr style="font-size:14px">
@@ -232,7 +232,7 @@
 <!--                </t>-->
 
 <!--                    <t t-foreach="get_partner_lines" t-as="partner">-->
-                    <div style="position:relative;bottom:80px;" class="page">
+                    <div style="position:relative;bottom:30px;" class="page">
 <!--                        <center>-->
 <!--                            <h2 style="color:#27B3CB;font-size:30px;">CUSTOMER AGEING</h2>-->
 <!--                        </center>-->
@@ -339,15 +339,31 @@
                             </tbody>
                         </table>
                     </div>
-                        <br/>
-                        <br/>
-                     <div style="position:fixed;top:910px;text-align:center;padding-left:110px">
-                         <br/>
-                         <p style="text-align:center;color:black">Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
-                         <br/>
-                         <strong><p style="text-align:center;color:black;font-size:20px">Thank you for your business!</p></strong>
-                         <p style="text-align:center;color:black">Should you have any enquiries concerning this statement ,please don't hesitate to contact us</p>
-                     </div>
+                        <div class="footer">
+                            <div class="last-page" style="text-align:center;color:black">
+                                <p>Make all cheques payable to CARD LINE ELECTRONICS L.L.C</p>
+                                <strong>
+                                    <p>Thank you for your business!</p>
+                                </strong>
+                                <span>Should you have any enquiries concerning this statement ,please don't hesitate to
+                                    contact us
+                                </span>
+                            </div>
+                            <div class="text-center" style="border-top: 2px solid black;">
+                                <p>Email: <span style="color:#27b3b3">info@cardlineuae.com</span>|web:
+                                    <span style="color:#27b3b3">www.cardlineuae.com</span>
+                                </p>
+                                <div t-if="report_type == 'pdf'" class="text-muted" style="padding-top:2px">
+                                    Page:
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </div>
+                                <div t-if="report_type == 'pdf' and display_name_in_footer" class="text-muted">
+                                    <span t-field="o.name"/>
+                                </div>
+                            </div>
+                        </div>
                     </t>
                     </t>
                 </t>
