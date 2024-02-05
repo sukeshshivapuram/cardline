@@ -50,6 +50,9 @@
                         'multi-page': function (elt) {
                             elt.style.display = (vars.sitepages > 1) ? "inherit" : "none";
                         },
+                        'last-page-operation': function (elt) {
+                            elt.style.display = (vars.sitepage == vars.sitepages) ? "inherit" : "none";
+                        },
                     };
                     for (var klass in operations) {
                         var y = document.getElementsByClassName(klass);
